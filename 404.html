@@ -1,197 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - E-Commerce Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>الصفحة غير موجودة - 404</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #0a5c5c;
+            --gold: #d4af37;
+            --cream: #f5f0e1;
+            --dark: #1a1a2e;
+            --light: #e6f9ff;
+            --arabic-font: 'Traditional Arabic', 'Arial', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Tahoma', 'Arial', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(10, 28, 46, 0.9), rgba(10, 28, 46, 0.9)), 
+                        url('/site/public/assets/images/633.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--cream);
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
-            overflow: hidden;
+            align-items: center;
+            text-align: center;
         }
 
         .container {
-            text-align: center;
-            position: relative;
+            max-width: 800px;
+            width: 95%;
             padding: 2rem;
         }
 
-        .error-code {
-            font-size: 15rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.3);
-            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
-            animation: float 3s ease-in-out infinite;
+        .error-content {
+            background: rgba(10, 92, 92, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .cartoon-box {
-            width: 200px;
-            height: 200px;
-            background: #fff;
-            border-radius: 20px;
-            margin: -100px auto 2rem;
-            position: relative;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            animation: bounce 2s ease infinite;
-        }
-
-        .cartoon-box::after {
-            content: '?';
-            position: absolute;
-            font-size: 8rem;
-            color: #ff6b6b;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .message {
-            font-size: 2rem;
-            color: #fff;
+        .error-icon {
+            font-size: 5rem;
+            color: var(--gold);
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
         }
 
-        .description {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            max-width: 600px;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        .home-btn {
-            padding: 1rem 2rem;
-            background: #fff;
-            color: #ff6b6b;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--gold), var(--cream));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .home-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-items {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .floating-item {
-            position: absolute;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .floating-item i {
+        h2 {
             font-size: 2rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        .arabic-text {
+            font-family: var(--arabic-font);
+            font-size: 2rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .language-btn {
+            background: rgba(245, 240, 225, 0.1);
+            color: white;
+            border: 1px solid var(--gold);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .language-btn.active {
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
         @media (max-width: 768px) {
-            .error-code {
-                font-size: 10rem;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .message {
-                font-size: 1.5rem;
+            h2 {
+                font-size: 1.6rem;
             }
             
-            .description {
-                font-size: 1rem;
+            .arabic-text {
+                font-size: 1.6rem;
+            }
+            
+            .error-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .arabic-text {
+                font-size: 1.4rem;
+            }
+            
+            .error-icon {
+                font-size: 3.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-items">
-        <div class="floating-item" style="top: 20%; left: 10%">
-            <i class="fas fa-shopping-bag"></i>
-        </div>
-        <div class="floating-item" style="top: 70%; left: 80%">
-            <i class="fas fa-truck"></i>
-        </div>
-        <div class="floating-item" style="top: 40%; left: 90%">
-            <i class="fas fa-box-open"></i>
-        </div>
-    </div>
-
     <div class="container">
-        <div class="error-code">404</div>
-        <div class="cartoon-box"></div>
-        <h1 class="message">Oops! Lost in the Aisles</h1>
-        <p class="description">
-            Looks like this product took a wrong turn! Don't worry, our best shoppers are on it.<br>
-            In the meantime, let's get you back to browsing amazing products.
-        </p>
-        <button class="home-btn">
-            <i class="fas fa-home"></i> Return to Homepage
-        </button>
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h1 id="error-title">404</h1>
+            <h2 id="error-subtitle">الصفحة غير موجودة</h2>
+            <p id="error-message">
+                عذراً، الصفحة التي تبحث عنها غير موجودة أو قد تم نقلها.
+                الرجاء التحقق من الرابط أو العودة إلى الصفحة الرئيسية.
+            </p>
+            
+            <div class="arabic-text">
+                وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ [الطلاق:2-3]
+            </div>
+            
+            <a href="/" class="btn-home" id="home-btn">العودة للصفحة الرئيسية</a>
+            
+            <div class="languages">
+                <button class="language-btn" onclick="setLanguage('arabic')">العربية</button>
+                <button class="language-btn" onclick="setLanguage('romanian')">Română</button>
+                <button class="language-btn" onclick="setLanguage('english')">English</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Add random floating items
-        const floatingItems = document.querySelector('.floating-items');
-        const icons = ['fa-shopping-cart', 'fa-gift', 'fa-tag', 'fa-credit-card'];
-        
-        for(let i = 0; i < 8; i++) {
-            const item = document.createElement('div');
-            item.className = 'floating-item';
-            item.style.left = `${Math.random() * 100}%`;
-            item.style.top = `${Math.random() * 100}%`;
-            item.style.animationDelay = `${Math.random() * 2}s`;
+        // Translations
+        const translations = {
+            arabic: {
+                title: "404",
+                subtitle: "الصفحة غير موجودة",
+                message: "عذراً، الصفحة التي تبحث عنها غير موجودة أو قد تم نقلها. الرجاء التحقق من الرابط أو العودة إلى الصفحة الرئيسية.",
+                button: "العودة للصفحة الرئيسية"
+            },
+            romanian: {
+                title: "404",
+                subtitle: "Pagina nu a fost găsită",
+                message: "Ne pare rău, pagina pe care o căutați nu există sau a fost mutată. Vă rugăm să verificați adresa URL sau să reveniți la pagina principală.",
+                button: "Înapoi la pagina principală"
+            },
+            english: {
+                title: "404",
+                subtitle: "Page Not Found",
+                message: "Sorry, the page you are looking for doesn't exist or has been moved. Please check the URL or return to the homepage.",
+                button: "Back to Homepage"
+            }
+        };
+
+        // Set language function
+        function setLanguage(lang) {
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
             
-            const icon = document.createElement('i');
-            icon.className = `fas ${icons[Math.floor(Math.random() * icons.length)]}`;
-            item.appendChild(icon);
+            document.getElementById('error-title').textContent = translations[lang].title;
+            document.getElementById('error-subtitle').textContent = translations[lang].subtitle;
+            document.getElementById('error-message').textContent = translations[lang].message;
+            document.getElementById('home-btn').textContent = translations[lang].button;
             
-            floatingItems.appendChild(item);
+            document.documentElement.lang = lang === 'arabic' ? 'ar' : lang === 'romanian' ? 'ro' : 'en';
+            document.documentElement.dir = lang === 'arabic' ? 'rtl' : 'ltr';
         }
 
-        // Add hover effect to button
-        document.querySelector('.home-btn').addEventListener('mouseover', function() {
-            this.style.animation = 'glitch 0.3s linear';
-        });
-        
-        document.querySelector('.home-btn').addEventListener('mouseout', function() {
-            this.style.animation = '';
-        });
+        // Set Arabic as default language
+        setLanguage('arabic');
     </script>
 </body>
 </html>
