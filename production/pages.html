@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Site Map - Islamic Center</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --primary-light: #3b82f6;
+                --secondary-color: #f59e0b;
+                --secondary-light: #fcd34d;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+                --success: #10b981;
+                --warning: #f59e0b;
+                --danger: #ef4444;
+                --transition: all 0.3s ease;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            @font-face {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                background-color: #f8f9fa;
+                padding: 20px;
+                background-image: radial-gradient(circle at 10% 20%, rgba(241, 245, 249, 0.8) 0%, rgba(241, 245, 249, 0.9) 90%);
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                color: var(--primary-color);
+                text-align: center;
+                margin: 30px 0;
+                font-size: 2.8rem;
+                font-weight: 600;
+                position: relative;
+                display: inline-block;
+                width: 100%;
+            }
+
+            h1::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 150px;
+                height: 4px;
+                background: linear-gradient(90deg, #fcd34d, #f59e0b);
+                border-radius: 2px;
+            }
+
+            h2 {
+                color: var(--dark-color);
+                margin: 30px 0 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid var(--gray);
+                font-weight: 500;
+                position: relative;
+                font-size: 1.8rem;
+            }
+
+            h2::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 165px;
+                height: 2px;
+                background: var(--secondary-color);
+            }
+
+            .section {
+                background-color: var(--white);
+                border-radius: 12px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+                padding: 30px;
+                margin-bottom: 40px;
+                transition: var(--transition);
+                border-top: 4px solid var(--primary-color);
+            }
+
+            .section:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            }
+
+            .page-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .page-card {
+                background-color: var(--white);
+                border-radius: 10px;
+                padding: 20px;
+                transition: var(--transition);
+                border-left: 4px solid var(--primary-color);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+                position: relative;
+                overflow: hidden;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .page-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(30, 58, 138, 0.03) 0%, rgba(245, 158, 11, 0.03) 100%);
+                z-index: 0;
+            }
+
+            .page-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid var(--secondary-color);
+                background-color: #e2f0e4;
+            }
+
+
+            .page-card h3 {
+                color: var(--primary-color);
+                margin-bottom: 10px;
+                font-weight: 500;
+                font-size: 1.2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .page-card a {
+                color: var(--dark-color);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+                transition: var(--transition);
+            }
+
+            .page-card a:hover {
+                color: var(--primary-light);
+            }
+
+            .page-card i {
+                margin-right: 12px;
+                color: var(--secondary-color);
+                font-size: 1.2rem;
+                width: 36px;
+                height: 36px;
+                background: rgba(245, 158, 11, 0.1);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .page-card:hover i {
+                background: var(--secondary-color);
+                color: white;
+                transform: scale(1.1);
+            }
+
+            .admin-badge {
+                background: linear-gradient(135deg, var(--danger), #dc2626);
+                color: white;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                margin-left: 10px;
+                display: inline-block;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                box-shadow: 0 2px 5px rgba(220, 38, 38, 0.2);
+            }
+
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .section-icon {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                color: white;
+                font-size: 1.5rem;
+                box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .page-list {
+                    grid-template-columns: 1fr;
+                }
+                
+                h1 {
+                    font-size: 2.2rem;
+                }
+                
+                .section {
+                    padding: 20px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                body {
+                    padding: 10px;
+                }
+                
+                h1 {
+                    font-size: 1.8rem;
+                }
+                
+                h2 {
+                    font-size: 1.4rem;
+                }
+            }
+
+            /* Animation */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .section {
+                animation: fadeIn 0.5s ease forwards;
+            }
+
+            .section:nth-child(2) { animation-delay: 0.1s; }
+            .section:nth-child(3) { animation-delay: 0.2s; }
+            .section:nth-child(4) { animation-delay: 0.3s; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Islamic Center Site Map</h1>
+
+            <!-- Main Pages Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <h2>Main Pages</h2>
+                </div>
+                <div class="page-list">
+                    <div class="page-card">
+                        <h3>
+                            <a href="index.html">
+                                <i class="fas fa-home"></i>
+                                Home
+                            </a>
+                        </h3>
+                        <p>Welcome to our Islamic Center</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="about.html">
+                                <i class="fas fa-mosque"></i>
+                                About Our Mosque
+                            </a>
+                        </h3>
+                        <p>Learn about our history and mission</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="contact.html">
+                                <i class="fas fa-envelope"></i>
+                                Contact Us
+                            </a>
+                        </h3>
+                        <p>Get in touch with our community</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="friday.html">
+                                <i class="fas fa-video"></i>
+                                Friday Sermon
+                            </a>
+                        </h3>
+                        <p>Watch or listen to recent khutbahs</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="events.html">
+                                <i class="fas fa-calendar-alt"></i>
+                                All Events
+                            </a>
+                        </h3>
+                        <p>Upcoming activities and programs</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="gallery.html">
+                                <i class="fas fa-images"></i>
+                                Mosque Gallery
+                            </a>
+                        </h3>
+                        <p>Photos of our center and events</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="hijri.html">
+                                <i class="fas fa-calendar"></i>
+                                Hijri Calendar
+                            </a>
+                        </h3>
+                        <p>Islamic dates and prayer times</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="islamcluj.com">
+                                <i class="fas fa-tools"></i>
+                                Under Construction
+                            </a>
+                        </h3>
+                        <p>Pages currently in development</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="404.html">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                404 Page
+                            </a>
+                        </h3>
+                        <p>Custom error page</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Islamic Knowledge Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h2>Islamic Knowledge</h2>
+                </div>
+                <div class="page-list">
+                    <div class="page-card">
+                        <h3>
+                            <a href="islam.html">
+                                <i class="fas fa-star-and-crescent"></i>
+                                Islam
+                            </a>
+                        </h3>
+                        <p>Introduction to Islam</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="allahName.html">
+                                <i class="fas fa-pray"></i>
+                                The 99 Names of Allah
+                            </a>
+                        </h3>
+                        <p>Asma-ul-Husna with meanings</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="closer-to-allah.html">
+                                <i class="fas fa-hands-praying"></i>
+                                How to Get Closer to Allah
+                            </a>
+                        </h3>
+                        <p>Spiritual growth guidance</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="quran.html">
+                                <i class="fas fa-book-quran"></i>
+                                Quran
+                            </a>
+                        </h3>
+                        <p>Learn about the Holy Quran</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="zakat.html">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                Zakat
+                            </a>
+                        </h3>
+                        <p>Guide to Islamic charity</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="prophet-muhammad.html">
+                                <i class="fas fa-person-praying"></i>
+                                Prophet Muhammad (PBUH)
+                            </a>
+                        </h3>
+                        <p>Life and teachings</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="prophet-isa.html">
+                                <i class="fas fa-dove"></i>
+                                Prophet Jesus (Isa) (PBUH)
+                            </a>
+                        </h3>
+                        <p>Islamic perspective on Isa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Community</h2>
+                </div>
+                <div class="page-list">
+                    <div class="page-card">
+                        <h3>
+                            <a href="support.html">
+                                <i class="fas fa-hands-helping"></i>
+                                Community Support System
+                            </a>
+                        </h3>
+                        <p>Help and resources</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="kids-corner.html">
+                                <i class="fas fa-child"></i>
+                                Kids Corner
+                            </a>
+                        </h3>
+                        <p>Islamic activities for children</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h2>
+                        Admin Panel
+                        <span class="admin-badge">Restricted Access</span>
+                    </h2>
+                </div>
+                <div class="page-list">
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/login.html">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Admin Login
+                            </a>
+                        </h3>
+                        <p>Secure administrator access</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/profile.html">
+                                <i class="fas fa-user-cog"></i>
+                                Admin User Profile
+                            </a>
+                        </h3>
+                        <p>Manage your admin account</p>
+                    </div>
+                    
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/events-maneger.html">
+                                <i class="fas fa-calendar-check"></i>
+                                Events Management
+                            </a>
+                        </h3>
+                        <p>Create and manage events</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/User-Management.html">
+                                <i class="fas fa-users-cog"></i>
+                                User Management
+                            </a>
+                        </h3>
+                        <p>Manage member accounts</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/editor.html">
+                                <i class="fas fa-edit"></i>
+                                Home Page Editor
+                            </a>
+                        </h3>
+                        <p>Customize the homepage</p>
+                    </div>
+                    <div class="page-card">
+                        <h3>
+                            <a href="admin/settings.html">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </a>
+                        </h3>
+                        <p>System configuration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

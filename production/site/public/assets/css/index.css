@@ -1,0 +1,480 @@
+/* Hero Slider */
+.hero {
+    margin-top: 80px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.hero-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.hero-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.hero-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.hero-control.active {
+    background-color: var(--white);
+}
+
+/* Content Sections */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.quran-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.quran-image {
+    flex: 1;
+}
+
+.quran-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.quran-text {
+    flex: 1;
+}
+
+.quran-text h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.quran-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.donation-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background-color: var(--light-color);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.donation-text {
+    flex: 1;
+}
+
+.donation-text h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.progress-container {
+    margin: 30px 0;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: var(--gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--secondary-color);
+    width: 65%;
+}
+
+.donation-image {
+    flex: 1;
+}
+
+.donation-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Grid Layouts */
+.news-grid,
+.services-grid,
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.news-card,
+.service-card,
+.course-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.news-card:hover,
+.service-card:hover,
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Components */
+.news-image,
+.course-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-image img,
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.news-card:hover .news-image img,
+.course-card:hover .course-image img {
+    transform: scale(1.1);
+}
+
+.news-content,
+.service-content,
+.course-content {
+    padding: 20px;
+}
+
+.news-content h3,
+.service-content h3,
+.course-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.service-icon {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 3rem;
+}
+
+/* Events */
+.events-list {
+    display: grid;
+    gap: 30px;
+}
+
+.event-card {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-date {
+    min-width: 100px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.event-date .day {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.event-date .month {
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.event-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.event-location {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.event-location i {
+    margin-right: 5px;
+}
+
+/* FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 15px 20px;
+    background-color: var(--light-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.faq-question i {
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 15px 20px;
+    max-height: 500px;
+}
+
+/* Prayer Times Widget */
+.prayer-container {
+    width: 100%;
+    max-width: 1000px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.iframe-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.widget {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.mobile {
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+/* App Download Buttons */
+.app-download-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: inline-block;
+    height: 55px;
+}
+
+.download-btn img {
+    height: 100%;
+    width: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .about-content,
+    .quran-content,
+    .donation-content {
+        flex-direction: column;
+    }
+
+    .about-image,
+    .quran-image,
+    .donation-image {
+        margin-top: 30px;
+    }
+
+    .event-card {
+        flex-direction: column;
+    }
+
+    .event-date {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 15px 20px;
+    }
+
+    .event-date .day,
+    .event-date .month {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 400px;
+        margin-top: 140px;
+    }
+
+    .hero-content {
+        padding: 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .quran-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .newsletter-form button {
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .download-btn {
+        height: 50px;
+    }
+}

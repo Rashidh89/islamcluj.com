@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakat - Islamic Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --text-color: #334155;
+            --white: #ffffff;
+            --gray: #e2e8f0;
+            --success-color: #38a169;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .rtl {
+            direction: rtl;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            margin-left: 10px;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .page-hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: "/";
+            position: absolute;
+            right: -15px;
+            color: var(--white);
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Zakat Info Section */
+        .zakat-info {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .zakat-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--secondary-color);
+        }
+
+        /* Zakat Calculator */
+        .zakat-calculator {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .calculator-content {
+            display: none;
+        }
+
+        .calculator-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .currency-input {
+            position: relative;
+        }
+
+        .currency-input span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 600;
+        }
+
+        .currency-input input {
+            padding-left: 40px !important;
+        }
+
+        .calculate-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #152c6e;
+        }
+
+        .result-box {
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .zakat-amount {
+            font-size: 2rem;
+            color: var(--success-color);
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 40px;
+        }
+
+        .payment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .payment-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .payment-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .pay-now-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        .pay-now-btn:hover {
+            background-color: #e69009;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background-color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            background-color: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 500px;
+            border-top: 1px solid var(--gray);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-hero {
+                height: 250px;
+                margin-top: 80px;
+            }
+
+            .page-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .result-actions {
+                flex-direction: column;
+            }
+
+            .pay-now-btn, .calculate-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                <h1 class="En">Islam Cluj</h1>
+                <h1 class="Ro" style="display: none">Islam Cluj</h1>
+            </div>
+
+            <!-- Mobile Hamburger Menu -->
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <div class="En menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-islam.html">About Islam</a></li>
+                        <li><a href="daily-quran.html">Daily Quran</a></li>
+                        <li><a href="friday-sermon.html">Friday Sermon</a></li>
+                        <li><a href="zakat.html" class="active">Zakat</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </div>
+
+                    <div class="Ar menu" style="display: none">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about-islam.html">عن الإسلام</a></li>
+                        <li><a href="daily-quran.html">القرآن اليومي</a></li>
+                        <li><a href="friday-sermon.html">خطبة الجمعة</a></li>
+                        <li><a href="zakat.html" class="active">الزكاة</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </div>
+                    <div class="Ro menu" style="display: none">
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="about-islam.html">Despre Islam</a></li>
+                        <li><a href="daily-quran.html">Quran Zilnic</a></li>
+                        <li><a href="friday-sermon.html">Predica de Vineri</a></li>
+                        <li><a href="zakat.html" class="active">Zakat</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </div>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <div class="language-selector">
+                    <div class="selected-language">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="English" width="20" height="15" />
+                    </div>
+                    <ul class="language-dropdown">
+                        <li data-lang="Ar">
+                            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" width="20" height="15" />
+                            <span>العربية</span>
+                        </li>
+                        <li data-lang="En">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="English" width="20" height="15" />
+                            <span>English</span>
+                        </li>
+                        <li data-lang="Ro">
+                            <img src="https://flagcdn.com/w20/ro.png" alt="Română" width="20" height="15" />
+                            <span>Română</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="En">Zakat</h1>
+                <h1 class="Ar" style="display: none">الزكاة</h1>
+                <h1 class="Ro" style="display: none">Zakat</h1>
+                <p class="En">Purify your wealth and fulfill this pillar of Islam</p>
+                <p class="Ar" style="display: none">طهر أموالك وأدِ هذا الركن من الإسلام</p>
+                <p class="Ro" style="display: none">Purifică-ți averea și împlinește acest stâlp al Islamului</p>
+                <ul class="breadcrumb">
+                    <li><a href="index.html" class="En">Home</a></li>
+                    <li><a href="zakat.html" class="En">Zakat</a></li>
+                </ul>
+                <ul class="breadcrumb" style="display: none">
+                    <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                    <li><a href="zakat.html" class="Ar">الزكاة</a></li>
+                </ul>
+                <ul class="breadcrumb" style="display: none">
+                    <li><a href="index.html" class="Ro">Acasă</a></li>
+                    <li><a href="zakat.html" class="Ro">Zakat</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zakat Section -->
+    <section id="zakat">
+        <div class="container">
+            <!-- Zakat Information -->
+            <div class="zakat-info">
+                <div class="section-title">
+                    <h2 class="En">About Zakat</h2>
+                    <h2 class="Ar" style="display: none">عن الزكاة</h2>
+                    <h2 class="Ro" style="display: none">Despre Zakat</h2>
+                </div>
+                
+                <div class="zakat-info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-quran"></i> <span class="En">Quranic Command</span><span class="Ar" style="display: none">أمر قرآني</span><span class="Ro" style="display: none">Poruncă Coranică</span></h3>
+                        <p class="En">"And establish prayer and give Zakat, and whatever good you put forward for yourselves - you will find it with Allah." (Quran 2:110)</p>
+                        <p class="Ar" style="display: none">"وأقيموا الصلاة وآتوا الزكاة وما تقدموا لأنفسكم من خير تجدوه عند الله" (البقرة 2:110)</p>
+                        <p class="Ro" style="display: none">"Și săvârșiți rugăciunea și dați Zakat, și orice bine aduceți pentru voi înainte - o veți găsi la Allah." (Coran 2:110)</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-gem"></i> <span class="En">Third Pillar</span><span class="Ar" style="display: none">الركن الثالث</span><span class="Ro" style="display: none">Al Treilea Stâlp</span></h3>
+                        <p class="En">Zakat is the third pillar of Islam, an obligation for Muslims who meet the necessary criteria of wealth.</p>
+                        <p class="Ar" style="display: none">الزكاة هي الركن الثالث من الإسلام، وهي واجبة على المسلمين الذين يستوفون الشروط اللازمة للثروة.</p>
+                        <p class="Ro" style="display: none">Zakat este al treilea stâlp al Islamului, o obligație pentru musulmanii care îndeplinesc criteriile necesare de avere.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-hand-holding-heart"></i> <span class="En">Purification</span><span class="Ar" style="display: none">تطهير</span><span class="Ro" style="display: none">Purificare</span></h3>
+                        <p class="En">The word Zakat means purification. It purifies your wealth and soul while helping those in need.</p>
+                        <p class="Ar" style="display: none">كلمة الزكاة تعني التطهير. إنها تطهر أموالك وروحك مع مساعدة المحتاجين.</p>
+                        <p class="Ro" style="display: none">Cuvântul Zakat înseamnă purificare. Purifică averea și sufletul tău în timp ce ajuți pe cei în nevoie.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Zakat Calculator -->
+            <div class="zakat-calculator">
+                <div class="section-title">
+                    <h2 class="En">Zakat Calculator</h2>
+                    <h2 class="Ar" style="display: none">حاسبة الزكاة</h2>
+                    <h2 class="Ro" style="display: none">Calculator Zakat</h2>
+                </div>
+                
+                <div class="calculator-tabs">
+                    <button class="tab-btn active En" data-tab="money">Money</button>
+                    <button class="tab-btn En" data-tab="gold">Gold/Silver</button>
+                    <button class="tab-btn En" data-tab="business">Business</button>
+                    <button class="tab-btn En" data-tab="stocks">Stocks</button>
+                    
+                    <button class="tab-btn active Ar" style="display: none" data-tab="money">النقود</button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="gold">الذهب/الفضة</button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="business">التجارة</button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="stocks">الأسهم</button>
+                    
+                    <button class="tab-btn active Ro" style="display: none" data-tab="money">Bani</button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="gold">Aur/Argint</button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="business">Afaceri</button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="stocks">Acțiuni</button>
+                </div>
+                
+                <!-- Money Tab -->
+                <div class="calculator-content active" id="money-tab">
+                    <div class="form-row">
+                        <div class="form-group currency-input">
+                            <label class="En">Cash in Hand</label>
+                            <label class="Ar" style="display: none">النقد في اليد</label>
+                            <label class="Ro" style="display: none">Numerar Disponibil</label>
+                            <span class="En">$</span>
+                            <span class="Ar" style="display: none">$</span>
+                            <span class="Ro" style="display: none">RON</span>
+                            <input type="number" id="cash-hand" placeholder="0.00">
+                        </div>
+                        <div class="form-group currency-input">
+                            <label class="En">Bank Savings</label>
+                            <label class="Ar" style="display: none">المدخرات المصرفية</label>
+                            <label class="Ro" style="display: none">Economii Bancare</label>
+                            <span class="En">$</span>
+                            <span class="Ar" style="display: none">$</span>
+                            <span class="Ro" style="display: none">RON</span>
+                            <input type="number" id="bank-savings" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <button class="calculate-btn En" onclick="calculateZakat()">Calculate Zakat</button>
+                    <button class="calculate-btn Ar" style="display: none" onclick="calculateZakat()">حساب الزكاة</button>
+                    <button class="calculate-btn Ro" style="display: none" onclick="calculateZakat()">Calculează Zakat</button>
+                    
+                    <div class="result-box" id="money-result">
+                        <h4 class="En">Your Zakat Amount</h4>
+                        <h4 class="Ar" style="display: none">مبلغ الزكاة الخاص بك</h4>
+                        <h4 class="Ro" style="display: none">Suma Ta de Zakat</h4>
+                        <div class="zakat-amount">$0.00</div>
+                        <p class="En">2.5% of your total wealth above the Nisab threshold</p>
+                        <p class="Ar" style="display: none">2.5٪ من إجمالي ثروتك فوق حد النصاب</p>
+                        <p class="Ro" style="display: none">2,5% din averea ta totală peste pragul Nisab</p>
+                        
+                        <div class="result-actions">
+                            <a href="#" class="pay-now-btn En">
+                                <i class="fas fa-hand-holding-usd"></i> Pay Zakat Now
+                            </a>
+                            <a href="#" class="pay-now-btn Ar" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> دفع الزكاة الآن
+                            </a>
+                            <a href="#" class="pay-now-btn Ro" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> Plătește Zakat Acum
+                            </a>
+                            
+                            <button class="btn btn-outline En">
+                                <i class="fas fa-redo"></i> Calculate Again
+                            </button>
+                            <button class="btn btn-outline Ar" style="display: none">
+                                <i class="fas fa-redo"></i> احسب مرة أخرى
+                            </button>
+                            <button class="btn btn-outline Ro" style="display: none">
+                                <i class="fas fa-redo"></i> Calculează Din Nou
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gold Tab -->
+                <div class="calculator-content" id="gold-tab">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="En">Gold (grams)</label>
+                            <label class="Ar" style="display: none">الذهب (جرام)</label>
+                            <label class="Ro" style="display: none">Aur (grame)</label>
+                            <input type="number" id="gold-amount" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="En">Silver (grams)</label>
+                            <label class="Ar" style="display: none">الفضة (جرام)</label>
+                            <label class="Ro" style="display: none">Argint (grame)</label>
+                            <input type="number" id="silver-amount" placeholder="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="En">Current Gold Price (per gram)</label>
+                        <label class="Ar" style="display: none">سعر الذهب الحالي (للجرام)</label>
+                        <label class="Ro" style="display: none">Prețul Curent al Aurului (pe gram)</label>
+                        <input type="number" id="gold-price" placeholder="0.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="En">Current Silver Price (per gram)</label>
+                        <label class="Ar" style="display: none">سعر الفضة الحالي (للجرام)</label>
+                        <label class="Ro" style="display: none">Prețul Curent al Argintului (pe gram)</label>
+                        <input type="number" id="silver-price" placeholder="0.00">
+                    </div>
+                    
+                    <button class="calculate-btn En" onclick="calculateGoldZakat()">Calculate Zakat</button>
+                    <button class="calculate-btn Ar" style="display: none" onclick="calculateGoldZakat()">حساب الزكاة</button>
+                    <button class="calculate-btn Ro" style="display: none" onclick="calculateGoldZakat()">Calculează Zakat</button>
+                    
+                    <div class="result-box" id="gold-result">
+                        <h4 class="En">Your Zakat Amount</h4>
+                        <h4 class="Ar" style="display: none">مبلغ الزكاة الخاص بك</h4>
+                        <h4 class="Ro" style="display: none">Suma Ta de Zakat</h4>
+                        <div class="zakat-amount">$0.00</div>
+                        <p class="En">2.5% of the value of your gold and silver above the Nisab</p>
+                        <p class="Ar" style="display: none">2.5٪ من قيمة الذهب والفضة فوق النصاب</p>
+                        <p class="Ro" style="display: none">2,5% din valoarea aurului și argintului tău peste Nisab</p>
+                        
+                        <div class="result-actions">
+                            <a href="#" class="pay-now-btn En">
+                                <i class="fas fa-hand-holding-usd"></i> Pay Zakat Now
+                            </a>
+                            <a href="#" class="pay-now-btn Ar" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> دفع الزكاة الآن
+                            </a>
+                            <a href="#" class="pay-now-btn Ro" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> Plătește Zakat Acum
+                            </a>
+                            
+                            <button class="btn btn-outline En">
+                                <i class="fas fa-redo"></i> Calculate Again
+                            </button>
+                            <button class="btn btn-outline Ar" style="display: none">
+                                <i class="fas fa-redo"></i> احسب مرة أخرى
+                            </button>
+                            <button class="btn btn-outline Ro" style="display: none">
+                                <i class="fas fa-redo"></i> Calculează Din Nou
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Tab -->
+                <div class="calculator-content" id="business-tab">
+                    <div class="form-group currency-input">
+                        <label class="En">Business Assets Value</label>
+                        <label class="Ar" style="display: none">قيمة أصول الأعمال</label>
+                        <label class="Ro" style="display: none">Valoarea Activelor Afacerii</label>
+                        <span class="En">$</span>
+                        <span class="Ar" style="display: none">$</span>
+                        <span class="Ro" style="display: none">RON</span>
+                        <input type="number" id="business-assets" placeholder="0.00">
+                    </div>
+                    
+                    <div class="form-group currency-input">
+                        <label class="En">Business Liabilities</label>
+                        <label class="Ar" style="display: none">التزامات الأعمال</label>
+                        <label class="Ro" style="display: none">Datorii de Afacere</label>
+                        <span class="En">$</span>
+                        <span class="Ar" style="display: none">$</span>
+                        <span class="Ro" style="display: none">RON</span>
+                        <input type="number" id="business-liabilities" placeholder="0.00">
+                    </div>
+                    
+                    <button class="calculate-btn En" onclick="calculateBusinessZakat()">Calculate Zakat</button>
+                    <button class="calculate-btn Ar" style="display: none" onclick="calculateBusinessZakat()">حساب الزكاة</button>
+                    <button class="calculate-btn Ro" style="display: none" onclick="calculateBusinessZakat()">Calculează Zakat</button>
+                    
+                    <div class="result-box" id="business-result">
+                        <h4 class="En">Your Zakat Amount</h4>
+                        <h4 class="Ar" style="display: none">مبلغ الزكاة الخاص بك</h4>
+                        <h4 class="Ro" style="display: none">Suma Ta de Zakat</h4>
+                        <div class="zakat-amount">$0.00</div>
+                        <p class="En">2.5% of your net business assets above the Nisab</p>
+                        <p class="Ar" style="display: none">2.5٪ من صافي أصول عملك فوق النصاب</p>
+                        <p class="Ro" style="display: none">2,5% din activele nete ale afacerii tale peste Nisab</p>
+                        
+                        <div class="result-actions">
+                            <a href="#" class="pay-now-btn En">
+                                <i class="fas fa-hand-holding-usd"></i> Pay Zakat Now
+                            </a>
+                            <a href="#" class="pay-now-btn Ar" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> دفع الزكاة الآن
+                            </a>
+                            <a href="#" class="pay-now-btn Ro" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> Plătește Zakat Acum
+                            </a>
+                            
+                            <button class="btn btn-outline En">
+                                <i class="fas fa-redo"></i> Calculate Again
+                            </button>
+                            <button class="btn btn-outline Ar" style="display: none">
+                                <i class="fas fa-redo"></i> احسب مرة أخرى
+                            </button>
+                            <button class="btn btn-outline Ro" style="display: none">
+                                <i class="fas fa-redo"></i> Calculează Din Nou
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stocks Tab -->
+                <div class="calculator-content" id="stocks-tab">
+                    <div class="form-group">
+                        <label class="En">Number of Shares</label>
+                        <label class="Ar" style="display: none">عدد الأسهم</label>
+                        <label class="Ro" style="display: none">Număr de Acțiuni</label>
+                        <input type="number" id="shares-amount" placeholder="0">
+                    </div>
+                    
+                    <div class="form-group currency-input">
+                        <label class="En">Current Share Price</label>
+                        <label class="Ar" style="display: none">سعر السهم الحالي</label>
+                        <label class="Ro" style="display: none">Prețul Curent al Acțiunii</label>
+                        <span class="En">$</span>
+                        <span class="Ar" style="display: none">$</span>
+                        <span class="Ro" style="display: none">RON</span>
+                        <input type="number" id="share-price" placeholder="0.00">
+                    </div>
+                    
+                    <button class="calculate-btn En" onclick="calculateStocksZakat()">Calculate Zakat</button>
+                    <button class="calculate-btn Ar" style="display: none" onclick="calculateStocksZakat()">حساب الزكاة</button>
+                    <button class="calculate-btn Ro" style="display: none" onclick="calculateStocksZakat()">Calculează Zakat</button>
+                    
+                    <div class="result-box" id="stocks-result">
+                        <h4 class="En">Your Zakat Amount</h4>
+                        <h4 class="Ar" style="display: none">مبلغ الزكاة الخاص بك</h4>
+                        <h4 class="Ro" style="display: none">Suma Ta de Zakat</h4>
+                        <div class="zakat-amount">$0.00</div>
+                        <p class="En">2.5% of the value of your investment shares</p>
+                        <p class="Ar" style="display: none">2.5٪ من قيمة أسهمك الاستثمارية</p>
+                        <p class="Ro" style="display: none">2,5% din valoarea acțiunilor tale de investiții</p>
+                        
+                        <div class="result-actions">
+                            <a href="#" class="pay-now-btn En">
+                                <i class="fas fa-hand-holding-usd"></i> Pay Zakat Now
+                            </a>
+                            <a href="#" class="pay-now-btn Ar" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> دفع الزكاة الآن
+                            </a>
+                            <a href="#" class="pay-now-btn Ro" style="display: none">
+                                <i class="fas fa-hand-holding-usd"></i> Plătește Zakat Acum
+                            </a>
+                            
+                            <button class="btn btn-outline En">
+                                <i class="fas fa-redo"></i> Calculate Again
+                            </button>
+                            <button class="btn btn-outline Ar" style="display: none">
+                                <i class="fas fa-redo"></i> احسب مرة أخرى
+                            </button>
+                            <button class="btn btn-outline Ro" style="display: none">
+                                <i class="fas fa-redo"></i> Calculează Din Nou
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <div class="section-title">
+                    <h2 class="En">Pay Your Zakat</h2>
+                    <h2 class="Ar" style="display: none">ادفع زكاتك</h2>
+                    <h2 class="Ro" style="display: none">Plătește-ți Zakat</h2>
+                </div>
+                
+                <div class="payment-cards">
+                    <div class="payment-card">
+                        <div class="payment-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <h3 class="En">In Person</h3>
+                        <h3 class="Ar" style="display: none">شخصيًا</h3>
+                        <h3 class="Ro" style="display: none">Personal</h3>
+                        <p class="En">Visit our Islamic center to pay your Zakat in person</p>
+                        <p class="Ar" style="display: none">قم بزيارة مركزنا الإسلامي لدفع الزكاة شخصيًا</p>
+                        <p class="Ro" style="display: none">Vizitați centrul nostru islamic pentru a plăti Zakat personal</p>
+                        <a href="contact.html" class="pay-now-btn En">Get Directions</a>
+                        <a href="contact.html" class="pay-now-btn Ar" style="display: none">احصل على الاتجاهات</a>
+                        <a href="contact.html" class="pay-now-btn Ro" style="display: none">Obține Direcții</a>
+                    </div>
+                    
+                    <div class="payment-card">
+                        <div class="payment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="En">Online Payment</h3>
+                        <h3 class="Ar" style="display: none">الدفع عبر الإنترنت</h3>
+                        <h3 class="Ro" style="display: none">Plată Online</h3>
+                        <p class="En">Secure online payment with credit/debit card</p>
+                        <p class="Ar" style="display: none">دفع آمن عبر الإنترنت ببطاقة الائتمان / الخصم</p>
+                        <p class="Ro" style="display: none">Plată online securizată cu card de credit/debit</p>
+                        <a href="#" class="pay-now-btn En">Pay Now</a>
+                        <a href="#" class="pay-now-btn Ar" style="display: none">ادفع الآن</a>
+                        <a href="#" class="pay-now-btn Ro" style="display: none">Plătește Acum</a>
+                    </div>
+                    
+                    <div class="payment-card">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="En">Bank Transfer</h3>
+                        <h3 class="Ar" style="display: none">حوالة بنكية</h3>
+                        <h3 class="Ro" style="display: none">Transfer Bancar</h3>
+                        <p class="En">Direct bank transfer to our Zakat fund account</p>
+                        <p class="Ar" style="display: none">حوالة بنكية مباشرة إلى حساب صندوق الزكاة لدينا</p>
+                        <p class="Ro" style="display: none">Transfer bancar direct în contul nostru de fond Zakat</p>
+                        <a href="#" class="pay-now-btn En">View Details</a>
+                        <a href="#" class="pay-now-btn Ar" style="display: none">عرض التفاصيل</a>
+                        <a href="#" class="pay-now-btn Ro" style="display: none">Vezi Detalii</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="section-title">
+                    <h2 class="En">Zakat FAQs</h2>
+                    <h2 class="Ar" style="display: none">أسئلة شائعة عن الزكاة</h2>
+                    <h2 class="Ro" style="display: none">Întrebări Frecvente despre Zakat</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="En">Who must pay Zakat?</span>
+                        <span class="Ar" style="display: none">من يجب عليه دفع الزكاة؟</span>
+                        <span class="Ro" style="display: none">Cine trebuie să plătească Zakat?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="En">Zakat is obligatory for every Muslim who possesses wealth above the Nisab threshold (minimum amount) for one lunar year. The person must be sane, adult, and free from debt.</p>
+                        <p class="Ar" style="display: none">الزكاة واجبة على كل مسلم يمتلك ثروة فوق حد النصاب (الحد الأدنى) لمدة سنة قمرية. يجب أن يكون الشخص عاقلًا وبالغًا وخاليًا من الديون.</p>
+                        <p class="Ro" style="display: none">Zakat este obligatoriu pentru fiecare musulman care deține o avere peste pragul Nisab (suma minimă) timp de un an lunar. Persoana trebuie să fie sănătoasă la minte, adultă și fără datorii.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="En">What is the Nisab amount?</span>
+                        <span class="Ar" style="display: none">ما هو مقدار النصاب؟</span>
+                        <span class="Ro" style="display: none">Care este suma Nisab?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="En">The Nisab is the minimum amount of wealth one must have before being liable to pay Zakat. It is equivalent to: 87.48 grams of gold or 612.36 grams of silver, or their cash equivalent.</p>
+                        <p class="Ar" style="display: none">النصاب هو الحد الأدنى من الثروة التي يجب أن يمتلكها المرء قبل أن يكون ملزمًا بدفع الزكاة. وهو يعادل: 87.48 جرامًا من الذهب أو 612.36 جرامًا من الفضة ، أو ما يعادلها نقدًا.</p>
+                        <p class="Ro" style="display: none">Nisab este suma minimă de avere pe care trebuie să o ai înainte de a fi obligat să plătești Zakat. Este echivalent cu: 87,48 grame de aur sau 612,36 grame de argint, sau echivalentul lor în bani.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="En">When is Zakat due?</span>
+                        <span class="Ar" style="display: none">متى تستحق الزكاة؟</span>
+                        <span class="Ro" style="display: none">Când este Zakat scadent?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="En">Zakat becomes due after one lunar year (Hawl) of possessing wealth above the Nisab. Many Muslims choose to pay during Ramadan for greater blessings, but it can be paid any time of year once due.</p>
+                        <p class="Ar" style="display: none">تصبح الزكاة مستحقة بعد سنة قمرية (حول) من امتلاك ثروة فوق النصاب. يختار العديد من المسلمين الدفع خلال رمضان لمزيد من البركات ، ولكن يمكن دفعه في أي وقت من السنة بمجرد استحقاقه.</p>
+                        <p class="Ro" style="display: none">Zakat devine scadent după un an lunar (Hawl) de la deținerea unei averi peste Nisab. Mulți musulmani aleg să plătească în Ramadan pentru binecuvântări mai mari, dar poate fi plătit în orice moment al anului odată ce devine scadent.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="En">Who can receive Zakat?</span>
+                        <span class="Ar" style="display: none">من يمكنه استلام الزكاة؟</span>
+                        <span class="Ro" style="display: none">Cine poate primi Zakat?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="En">The Quran specifies eight categories of recipients: The poor, the needy, those employed to administer Zakat, those whose hearts are to be reconciled, those in bondage, the debt-ridden, in the cause of Allah, and the wayfarer.</p>
+                        <p class="Ar" style="display: none">يحدد القرآن ثماني فئات من المستفيدين: الفقراء ، المحتاجون ، العاملون عليها ، المؤلفة قلوبهم ، في الرقاب ، الغارمون ، في سبيل الله ، وابن السبيل.</p>
+                        <p class="Ro" style="display: none">Coranul specifică opt categorii de beneficiari: săracii, cei nevoiași, cei angajați să administreze Zakat, cei ale căror inimi trebuie împăcate, cei în robie, cei îndatorați, în calea lui Allah și călătorul.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="En">Can I give Zakat to family members?</span>
+                        <span class="Ar" style="display: none">هل يمكنني إعطاء الزكاة لأفراد الأسرة؟</span>
+                        <span class="Ro" style="display: none">Pot da Zakat membrilor familiei?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="En">You cannot give Zakat to your immediate family (parents, grandparents, children, grandchildren) as you are already responsible for their maintenance. However, you can give to other relatives in need if they meet the criteria.</p>
+                        <p class="Ar" style="display: none">لا يمكنك إعطاء الزكاة لأفراد أسرتك المباشرين (الآباء ، الأجداد ، الأطفال ، الأحفاد) لأنك مسؤول بالفعل عن إعالتهم. ومع ذلك ، يمكنك إعطاء الأقارب الآخرين المحتاجين إذا استوفوا المعايير.</p>
+                        <p class="Ro" style="display: none">Nu poți da Zakat membrilor tăi apropiați ai familiei (părinți, bunici, copii, nepoți) deoarece ești deja responsabil pentru întreținerea lor. Cu toate acestea, poți da altor rude în nevoie dacă îndeplinesc criteriile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                        <h2 class="En">Islam Cluj</h2>
+                        <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                        <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                    </div>
+                    <p class="En">
+                        Serving the Muslim community in Cluj-Napoca with authentic Islamic education, 
+                        prayer services, and community programs.
+                    </p>
+                    <p class="Ar" style="display: none">
+                        نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة، وبرامج مجتمعية.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        Servim comunitatea musulmană din Cluj-Napoca cu educație islamică autentică, 
+                        servicii de rugăciune și programe comunitare.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-services">
+                    <h3 class="En">Services</h3>
+                    <h3 class="Ar" style="display: none">خدمات</h3>
+                    <h3 class="Ro" style="display: none">Servicii</h3>
+                    <ul>
+                        <li><a href="#" class="En">Daily Prayers</a></li>
+                        <li><a href="#" class="Ar" style="display: none">الصلوات اليومية</a></li>
+                        <li><a href="#" class="Ro" style="display: none">Rugăciuni Zilnice</a></li>
+
+                        <li><a href="friday-sermon.html" class="En">Friday Sermon</a></li>
+                        <li><a href="friday-sermon.html" class="Ar" style="display: none">خطبة الجمعة</a></li>
+                        <li><a href="friday-sermon.html" class="Ro" style="display: none">Predica de Vineri</a></li>
+
+                        <li><a href="zakat.html" class="En">Zakat Services</a></li>
+                        <li><a href="zakat.html" class="Ar" style="display: none">خدمات الزكاة</a></li>
+                        <li><a href="zakat.html" class="Ro" style="display: none">Servicii Zakat</a></li>
+
+                        <li><a href="#" class="En">Islamic School</a></li>
+                        <li><a href="#" class="Ar" style="display: none">المدرسة الإسلامية</a></li>
+                        <li><a href="#" class="Ro" style="display: none">Școală Islamică</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="En">Quick Links</h3>
+                    <h3 class="Ar" style="display: none">روابط سريعة</h3>
+                    <h3 class="Ro" style="display: none">Link-uri Rapide</h3>
+                    <ul>
+                        <li><a href="index.html" class="En">Home</a></li>
+                        <li><a href="index.html" class="Ar" style="display: none">الرئيسية</a></li>
+                        <li><a href="index.html" class="Ro" style="display: none">Acasă</a></li>
+
+                        <li><a href="about-islam.html" class="En">About Islam</a></li>
+                        <li><a href="about-islam.html" class="Ar" style="display: none">عن الإسلام</a></li>
+                        <li><a href="about-islam.html" class="Ro" style="display: none">Despre Islam</a></li>
+
+                        <li><a href="zakat.html" class="En">Zakat</a></li>
+                        <li><a href="zakat.html" class="Ar" style="display: none">الزكاة</a></li>
+                        <li><a href="zakat.html" class="Ro" style="display: none">Zakat</a></li>
+
+                        <li><a href="contact.html" class="En">Contact</a></li>
+                        <li><a href="contact.html" class="Ar" style="display: none">اتصل بنا</a></li>
+                        <li><a href="contact.html" class="Ro" style="display: none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 class="En">Zakat Updates</h3>
+                    <h3 class="Ar" style="display: none">تحديثات الزكاة</h3>
+                    <h3 class="Ro" style="display: none">Actualizări Zakat</h3>
+                    <p class="En">Receive Zakat payment reminders and news</p>
+                    <p class="Ar" style="display: none">تلقي تذكيرات دفع الزكاة والأخبار</p>
+                    <p class="Ro" style="display: none">Primește mementouri și știri despre plata Zakat</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="En" />
+                        <input type="email" placeholder="بريدك الإلكتروني" class="Ar" style="display: none" />
+                        <input type="email" placeholder="Email-ul Dvs." class="Ro" style="display: none" />
+                        <button type="submit" class="btn En">Subscribe</button>
+                        <button type="submit" class="btn Ar" style="display: none">اشتراك</button>
+                        <button type="submit" class="btn Ro" style="display: none">Abonează-te</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                <p class="Ar" style="display: none">&copy; 2023 الإسلام كلوج. جميع الحقوق محفوظة.</p>
+                <p class="Ro" style="display: none">&copy; 2023 Islam Cluj. Toate Drepturile Rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ==================== Hamburger Menu ====================
+            const initHamburgerMenu = () => {
+                const hamburger = document.querySelector(".hamburger");
+                const navMenu = document.querySelector(".nav-menu");
+
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener("click", () => {
+                        hamburger.classList.toggle("active");
+                        navMenu.classList.toggle("active");
+                    });
+                }
+            };
+
+            // ==================== Language Switcher ====================
+            const initLanguageSwitcher = () => {
+                const languageSelector = document.querySelector(".language-selector");
+                const selectedLanguage = document.querySelector(".selected-language");
+                const languageDropdown = document.querySelector(".language-dropdown");
+                const languageOptions = document.querySelectorAll(".language-dropdown li");
+
+                if (!languageSelector || !selectedLanguage || !languageDropdown || !languageOptions.length) {
+                    return;
+                }
+
+                // Toggle dropdown
+                languageSelector.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    languageSelector.classList.toggle("active");
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener("click", () => {
+                    languageSelector.classList.remove("active");
+                });
+
+                // Language switching function
+                const switchLanguage = (lang) => {
+                    // Hide all language-specific content
+                    document.querySelectorAll('[class*="En"], [class*="Ar"], [class*="Ro"]').forEach((el) => {
+                        // Skip elements that are part of the language switcher itself
+                        if (!el.closest(".language-switcher") && !el.closest(".language-selector")) {
+                            el.style.display = "none";
+                        }
+                    });
+
+                    // Show elements for selected language
+                    document.querySelectorAll(`.${lang}`).forEach((el) => {
+                        // Skip elements that are part of the language switcher itself
+                        if (!el.closest(".language-switcher") && !el.closest(".language-selector")) {
+                            el.style.display = "";
+                        }
+                    });
+
+                    // Update selected language display
+                    const selectedOption = document.querySelector(`.language-dropdown li[data-lang="${lang}"]`);
+                    if (selectedOption) {
+                        const selectedImg = selectedOption.querySelector("img").cloneNode(true);
+                        const selectedText = selectedOption.querySelector("span").textContent;
+
+                        // Clear and update selected language display
+                        selectedLanguage.innerHTML = "";
+                        selectedLanguage.appendChild(selectedImg);
+
+                        const textSpan = document.createElement("span");
+                        textSpan.textContent = selectedText;
+                        textSpan.className = lang;
+                        selectedLanguage.appendChild(textSpan);
+
+                        const chevron = document.createElement("i");
+                        chevron.className = "fas fa-chevron-down";
+                        selectedLanguage.appendChild(chevron);
+                    }
+
+                    // Set direction for RTL languages
+                    document.body.classList.toggle("rtl", lang === "Ar");
+                    document.documentElement.lang = lang;
+                    document.documentElement.dir = lang === "Ar" ? "rtl" : "ltr";
+
+                    // Update logo text visibility
+                    document.querySelector(".logo h1.En").style.display = lang === "En" ? "" : "none";
+                    document.querySelector(".logo h1.Ar").style.display = lang === "Ar" ? "" : "none";
+                    document.querySelector(".logo h1.Ro").style.display = lang === "Ro" ? "" : "none";
+
+                    // Dispatch language change event
+                    document.dispatchEvent(new Event('languageChange'));
+                };
+
+                // Handle language option clicks
+                languageOptions.forEach((option) => {
+                    option.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        const lang = option.getAttribute("data-lang");
+                        switchLanguage(lang);
+                        languageSelector.classList.remove("active");
+                    });
+                });
+
+                // Initialize with English
+                switchLanguage("En");
+            };
+
+            // ==================== Back to Top Button ====================
+            const initBackToTop = () => {
+                const backToTopButton = document.querySelector(".back-to-top");
+
+                if (!backToTopButton) return;
+
+                window.addEventListener("scroll", () => {
+                    if (window.scrollY > 300) {
+                        backToTopButton.classList.add("visible");
+                    } else {
+                        backToTopButton.classList.remove("visible");
+                    }
+                });
+
+                backToTopButton.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            };
+
+            // ==================== Calculator Tabs ====================
+            const initCalculatorTabs = () => {
+                const tabBtns = document.querySelectorAll(".tab-btn");
+                const tabContents = document.querySelectorAll(".calculator-content");
+
+                tabBtns.forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        // Remove active class from all buttons
+                        tabBtns.forEach(btn => btn.classList.remove("active"));
+                        // Add active class to clicked button
+                        this.classList.add("active");
+                        
+                        // Hide all tab contents
+                        tabContents.forEach(content => content.classList.remove("active"));
+                        // Show the selected tab content
+                        const tabId = this.getAttribute("data-tab") + "-tab";
+                        document.getElementById(tabId).classList.add("active");
+                    });
+                });
+            };
+
+            // ==================== FAQ Accordion ====================
+            const initFAQAccordion = () => {
+                const faqQuestions = document.querySelectorAll(".faq-question");
+
+                faqQuestions.forEach(question => {
+                    question.addEventListener("click", function() {
+                        const faqItem = this.parentElement;
+                        faqItem.classList.toggle("active");
+                        
+                        // Close other open items
+                        faqQuestions.forEach(q => {
+                            if (q !== this) {
+                                q.parentElement.classList.remove("active");
+                            }
+                        });
+                    });
+                });
+            };
+
+            // ==================== Zakat Calculations ====================
+            const calculateZakat = () => {
+                const cashHand = parseFloat(document.getElementById("cash-hand").value) || 0;
+                const bankSavings = parseFloat(document.getElementById("bank-savings").value) || 0;
+                
+                const totalWealth = cashHand + bankSavings;
+                const zakatAmount = totalWealth * 0.025; // 2.5%
+                
+                const resultBox = document.getElementById("money-result");
+                const zakatAmountElement = resultBox.querySelector(".zakat-amount");
+                
+                zakatAmountElement.textContent = "$" + zakatAmount.toFixed(2);
+                resultBox.style.display = "block";
+            };
+
+            const calculateGoldZakat = () => {
+                const goldAmount = parseFloat(document.getElementById("gold-amount").value) || 0;
+                const silverAmount = parseFloat(document.getElementById("silver-amount").value) || 0;
+                const goldPrice = parseFloat(document.getElementById("gold-price").value) || 0;
+                const silverPrice = parseFloat(document.getElementById("silver-price").value) || 0;
+                
+                const goldValue = goldAmount * goldPrice;
+                const silverValue = silverAmount * silverPrice;
+                const totalValue = goldValue + silverValue;
+                const zakatAmount = totalValue * 0.025; // 2.5%
+                
+                const resultBox = document.getElementById("gold-result");
+                const zakatAmountElement = resultBox.querySelector(".zakat-amount");
+                
+                zakatAmountElement.textContent = "$" + zakatAmount.toFixed(2);
+                resultBox.style.display = "block";
+            };
+
+            const calculateBusinessZakat = () => {
+                const businessAssets = parseFloat(document.getElementById("business-assets").value) || 0;
+                const businessLiabilities = parseFloat(document.getElementById("business-liabilities").value) || 0;
+                
+                const netAssets = businessAssets - businessLiabilities;
+                const zakatAmount = netAssets > 0 ? netAssets * 0.025 : 0; // 2.5%
+                
+                const resultBox = document.getElementById("business-result");
+                const zakatAmountElement = resultBox.querySelector(".zakat-amount");
+                
+                zakatAmountElement.textContent = "$" + zakatAmount.toFixed(2);
+                resultBox.style.display = "block";
+            };
+
+            const calculateStocksZakat = () => {
+                const sharesAmount = parseFloat(document.getElementById("shares-amount").value) || 0;
+                const sharePrice = parseFloat(document.getElementById("share-price").value) || 0;
+                
+                const totalValue = sharesAmount * sharePrice;
+                const zakatAmount = totalValue * 0.025; // 2.5%
+                
+                const resultBox = document.getElementById("stocks-result");
+                const zakatAmountElement = resultBox.querySelector(".zakat-amount");
+                
+                zakatAmountElement.textContent = "$" + zakatAmount.toFixed(2);
+                resultBox.style.display = "block";
+            };
+
+            // Initialize all components
+            initHamburgerMenu();
+            initLanguageSwitcher();
+            initBackToTop();
+            initCalculatorTabs();
+            initFAQAccordion();
+
+            // Make functions available globally for button clicks
+            window.calculateZakat = calculateZakat;
+            window.calculateGoldZakat = calculateGoldZakat;
+            window.calculateBusinessZakat = calculateBusinessZakat;
+            window.calculateStocksZakat = calculateStocksZakat;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .rtl {
+                direction: rtl;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--white);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: absolute;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                color: var(--primary-color);
+                margin-left: 10px;
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary-color);
+            }
+
+            .language-switcher {
+                display: flex;
+                align-items: center;
+            }
+
+            .language-switcher select {
+                padding: 5px 10px;
+                border: 1px solid var(--gray);
+                border-radius: 4px;
+                background-color: var(--white);
+                color: var(--dark-color);
+                cursor: pointer;
+            }
+
+            /* Hero Slider */
+            .hero {
+                margin-top: 80px;
+                height: 500px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-slide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+                display: flex;
+                align-items: center;
+                color: var(--white);
+            }
+
+            .hero-slide.active {
+                opacity: 1;
+            }
+
+            .hero-content {
+                background-color: rgba(0, 0, 0, 0.6);
+                padding: 30px;
+                max-width: 600px;
+                border-radius: 5px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .hero-content p {
+                margin-bottom: 20px;
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 500;
+                transition: background-color 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+            }
+
+            .hero-controls {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+            }
+
+            .hero-control {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                margin: 0 5px;
+                cursor: pointer;
+            }
+
+            .hero-control.active {
+                background-color: var(--white);
+            }
+
+            /* Section Styles */
+            section {
+                padding: 60px 0;
+                justify-items: center;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* About Section */
+            .about-content {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .about-text {
+                flex: 1;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                margin-bottom: 15px;
+            }
+
+            .about-image {
+                flex: 1;
+            }
+
+            .about-image img {
+                width: 100%;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Quran Section */
+            .quran-content {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .quran-image {
+                flex: 1;
+            }
+
+            .quran-image img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+            .quran-text {
+                flex: 1;
+            }
+
+            .quran-text h3 {
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                margin-bottom: 15px;
+            }
+
+            .quran-buttons {
+                display: flex;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            /* Prayer Times */
+            .prayer-times {
+                background-color: var(--primary-color);
+                color: var(--white);
+                padding: 40px;
+                border-radius: 8px;
+                text-align: center;
+            }
+
+            .prayer-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            .prayer-table th,
+            .prayer-table td {
+                padding: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .prayer-table th {
+                font-weight: 500;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+            }
+
+            .prayer-table td {
+                font-size: 1.1rem;
+            }
+
+            .current-prayer {
+                background-color: var(--secondary-color);
+                color: var(--dark-color);
+                font-weight: bold;
+            }
+
+            /* News Section */
+            .news-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .news-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .news-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .news-image {
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .news-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s;
+            }
+
+            .news-card:hover .news-image img {
+                transform: scale(1.1);
+            }
+
+            .news-content {
+                padding: 20px;
+            }
+
+            .news-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            .news-date {
+                font-size: 0.9rem;
+                color: #64748b;
+                margin-bottom: 10px;
+            }
+
+            /* Services Section */
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .service-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .service-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .service-icon {
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--primary-color);
+                color: var(--white);
+                font-size: 3rem;
+            }
+
+            .service-content {
+                padding: 20px;
+            }
+
+            .service-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            /* Donation Section */
+            .donation-content {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                background-color: var(--light-color);
+                padding: 40px;
+                border-radius: 8px;
+            }
+
+            .donation-text {
+                flex: 1;
+            }
+
+            .donation-text h3 {
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                margin-bottom: 15px;
+            }
+
+            .progress-container {
+                margin: 30px 0;
+            }
+
+            .progress-text {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+
+            .progress-bar {
+                height: 10px;
+                background-color: var(--gray);
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background-color: var(--secondary-color);
+                width: 65%;
+            }
+
+            .donation-image {
+                flex: 1;
+            }
+
+            .donation-image img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+            /* Courses Section */
+            .courses-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .course-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .course-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .course-image {
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .course-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s;
+            }
+
+            .course-card:hover .course-image img {
+                transform: scale(1.1);
+            }
+
+            .course-content {
+                padding: 20px;
+            }
+
+            .course-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            /* Events Section */
+            .events-list {
+                display: grid;
+                gap: 30px;
+            }
+
+            .event-card {
+                display: flex;
+                background-color: var(--white);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .event-date {
+                min-width: 100px;
+                background-color: var(--primary-color);
+                color: var(--white);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .event-date .day {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .event-date .month {
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+
+            .event-content {
+                padding: 20px;
+                flex: 1;
+            }
+
+            .event-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            .event-location {
+                display: flex;
+                align-items: center;
+                color: #64748b;
+                margin-bottom: 10px;
+            }
+
+            .event-location i {
+                margin-right: 5px;
+            }
+
+            /* FAQ Section */
+            .faq-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .faq-item {
+                margin-bottom: 15px;
+                border: 1px solid var(--gray);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .faq-question {
+                padding: 15px 20px;
+                background-color: var(--light-color);
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: 500;
+            }
+
+            .faq-question i {
+                transition: transform 0.3s;
+            }
+
+            .faq-item.active .faq-question i {
+                transform: rotate(180deg);
+            }
+
+            .faq-answer {
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, padding 0.3s ease;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 15px 20px;
+                max-height: 500px;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--dark-color);
+                color: var(--white);
+                padding: 60px 0 20px;
+            }
+
+            .footer-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .footer-logo img {
+                height: 50px;
+            }
+
+            .footer-about p {
+                margin-bottom: 20px;
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-icons a {
+                color: var(--white);
+                font-size: 1.2rem;
+                transition: color 0.3s;
+            }
+
+            .social-icons a:hover {
+                color: var(--secondary-color);
+            }
+
+            .footer-links h3,
+            .footer-services h3,
+            .footer-newsletter h3 {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+            }
+
+            .footer-links ul,
+            .footer-services ul {
+                list-style: none;
+            }
+
+            .footer-links li,
+            .footer-services li {
+                margin-bottom: 10px;
+            }
+
+            .footer-links a,
+            .footer-services a {
+                color: var(--gray);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .footer-links a:hover,
+            .footer-services a:hover {
+                color: var(--secondary-color);
+            }
+
+            .newsletter-form {
+                display: flex;
+                margin-top: 20px;
+            }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px 0 0 4px;
+            }
+
+            .newsletter-form button {
+                padding: 10px 15px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                border: none;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .newsletter-form button:hover {
+                background-color: #e69009;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* *+*+*+*+*+*+*+**+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+
+            .prayer-container {
+                width: 100%;
+                max-width: 1000px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+
+            .iframe-container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .widget {
+                width: 100%;
+                height: 600px;
+                border: none;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            .mobile {
+                /* width: 100%; */
+                height: 600px;
+                border: none;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .mobile {
+                    display: block;
+                }
+
+                .widget {
+                    display: none !important;
+                }
+            }
+
+            @media (min-width: 769px) {
+                .widget {
+                    display: block;
+                }
+
+                .mobile {
+                    display: none !important;
+                }
+            }
+
+            /* *+*+*+*+*+*+*+**+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+            /* google play and apple store button  */
+
+            .app-download-buttons {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .download-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+
+            .download-btn {
+                display: inline-block;
+                height: 55px;
+            }
+
+            .download-btn img {
+                height: 100%;
+                width: auto;
+            }
+
+            /* Hamburger Menu Styles */
+            .hamburger {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1001;
+            }
+
+            .hamburger span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: var(--primary-color);
+                margin: 5px 0;
+                transition: all 0.3s ease;
+            }
+
+            /* Language Switcher with Flags */
+            /* Language Switcher Dropdown */
+            .language-switcher {
+                position: relative;
+                z-index: 100;
+            }
+
+            .language-selector {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .selected-language {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                background-color: var(--white);
+                border-radius: 4px;
+                border: 1px solid var(--gray);
+            }
+
+            .selected-language i {
+                font-size: 0.8rem;
+                transition: transform 0.3s;
+            }
+
+            .language-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 150px;
+                background-color: var(--white);
+                border-radius: 4px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                list-style: none;
+                padding: 5px 0;
+                margin-top: 5px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+            }
+
+            .language-selector.active .language-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-selector.active .selected-language i {
+                transform: rotate(180deg);
+            }
+
+            .language-dropdown li {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                transition: background-color 0.3s;
+            }
+
+            .language-dropdown li:hover {
+                background-color: var(--light-color);
+            }
+
+            .language-dropdown li img {
+                border-radius: 2px;
+            }
+
+            /* RTL adjustments */
+            .rtl .language-dropdown {
+                right: auto;
+                left: 0;
+            }
+
+            .language-option {
+                cursor: pointer;
+                opacity: 0.6;
+                transition: opacity 0.3s;
+            }
+
+            .language-option.active {
+                opacity: 1;
+                border-bottom: 2px solid var(--secondary-color);
+            }
+
+            .language-option img {
+                border-radius: 3px;
+            }
+
+            /* Back to Top Button */
+            .back-to-top {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s, visibility 0.3s;
+                z-index: 999;
+            }
+
+            .back-to-top.visible {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .back-to-top i {
+                font-size: 1.2rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .progress-circle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: rotate(-90deg);
+            }
+
+            .progress-circle-track {
+                stroke: rgba(255, 255, 255, 0.2);
+            }
+
+            .progress-circle-fill {
+                stroke: var(--secondary-color);
+            }
+
+            .menu {
+                display: flex;
+            }
+
+            [class*="En"],
+            [class*="Ar"],
+            [class*="Ro"] {
+                transition: opacity 0.3s ease, display 0.3s ease;
+            }
+
+            /* Mobile Responsive Styles */
+            @media (max-width: 768px) {
+                .hamburger {
+                    display: block;
+                }
+
+                .nav-menu {
+                    position: fixed;
+                    top: 0;
+                    right: -100%;
+                    width: 80%;
+                    max-width: 300px;
+                    height: 100vh;
+                    background-color: var(--white);
+                    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                    transition: right 0.3s ease;
+                    z-index: 1000;
+                    padding-top: 80px;
+                    overflow-y: auto;
+                }
+
+                .nav-menu.active {
+                    right: 0;
+                }
+
+                .nav-menu ul {
+                    flex-direction: column;
+                    padding: 20px;
+                }
+
+                .nav-menu li {
+                    margin: 10px 0;
+                }
+
+                .hamburger.active span:nth-child(1) {
+                    transform: rotate(45deg) translate(5px, 5px);
+                }
+
+                .hamburger.active span:nth-child(2) {
+                    opacity: 0;
+                }
+
+                .hamburger.active span:nth-child(3) {
+                    transform: rotate(-45deg) translate(7px, -6px);
+                }
+
+                /* Hide select and show flags on mobile */
+                .language-switcher select {
+                    display: none;
+                }
+            }
+
+            @media (min-width: 769px) {
+                /* Hide flags and show select on desktop if you prefer */
+                .language-switcher .language-option {
+                    display: none;
+                }
+
+                .language-switcher select {
+                    display: block;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .download-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .download-btn {
+                    height: 50px;
+                }
+            }
+
+            @media (max-width: 992px) {
+                .about-content,
+                .quran-content,
+                .donation-content {
+                    flex-direction: column;
+                }
+
+                .about-image,
+                .quran-image,
+                .donation-image {
+                    margin-top: 30px;
+                }
+
+                .event-card {
+                    flex-direction: column;
+                }
+
+                .event-date {
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    gap: 20px;
+                    padding: 15px 20px;
+                }
+
+                .event-date .day,
+                .event-date .month {
+                    display: inline-block;
+                }
+            }
+
+            /* @media (max-width: 768px) {
+                .header-container {
+                    flex-direction: column;
+                    padding: 15px 0;
+                }
+
+                .logo {
+                    margin-bottom: 15px;
+                }
+
+                nav ul {
+                    margin-bottom: 15px;
+                }
+
+                .hero {
+                    height: 400px;
+                    margin-top: 140px;
+                }
+
+                .hero-content {
+                    padding: 20px;
+                }
+
+                .hero-content h2 {
+                    font-size: 1.5rem;
+                }
+            } */
+
+            @media (max-width: 768px) {
+                .header-container {
+                    /* Remove flex-direction: column to keep items in a row */
+                    flex-direction: row;
+                    padding: 15px 0;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .logo {
+                    order: 2; /* Move logo to center */
+                    margin-bottom: 0;
+                }
+
+                .hamburger {
+                    order: 1; /* Move hamburger to left */
+                    margin-right: auto; /* Push other items to the right */
+                }
+
+                .language-switcher {
+                    order: 3; /* Move language switcher to right */
+                    margin-left: auto; /* Push to the far right */
+                }
+                .menu {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .nav-menu {
+                    right: unset;
+                    left: -100%; /* Change from right to left */
+                }
+
+                .nav-menu.active {
+                    right: unset;
+                    left: 0; /* Change from right to left */
+                }
+
+                /* Keep the rest of your mobile styles the same */
+                .hero {
+                    height: 400px;
+                    margin-top: 140px;
+                }
+
+                .hero-content {
+                    padding: 20px;
+                }
+
+                .hero-content h2 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                nav ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                nav ul li {
+                    margin: 5px 10px;
+                }
+
+                .hero {
+                    height: 350px;
+                }
+
+                .hero-content h2 {
+                    font-size: 1.3rem;
+                }
+
+                .hero-content p {
+                    font-size: 1rem;
+                }
+
+                .btn {
+                    padding: 8px 15px;
+                }
+
+                .section-title h2 {
+                    font-size: 1.5rem;
+                }
+
+                .quran-buttons {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .newsletter-form {
+                    flex-direction: column;
+                }
+
+                .newsletter-form input {
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                }
+
+                .newsletter-form button {
+                    border-radius: 4px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="#" class="En">Home</a></li>
+                            <li><a href="#" class="En">About</a></li>
+                            <li><a href="#" class="En">Services</a></li>
+                            <li><a href="#" class="En">Events</a></li>
+                            <li><a href="#" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="#" class="Ar">الرئيسية</a></li>
+                            <li><a href="#" class="Ar">من نحن</a></li>
+                            <li><a href="#" class="Ar">خدمات</a></li>
+                            <li><a href="#" class="Ar">أحداث</a></li>
+                            <li><a href="#" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="#" class="Ro">Acasă</a></li>
+                            <li><a href="#" class="Ro">Despre</a></li>
+                            <li><a href="#" class="Ro">Servicii</a></li>
+                            <li><a href="#" class="Ro">Evenimente</a></li>
+                            <li><a href="#" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                            <span class="Ar" style="display: none">English</span>
+                            <span class="Ro" style="display: none">Engleză</span>
+                            <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Slider -->
+        <section class="hero">
+            <div class="hero-slide active" style="background-image: url('img/Mosque1.jpg')">
+                <div class="container">
+                    <div class="hero-content">
+                        <h2 class="En">
+                            And We have sent you (O Muhammad SAWW) not but as a mercy for the
+                            'Alamin (mankind, jinns and all that exists)
+                        </h2>
+                        <h2 class="Ar" style="display: none">
+                            وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ
+                        </h2>
+                        <h2 class="Ro" style="display: none">
+                            Și nu te-am trimis decât ca milostivenie pentru toate lumile
+                        </h2>
+                        <p class="En">The Holy Quran 21:107</p>
+                        <p class="Ar" style="display: none">القرآن الكريم 21:107</p>
+                        <p class="Ro" style="display: none">Coranul 21:107</p>
+                        <a href="#" class="btn En">Read More</a>
+                        <a href="#" class="btn Ar" style="display: none">اقرأ أكثر</a>
+                        <a href="#" class="btn Ro" style="display: none">Citește mai mult</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('img/Mosque2.jpg')">
+                <div class="container">
+                    <div class="hero-content">
+                        <h2 class="En">Suffering is a gift. In it is hidden mercy.</h2>
+                        <h2 class="Ar" style="display: none">المعاناة هبة. فيها رحمة خفية.</h2>
+                        <h2 class="Ro" style="display: none">
+                            Suferința este un dar. În ea se ascunde mila.
+                        </h2>
+                        <a href="#" class="btn En">Donate Now</a>
+                        <a href="#" class="btn Ar" style="display: none">تبرع الآن</a>
+                        <a href="#" class="btn Ro" style="display: none">Donează acum</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('img/Mosque3.jpg')">
+                <div class="container">
+                    <div class="hero-content">
+                        <h2 class="En">Allah will help him who moves in the way of Allah.</h2>
+                        <h2 class="Ar" style="display: none">
+                            إِنَّ اللَّهَ مَعَ الَّذِينَ اتَّقَوا وَّالَّذِينَ هُم مُّحْسِنُونَ
+                        </h2>
+                        <h2 class="Ro" style="display: none">
+                            Allah îi va ajuta pe cei care se mișcă pe calea lui Allah.
+                        </h2>
+                        <p class="En">The Holy Quran 16:128</p>
+                        <p class="Ar" style="display: none">القرآن الكريم 16:128</p>
+                        <p class="Ro" style="display: none">Coranul 16:128</p>
+                        <a href="#" class="btn En">Join Our Community</a>
+                        <a href="#" class="btn Ar" style="display: none">انضم إلى مجتمعنا</a>
+                        <a href="#" class="btn Ro" style="display: none">
+                            Alătură-te comunității noastre
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-controls">
+                <div class="hero-control active"></div>
+                <div class="hero-control"></div>
+                <div class="hero-control"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 class="En">Get to know more about Islam</h3>
+                        <h3 class="Ar" style="display: none">تعرف على المزيد عن الإسلام</h3>
+                        <h3 class="Ro" style="display: none">Aflați mai multe despre Islam</h3>
+                        <p class="En">
+                            Islam is a religion of peace, mercy, and compassion. It teaches the
+                            oneness of God, the importance of good character, and service to
+                            humanity. Learn about its beautiful teachings, rich history, and
+                            positive impact on civilization.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            الإسلام هو دين السلام والرحمة والرحمة. يعلم وحدانية الله، وأهمية الأخلاق
+                            الحميدة، وخدمة الإنسانية. تعرف على تعاليمه الجميلة وتاريخه العظيم
+                            وتأثيره الإيجابي على الحضارة.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Islamul este o religie a păcii, milei și compasiunii. Învățătura sa
+                            promovează unicitatea lui Dumnezeu, importanța caracterului moral și
+                            servirea umanității. Descoperiți învățăturile sale frumoase, istoria sa
+                            bogată și impactul pozitiv asupra civilizației.
+                        </p>
+                        <a href="#" class="btn En">Read More</a>
+                        <a href="#" class="btn Ar" style="display: none">اقرأ أكثر</a>
+                        <a href="#" class="btn Ro" style="display: none">Citește mai mult</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/Mosque3.jpg" alt="About Islam" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quran Section -->
+        <section id="quran" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="quran-content">
+                    <div class="quran-image">
+                        <img src="img/quran.jpg" alt="Quran" />
+                    </div>
+                    <div class="quran-text">
+                        <h3 class="En">Read Quran everyday add on your daily routine</h3>
+                        <h3 class="Ar" style="display: none">
+                            اقرأ القرآن كل يوم أضفه إلى روتينك اليومي
+                        </h3>
+                        <h3 class="Ro" style="display: none">
+                            Citiți Coranul în fiecare zi adăugați-l în rutina dumneavoastră zilnică
+                        </h3>
+                        <p class="En">
+                            The Quran is a divine guide for humanity, offering wisdom, peace, and
+                            spiritual growth. Reading even a few verses daily brings blessings,
+                            clarity, and a deeper connection with Allah. Start your journey today!
+                        </p>
+                        <p class="Ar" style="display: none">
+                            القرآن هو هدى الله للبشرية، يمنح الحكمة والسلام والنمو الروحي. قراءة بضع
+                            آيات يوميًا تجلب البركة والوضوح وعلاقة أعمق مع الله. ابدأ رحلتك اليوم!
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Coranul este un ghid divin pentru umanitate, oferind înțelepciune, pace
+                            și creștere spirituală. Citirea chiar și a câtorva versete zilnic aduce
+                            binecuvântări, claritate și o legătură mai profundă cu Allah. Începeți
+                            călătoria astăzi!
+                        </p>
+                        <div class="quran-buttons">
+                            <a href="#" class="btn En">Read Quran</a>
+                            <a href="#" class="btn Ar" style="display: none">اقرأ القرآن</a>
+                            <a href="#" class="btn Ro" style="display: none">Citește Coranul</a>
+
+                            <a href="#" class="btn En">Quran Audio</a>
+                            <a href="#" class="btn Ar" style="display: none">تلاوة القرآن</a>
+                            <a href="#" class="btn Ro" style="display: none">Audio Quran</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prayer Times Section -->
+        <section id="prayer-times">
+            <div class="prayer-container">
+                <div class="section-title">
+                    <h2 class="En">Prayer Times</h2>
+                    <h2 class="Ar" style="display: none">أوقات الصلاة</h2>
+                    <h2 class="Ro" style="display: none">Timpurile de Rugăciune</h2>
+                </div>
+                <div class="iframe-container">
+                    <!-- Desktop/Horizontal iframe -->
+                    <iframe
+                        src="https://mawaqit.net/en/w/masjid-cluj-napoca-400338-romania?showOnly5PrayerTimes=0"
+                        frameborder="0"
+                        scrolling="no"
+                        class="widget"
+                    ></iframe>
+
+                    <!-- Mobile/Vertical iframe -->
+                    <iframe
+                        src="https://mawaqit.net/en/m/masjid-cluj-napoca-400338-romania?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
+                        frameborder="0"
+                        scrolling="no"
+                        class="mobile"
+                    ></iframe>
+                </div>
+                <!-- App Download Buttons -->
+                <div class="app-download-buttons">
+                    <p class="En">Download our prayer times app:</p>
+                    <p class="Ar" style="display: none">حمل تطبيق أوقات الصلاة:</p>
+                    <p class="Ro" style="display: none">
+                        Descarcă aplicația noastră pentru orele de rugăciune:
+                    </p>
+
+                    <div class="download-buttons">
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.kanout.mawaqit&pcampaignid=web_share"
+                            class="download-btn"
+                            target="_blank"
+                        >
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                alt="Get it on Google Play"
+                            />
+                        </a>
+                        <a
+                            href="https://apps.apple.com/ro/app/mawaqit-prayer-times-mosque/id1460522683"
+                            class="download-btn"
+                            target="_blank"
+                        >
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                                alt="Download on the App Store"
+                            />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Recent News &amp; Updates</h2>
+                    <h2 class="Ar" style="display: none">آخر الأخبار والتحديثات</h2>
+                    <h2 class="Ro" style="display: none">Știri și Actualizări Recente</h2>
+                </div>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="img/Mosque1.jpg" alt="News" />
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date En">June 15, 2023</div>
+                            <div class="news-date Ar" style="display: none">15 يونيو 2023</div>
+                            <div class="news-date Ro" style="display: none">15 Iunie 2023</div>
+                            <h3 class="En">New Islamic Center Opening</h3>
+                            <h3 class="Ar" style="display: none">افتتاح مركز إسلامي جديد</h3>
+                            <h3 class="Ro" style="display: none">
+                                Deschiderea noului Centru Islamic
+                            </h3>
+                            <p class="En">
+                                We are delighted to announce the opening of our new Islamic Center,
+                                a vibrant hub for prayer, education, and community events. Join us
+                                for daily prayers, Quran classes, and interfaith dialogues. Everyone
+                                is welcome!
+                            </p>
+                            <p class="Ar" style="display: none">
+                                يسعدنا الإعلان عن افتتاح مركزنا الإسلامي الجديد، مكان حيوي للصلاة
+                                والتعليم والفعاليات المجتمعية. انضموا إلينا للصلاة اليومية، دروس
+                                القرآن، وحوارات بين الأديان. الجميع مرحب به!
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Suntem încântați să anunțăm deschiderea noului Centru Islamic, un
+                                loc vibrant pentru rugăciune, educație și evenimente comunitare.
+                                Alăturați-vă nouă pentru rugăciunile zilnice, cursuri de Coran și
+                                dialoguri interreligioase. Toți sunt bineveniți!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="img/ramadan.avif" alt="News" />
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date En">June 10, 2023</div>
+                            <div class="news-date Ar" style="display: none">10 يونيو 2023</div>
+                            <div class="news-date Ro" style="display: none">10 Iunie 2023</div>
+                            <h3 class="En">Ramadan Charity Event</h3>
+                            <h3 class="Ar" style="display: none">حدث خيري في رمضان</h3>
+                            <h3 class="Ro" style="display: none">Eveniment de Caritate Ramadan</h3>
+                            <p class="En">
+                                This Ramadan, our community came together to distribute over 500
+                                food packages to struggling families. Through your generous
+                                donations, we provided iftar meals, essential groceries, and Eid
+                                gifts to bring joy to those in need. Join us next year to continue
+                                this blessed tradition!
+                            </p>
+                            <p class="Ar" style="display: none">
+                                في رمضان هذا العام، اجتمعنا كمجتمع لتوزيع أكثر من 500 حصة غذائية على
+                                العائلات المحتاجة. بفضل تبرعاتكم السخية، قدمنا وجبات إفطار وبقالة
+                                أساسية وهدايا عيد لإدخال الفرح على المحتاجين. انضموا إلينا العام
+                                المقبل لمواصلة هذه السنة المباركة!
+                            </p>
+                            <p class="Ro" style="display: none">
+                                În acest Ramadan, comunitatea noastră s-a unit pentru a distribui
+                                peste 500 pachete alimentare familiilor aflate în dificultate. Prin
+                                donațiile voastre generoase, am oferit mese de iftar, alimente de
+                                bază și daruri de Eid pentru a aduce bucurie celor nevoiași.
+                                Alăturați-vă nouă anul viitor pentru a continua această tradiție
+                                binecuvântată!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="img/quran-classes.jpg" alt="News" />
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date En">June 5, 2023</div>
+                            <div class="news-date Ar" style="display: none">5 يونيو 2023</div>
+                            <div class="news-date Ro" style="display: none">5 Iunie 2023</div>
+                            <h3 class="En">New Quran Classes Starting</h3>
+                            <h3 class="Ar" style="display: none">بدء فصول قرآنية جديدة</h3>
+                            <h3 class="Ro" style="display: none">Încep Cursurile Noi de Quran</h3>
+                            <p class="En">
+                                We're excited to launch our new Quran learning program for all ages
+                                and levels! Featuring certified instructors, personalized learning
+                                plans, and both in-person and online options. Special focus on
+                                proper Tajweed, memorization techniques, and understanding the
+                                meaning. Registration now open!
+                            </p>
+                            <p class="Ar" style="display: none">
+                                يسعدنا إطلاق برنامجنا الجديد لتعلم القرآن لجميع الأعمار والمستويات!
+                                مع معلمين معتمدين، خطط تعليمية شخصية، وخيارات حضورية وعبر الإنترنت.
+                                تركيز خاص على التجويد الصحيح، تقنيات الحفظ، وفهم المعاني. التسجيل
+                                مفتوح الآن!
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Suntem încântați să lansăm noul nostru program de învățare a
+                                Quranului pentru toate vârstele și nivelurile! Cu instructori
+                                certificați, planuri de învățare personalizate și opțiuni atât
+                                online cât și offline. Accent special pe Tajweed corect, tehnici de
+                                memorare și înțelegerea sensului. Înscrierile sunt deschise!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Services We Offer</h2>
+                    <h2 class="Ar" style="display: none">الخدمات التي نقدمها</h2>
+                    <h2 class="Ro" style="display: none">Serviciile Pe Care Le Oferim</h2>
+                    <p class="En">It is the responsibility of every Muslim to serve for DEEN</p>
+                    <p class="Ar" style="display: none">إنها مسؤولية كل مسلم أن يخدم الدين</p>
+                    <p class="Ro" style="display: none">
+                        Este responsabilitatea fiecărui musulman să servească pentru DEEN
+                    </p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Comprehensive Hadith Studies</h3>
+                            <h3 class="Ar" style="display: none">دورات شاملة في علوم الحديث</h3>
+                            <h3 class="Ro" style="display: none">Studii Complete ale Hadith</h3>
+                            <p class="En">
+                                Explore the authentic teachings of Prophet Muhammad (PBUH) through
+                                our structured Hadith courses. Learn about Sahih collections, chain
+                                of narration, and practical applications for daily life. Suitable
+                                for beginners and advanced students alike.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                اكتشف تعاليم النبي محمد (صلى الله عليه وسلم) الموثوقة من خلال دورات
+                                الحديث المنظمة. تعلم عن المجموعات الصحيحة، وسند الرواية، والتطبيقات
+                                العملية للحياة اليومية. مناسبة للمبتدئين والدارسين المتقدمين.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Descoperiți învățăturile autentice ale Profetului Muhammad (Pacea să
+                                fie asupra lui) prin cursurile noastre structurate de Hadith.
+                                Învățați despre colecțiile Sahih, lanțul de transmitere și
+                                aplicațiile practice în viața de zi cu zi. Potrivite atât pentru
+                                începători cât și pentru studenți avansați.
+                            </p>
+                            <a href="#" class="btn En">Read More</a>
+                            <a href="#" class="btn Ar" style="display: none">اقرأ أكثر</a>
+                            <a href="#" class="btn Ro" style="display: none">Citește mai mult</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Islamic Marriage (Nikah) Services</h3>
+                            <h3 class="Ar" style="display: none">خدمات عقد النكاح الشرعي</h3>
+                            <h3 class="Ro" style="display: none">
+                                Servicii de Căsătorie Islamică (Nikah)
+                            </h3>
+                            <p class="En">
+                                We provide complete Nikah services according to Islamic principles,
+                                including marriage contracts, counseling, and official registration.
+                                Our qualified Imam will guide you through the process to ensure your
+                                union is blessed according to Sunnah.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                نقدم خدمات كاملة لعقد النكاح وفقاً لأحكام الشريعة الإسلامية، بما في
+                                ذلك عقود الزواج، الاستشارات، والتسجيل الرسمي. إمامنا المؤهل سيرشدكم
+                                خلال العملية لضمان زواج مبارك حسب السنة النبوية.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Oferim servicii complete de Nikah conform principiilor islamice,
+                                inclusiv contracte matrimoniale, consiliere și înregistrare
+                                oficială. Imamul nostru calificat vă va ghida prin proces pentru a
+                                vă asigura că uniunea dumneavoastră este binecuvântată conform
+                                Sunnah.
+                            </p>
+                            <a href="#" class="btn En">Arrange Nikah</a>
+                            <a href="#" class="btn Ar" style="display: none">ترتيب النكاح</a>
+                            <a href="#" class="btn Ro" style="display: none">Organizați Nikah</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-praying-hands"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Funeral Services</h3>
+                            <h3 class="Ar" style="display: none">خدمات الجنازة</h3>
+                            <h3 class="Ro" style="display: none">Servicii Funerare</h3>
+                            <p class="En">
+                                We provide complete Islamic funeral services according to Sunnah,
+                                including ghusl (ritual washing), kafan (shrouding), funeral
+                                prayers, and burial arrangements. Our compassionate team is
+                                available 24/7 to assist families during difficult times.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                نقدم خدمات جنازة إسلامية كاملة حسب السنة، بما في ذلك الغسل،
+                                والتكفين، وصلاة الجنازة، وترتيبات الدفن. فريقنا المتعاطف متاح على
+                                مدار الساعة لمساعدة العائلات في الأوقات الصعبة.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Oferim servicii funerare islamice complete conform Sunnah, inclusiv
+                                ghusl (spălare rituală), kafan (învelire), rugăciunea funerară și
+                                aranjamentele de înmormântare. Echipa noastră compasiunată este
+                                disponibilă 24/7 pentru a ajuta familiile în momentele dificile.
+                            </p>
+                            <a href="#" class="btn En">Get Assistance</a>
+                            <a href="#" class="btn Ar" style="display: none">طلب المساعدة</a>
+                            <a href="#" class="btn Ro" style="display: none">Cere Asistență</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-quran"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Quran Reading &amp; Recitation</h3>
+                            <h3 class="Ar" style="display: none">تلاوة وتجويد القرآن الكريم</h3>
+                            <h3 class="Ro" style="display: none">Lectura și Recitarea Quranului</h3>
+                            <p class="En">
+                                Experience the beauty of Quranic recitation with proper Tajweed. Our
+                                qualified teachers guide students of all levels in correct
+                                pronunciation, fluency, and understanding. Join individual or group
+                                sessions to connect with Allah's words.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                اختبر جمال تلاوة القرآن بتجويد صحيح. معلمونا المؤهلون يرشدون الطلاب
+                                من جميع المستويات في النطق الصحيح، الطلاقة والفهم. انضم إلى جلسات
+                                فردية أو جماعية للتواصل مع كلام الله.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Experimentați frumusețea recitării Quranice cu Tajweed corect.
+                                Profesorii noștri calificați ghidează studenții de toate nivelile în
+                                pronunția corectă, fluență și înțelegere. Participați la ședințe
+                                individuale sau de grup pentru a vă conecta cu cuvintele lui Allah.
+                            </p>
+                            <a href="#" class="btn En">Start Learning</a>
+                            <a href="#" class="btn Ar" style="display: none">ابدأ التعلم</a>
+                            <a href="#" class="btn Ro" style="display: none">Începe să înveți</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Quran Translation &amp; Tafsir</h3>
+                            <h3 class="Ar" style="display: none">ترجمة وتفسير القرآن</h3>
+                            <h3 class="Ro" style="display: none">Traducere și Tafsir Quranic</h3>
+                            <p class="En">
+                                Discover the profound meanings of the Quran through accurate
+                                translations and authentic tafsir (exegesis). Our scholars provide
+                                clear explanations of verses in multiple languages, helping you
+                                understand Allah's message in depth.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                اكتشف المعاني العميقة للقرآن من خلال الترجمات الدقيقة والتفسير
+                                الصحيح. علماؤنا يقدمون شروحًا واضحة للآيات بلغات متعددة، لمساعدتك
+                                على فهم رسالة الله بعمق.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Descoperiți semnificațiile profunde ale Quranului prin traduceri
+                                precise și tafsir autentic (exegeză). Savanții noștri oferă
+                                explicații clare ale versetelor în mai multe limbi, ajutându-vă să
+                                înțelegeți mesajul lui Allah în profunzime.
+                            </p>
+                            <a href="#" class="btn En">Explore Meanings</a>
+                            <a href="#" class="btn Ar" style="display: none">استكشف المعاني</a>
+                            <a href="#" class="btn Ro" style="display: none">
+                                Explorează Semnificațiile
+                            </a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="En">Quran Memorization (Hifz) Program</h3>
+                            <h3 class="Ar" style="display: none">برنامج حفظ القرآن الكريم</h3>
+                            <h3 class="Ro" style="display: none">
+                                Program de Memorizare Quran (Hifz)
+                            </h3>
+                            <p class="En">
+                                Embark on the blessed journey of memorizing the Quran with our
+                                structured Hifz program. Our certified teachers use proven
+                                techniques to help students of all ages memorize with proper Tajweed
+                                and understanding. Start your spiritual journey today!
+                            </p>
+                            <p class="Ar" style="display: none">
+                                ابدأ رحلتك المباركة في حفظ القرآن مع برنامجنا المنظم للحفظ. معلمونا
+                                المعتمدون يستخدمون أساليب مجربة لمساعدة الطلاب من جميع الأعمار على
+                                الحفظ مع التجويد الصحيح والفهم. ابدأ رحلتك الروحية اليوم!
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Porniți-vă pe călătoria binecuvântată de memorare a Quranului cu
+                                programul nostru structurat Hifz. Profesorii noștri certificați
+                                folosesc tehnici dovedite pentru a ajuta studenții de toate vârstele
+                                să memoreze cu Tajweed corect și înțelegere. Începeți călătoria
+                                dumneavoastră spirituală astăzi!
+                            </p>
+                            <a href="#" class="btn En">Start Memorizing</a>
+                            <a href="#" class="btn Ar" style="display: none">ابدأ الحفظ</a>
+                            <a href="#" class="btn Ro" style="display: none">Începe Memorarea</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section id="donation">
+            <div class="container">
+                <div class="donation-content">
+                    <div class="donation-text">
+                        <h3 class="En">Make Your Donations</h3>
+                        <h3 class="Ar" style="display: none">تقديم تبرعاتك</h3>
+                        <h3 class="Ro" style="display: none">Faceți-vă donațiile</h3>
+                        <p class="En">
+                            The Mosque was established in 1954, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            تم تأسيس المسجد في عام 1954، سيد دو إيوسمود تيمبور إنسيديدونت لابور إت
+                            دولور ماجنا أليكوا.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Moscheea a fost înființată în 1954, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-text">
+                                <span class="En">Raised: $15,000</span>
+                                <span class="Ar" style="display: none">تم جمع: 15,000 دولار</span>
+                                <span class="Ro" style="display: none">Strans: 15,000 $</span>
+                                <span class="En">Goal: $25,000</span>
+                                <span class="Ar" style="display: none">الهدف: 25,000 دولار</span>
+                                <span class="Ro" style="display: none">Țintă: 25,000 $</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <p class="En">
+                            We need your donation for the restoration of the grand mosque
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نحن بحاجة إلى تبرعك لترميم المسجد الكبير
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Avem nevoie de donația dumneavoastră pentru restaurarea marii moschei
+                        </p>
+                        <a href="#" class="btn En">Donate Now</a>
+                        <a href="#" class="btn Ar" style="display: none">تبرع الآن</a>
+                        <a href="#" class="btn Ro" style="display: none">Donează acum</a>
+                    </div>
+                    <div class="donation-image">
+                        <img src="img/charity.jpg" alt="Donation" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Courses</h2>
+                    <h2 class="Ar" style="display: none">الدورات</h2>
+                    <h2 class="Ro" style="display: none">Cursuri</h2>
+                    <p class="En">Watch and learn from quality courses</p>
+                    <p class="Ar" style="display: none">شاهد وتعلم من دورات ذات جودة</p>
+                    <p class="Ro" style="display: none">
+                        Urmăriți și învățați din cursuri de calitate
+                    </p>
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="img/shutterstock_189381986-400x240.jpg" alt="Course" />
+                        </div>
+                        <div class="course-content">
+                            <h3 class="En">Islam for Young Muslims</h3>
+                            <h3 class="Ar" style="display: none">الإسلام للمسلمين الشباب</h3>
+                            <h3 class="Ro" style="display: none">
+                                Islamul pentru Tinerii Musulmani
+                            </h3>
+                            <p class="En">
+                                A special program designed to help young Muslims navigate modern
+                                challenges while staying true to Islamic values. Through interactive
+                                sessions, we address topics like identity, relationships, social
+                                media, and building a strong connection with Allah.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                برنامج خاص مصمم لمساعدة الشباب المسلم على مواجهة تحديات العصر الحديث
+                                مع الحفاظ على القيم الإسلامية. من خلال جلسات تفاعلية، نناقش مواضيع
+                                مثل الهوية، العلاقات، وسائل التواصل الاجتماعي، وبناء علاقة قوية مع
+                                الله.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Un program special conceput pentru a ajuta tinerii musulmani să
+                                navigheze prin provocările moderne rămânând fideli valorilor
+                                islamice. Prin sesiuni interactive, abordăm subiecte precum
+                                identitatea, relațiile, social media și construirea unei legături
+                                puternice cu Allah.
+                            </p>
+                            <a href="#" class="btn En">Join Now</a>
+                            <a href="#" class="btn Ar" style="display: none">انضم الآن</a>
+                            <a href="#" class="btn Ro" style="display: none">Alătură-te Acum</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="img/pexels-timur-weber-9127146.jpg" alt="Course" />
+                        </div>
+                        <div class="course-content">
+                            <h3 class="En">Islamic Parenting Workshops</h3>
+                            <h3 class="Ar" style="display: none">ورش عمل التربية الإسلامية</h3>
+                            <h3 class="Ro" style="display: none">Ateliere de Parenting Islamic</h3>
+                            <p class="En">
+                                Discover Prophetic parenting techniques to raise confident Muslim
+                                children in today's world. Our workshops cover positive discipline,
+                                Islamic identity development, and creating a faith-nurturing home
+                                environment based on Quran and Sunnah.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                اكتشف أساليب التربية النبوية لتنشئة أطفال مسلمين واثقين في عالم
+                                اليوم. تغطي ورش عملنا التوجيه الإيجابي، تنمية الهوية الإسلامية، وخلق
+                                بيئة منزلية تعزز الإيمان بناءً على القرآن والسنة.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Descoperiți tehnici de parenting profetice pentru a crește copii
+                                musulmani încrezători în lumea de astăzi. Atelierele noastre acoperă
+                                disciplina pozitivă, dezvoltarea identității islamice și crearea
+                                unui mediu domestic care hrănește credința bazat pe Coran și Sunnah.
+                            </p>
+                            <a href="#" class="btn En">Register Now</a>
+                            <a href="#" class="btn Ar" style="display: none">سجل الآن</a>
+                            <a href="#" class="btn Ro" style="display: none">Înscrie-te Acum</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="img/quran.jpg" alt="Course" />
+                        </div>
+                        <div class="course-content">
+                            <h3 class="En">Tajweed Mastery Program</h3>
+                            <h3 class="Ar" style="display: none">إتقان أحكام التجويد</h3>
+                            <h3 class="Ro" style="display: none">Program de Stăpânire a Tajweed</h3>
+                            <p class="En">
+                                Perfect your Quran recitation with our comprehensive Tajweed course.
+                                Learn proper pronunciation, articulation points (Makharij), and
+                                rules of recitation from certified instructors. Suitable for all
+                                levels - from beginners to advanced reciters.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                أتقن تلاوة القرآن من خلال دورة التجويد الشاملة. تعلم النطق الصحيح،
+                                مخارج الحروف، وأحكام التلاوة مع معلمين معتمدين. مناسب لجميع
+                                المستويات من المبتدئين إلى المتقنين.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Perfecționează-ți recitarea Quranului cu cursul nostru complet de
+                                Tajweed. Învață pronunția corectă, punctele de articulare (Makharij)
+                                și regulile de recitare de la instructori certificați. Potrivit
+                                pentru toate nivelurile - de la începători la recitatori avansați.
+                            </p>
+                            <a href="#" class="btn En">Start Learning Tajweed</a>
+                            <a href="#" class="btn Ar" style="display: none">ابدأ تعلم التجويد</a>
+                            <a href="#" class="btn Ro" style="display: none">
+                                Începe să înveți Tajweed
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Events</h2>
+                    <h2 class="Ar" style="display: none">الأحداث</h2>
+                    <h2 class="Ro" style="display: none">Evenimente</h2>
+                    <p class="En">The upcoming events and services in our Mosque</p>
+                    <p class="Ar" style="display: none">الأحداث والخدمات القادمة في مسجدنا</p>
+                    <p class="Ro" style="display: none">
+                        Evenimentele și serviciile viitoare din Moscheea noastră
+                    </p>
+                </div>
+                <div class="events-list">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="day">04</div>
+                            <div class="month En">Jun</div>
+                            <div class="month Ar" style="display: none">يونيو</div>
+                            <div class="month Ro" style="display: none">Iun</div>
+                            <div class="year">2025</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="En">Beginning of Hajj</h3>
+                            <h3 class="Ar" style="display: none">بداية الحج</h3>
+                            <h3 class="Ro" style="display: none">Începutul Hajj</h3>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Mosque & Online</span>
+                                <span class="Ar" style="display: none">المسجد وعبر الإنترنت</span>
+                                <span class="Ro" style="display: none">Moschee & Online</span>
+                            </div>
+                            <p class="En">
+                                Join us for special prayers and lectures marking the beginning of
+                                the sacred Hajj pilgrimage. We'll be following the journey of our
+                                pilgrims and holding dua sessions for their acceptance.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                انضموا إلينا لصلوات خاصة ومحاضرات بمناسبة بداية رحلة الحج المباركة.
+                                سنتابع رحلة حجاجنا ونجلس لدعواتهم بالقبول.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Alăturați-vă nouă pentru rugăciuni speciale și prelegeri care
+                                marchează începutul pelerinajului sacru Hajj. Vom urmări călătoria
+                                pelerinilor noștri și vom organiza sesiuni de dua pentru acceptarea
+                                lor.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="day">05</div>
+                            <div class="month En">Jun</div>
+                            <div class="month Ar" style="display: none">يونيو</div>
+                            <div class="month Ro" style="display: none">Iun</div>
+                            <div class="year">2025</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="En">Day of Arafah</h3>
+                            <h3 class="Ar" style="display: none">يوم عرفة</h3>
+                            <h3 class="Ro" style="display: none">Ziua Arafah</h3>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Mosque & Online</span>
+                                <span class="Ar" style="display: none">المسجد وعبر الإنترنت</span>
+                                <span class="Ro" style="display: none">Moschee & Online</span>
+                            </div>
+                            <p class="En">
+                                The most blessed day of the year. Join us for fasting, special
+                                prayers, and dua sessions from dawn to sunset. Evening program
+                                includes Quran recitation and reminders about the significance of
+                                this sacred day.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                أكثر أيام السنة بركة. انضموا إلينا للصيام، الصلوات الخاصة، وجلسات
+                                الدعاء من الفجر إلى المغرب. البرنامج المسائي يتضمن تلاوة القرآن
+                                وتذكير بأهمية هذا اليوم المبارك.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Cea mai binecuvântată zi a anului. Alăturați-vă nouă pentru post,
+                                rugăciuni speciale și sesiuni de dua de la zori până la apus.
+                                Programul de seară include recitarea Quranului și reamintiri despre
+                                semnificația acestei zile sacre.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="day">06</div>
+                            <div class="month En">Jun</div>
+                            <div class="month Ar" style="display: none">يونيو</div>
+                            <div class="month Ro" style="display: none">Iun</div>
+                            <div class="year">2025</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="En">Eid al-Adha Celebration</h3>
+                            <h3 class="Ar" style="display: none">عيد الأضحى المبارك</h3>
+                            <h3 class="Ro" style="display: none">Sărbătoarea Eid al-Adha</h3>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Central Park, Cluj-Napoca</span>
+                                <span class="Ar" style="display: none">
+                                    الحديقة المركزية، كلوج نابوكا
+                                </span>
+                                <span class="Ro" style="display: none">
+                                    Parcul Central, Cluj-Napoca
+                                </span>
+                            </div>
+                            <p class="En">
+                                Join our community Eid prayer at 8:30 AM followed by festive
+                                activities for all ages. Qurbani meat distribution will begin in the
+                                afternoon. Bring your family and friends for this joyful celebration
+                                of faith and sacrifice.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                انضموا لصلاة العيد المجتمعية الساعة 8:30 صباحاً تليها أنشطة احتفالية
+                                لجميع الأعمار. توزيع لحوم الأضحية سيبدأ بعد الظهر. احضروا عائلاتكم
+                                وأصدقائكم لهذه الاحتفالية المفرحة بالإيمان والتضحية.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Alăturați-vă rugăciunii noastre comunitare de Eid la ora 8:30,
+                                urmată de activități festive pentru toate vârstele. Distribuția
+                                cărnii de Qurbani va începe după-amiaza. Aduceți-vă familia și
+                                prietenii la această sărbătoare veselă a credinței și jertfei.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Frequently Asked Questions</h2>
+                    <h2 class="Ar" style="display: none">أسئلة مكررة</h2>
+                    <h2 class="Ro" style="display: none">Întrebări Frecvente</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="En">What are your opening hours?</span>
+                            <span class="Ar" style="display: none">ما هي ساعات العمل لديكم؟</span>
+                            <span class="Ro" style="display: none">
+                                Care sunt orele de program?
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="En">
+                                Our center is open daily from 9:00 AM to 9:00 PM, including weekends
+                                and holidays.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                مركزنا مفتوح يوميًا من الساعة 9:00 صباحًا حتى 9:00 مساءً، بما في ذلك
+                                عطلات نهاية الأسبوع والعطلات الرسمية.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Centrul nostru este deschis zilnic de la 9:00 AM până la 9:00 PM,
+                                inclusiv în weekend și sărbători.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="En">How can I register for Quran classes?</span>
+                            <span class="Ar" style="display: none">
+                                كيف يمكنني التسجيل في دروس القرآن؟
+                            </span>
+                            <span class="Ro" style="display: none">
+                                Cum mă pot înscrie la cursurile de Quran?
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="En">
+                                You can register for Quran classes by visiting our center or through
+                                our website's registration form.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                يمكنك التسجيل في دروس القرآن من خلال زيارة مركزنا أو عبر نموذج
+                                التسجيل على موقعنا الإلكتروني.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Vă puteți înscrie la cursurile de Quran vizitând centrul nostru sau
+                                completând formularul de înscriere de pe site-ul nostru.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="En">Do you offer marriage counseling?</span>
+                            <span class="Ar" style="display: none">هل تقدمون استشارات زوجية؟</span>
+                            <span class="Ro" style="display: none">
+                                Oferiți consiliere conjugală?
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="En">
+                                Yes, we offer Islamic marriage counseling services. Please contact
+                                our office to schedule an appointment.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                نعم، نقدم خدمات استشارات زوجية إسلامية. يرجى الاتصال بمكتبنا لتحديد
+                                موعد.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Da, oferim servicii de consiliere conjugală islamică. Vă rugăm să
+                                contactați biroul nostru pentru a programa o întâlnire.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="En">How can I donate to the mosque?</span>
+                            <span class="Ar" style="display: none">كيف يمكنني التبرع للمسجد؟</span>
+                            <span class="Ro" style="display: none">
+                                Cum pot dona pentru moschee?
+                            </span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="En">
+                                You can donate online through our website, in person at the mosque,
+                                or by bank transfer to our official account.
+                            </p>
+                            <p class="Ar" style="display: none">
+                                يمكنك التبرع عبر الإنترنت من خلال موقعنا الإلكتروني، أو شخصيًا في
+                                المسجد، أو عن طريق التحويل البنكي إلى حسابنا الرسمي.
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Puteți dona online prin site-ul nostru, personal la moschee sau prin
+                                transfer bancar în contul nostru oficial.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h2 class="En">Islam Cluj</h2>
+                            <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                            <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                        </div>
+                        <p class="En">
+                            Serving the Muslim community in Cluj-Napoca with authentic Islamic
+                            education, prayer services, and community programs. Join us in building
+                            bridges of understanding and faith.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة،
+                            وبرامج مجتمعية. انضم إلينا في بناء جسور التفاهم والإيمان.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servim comunitatea musulmană din Cluj-Napoca cu educație islamică
+                            autentică, servicii de rugăciune și programe comunitare. Alăturați-vă
+                            nouă în construirea podurilor de înțelegere și credință.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/IslamClujNapoca/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-services">
+                        <h3 class="En">Services</h3>
+                        <h3 class="Ar" style="display: none">خدمات</h3>
+                        <h3 class="Ro" style="display: none">Servicii</h3>
+                        <ul>
+                            <li><a href="#" class="En">Quran reading</a></li>
+                            <li><a href="#" class="Ar" style="display: none">قراءة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Lectura Quranului</a>
+                            </li>
+
+                            <li><a href="#" class="En">Funeral Services</a></li>
+                            <li><a href="#" class="Ar" style="display: none">خدمات الجنازة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Servicii Funerare</a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Translation</a></li>
+                            <li><a href="#" class="Ar" style="display: none">ترجمة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Traducerea Quranului
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Memorization</a></li>
+                            <li><a href="#" class="Ar" style="display: none">حفظ القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Memorizarea Quranului
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="En">Useful Links</h3>
+                        <h3 class="Ar" style="display: none">روابط مفيدة</h3>
+                        <h3 class="Ro" style="display: none">Link-uri Utile</h3>
+                        <ul>
+                            <li><a href="#" class="En">Contact</a></li>
+                            <li><a href="#" class="Ar" style="display: none">اتصل بنا</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Contact</a></li>
+
+                            <li><a href="#" class="En">About Us</a></li>
+                            <li><a href="#" class="Ar" style="display: none">من نحن</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Despre Noi</a></li>
+
+                            <li><a href="#" class="En">Events</a></li>
+                            <li><a href="#" class="Ar" style="display: none">أحداث</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Evenimente</a></li>
+
+                            <li><a href="#" class="En">Charity</a></li>
+                            <li><a href="#" class="Ar" style="display: none">صدقة</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Caritate</a></li>
+
+                            <li><a href="#" class="En">Help Center</a></li>
+                            <li><a href="#" class="Ar" style="display: none">مركز المساعدة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Centru de Ajutor</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3 class="En">Sign up for our News</h3>
+                        <h3 class="Ar" style="display: none">اشترك في نشرتنا الإخبارية</h3>
+                        <h3 class="Ro" style="display: none">
+                            Înscrieți-vă pentru știrile noastre
+                        </h3>
+                        <p class="En">Will send you updates</p>
+                        <p class="Ar" style="display: none">سوف نرسل لك التحديثات</p>
+                        <p class="Ro" style="display: none">Vă vom trimite actualizări</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" class="En" />
+                            <input
+                                type="email"
+                                placeholder="بريدك الإلكتروني"
+                                class="Ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email-ul Dvs."
+                                class="Ro"
+                                style="display: none"
+                            />
+                            <button type="submit" class="En">Subscribe</button>
+                            <button type="submit" class="Ar" style="display: none">اشتراك</button>
+                            <button type="submit" class="Ro" style="display: none">
+                                Abonează-te
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                    <p class="Ar" style="display: none">
+                        &copy; 2023 المركز الإسلامي. جميع الحقوق محفوظة.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        &copy; 2023 Cluj Islam. Toate Drepturile Rezervate.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+            <svg class="progress-circle" width="50" height="50" viewBox="0 0 50 50">
+                <circle
+                    class="progress-circle-track"
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    stroke-width="4"
+                />
+                <circle
+                    class="progress-circle-fill"
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    stroke-width="4"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="125.6"
+                />
+            </svg>
+        </button>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // ==================== Hamburger Menu ====================
+                const initHamburgerMenu = () => {
+                    const hamburger = document.querySelector(".hamburger");
+                    const navMenu = document.querySelector(".nav-menu");
+
+                    if (hamburger && navMenu) {
+                        hamburger.addEventListener("click", () => {
+                            hamburger.classList.toggle("active");
+                            navMenu.classList.toggle("active");
+                        });
+                    }
+                };
+
+                // ==================== Language Switcher ====================
+                const initLanguageSwitcher = () => {
+                    const languageSelector = document.querySelector(".language-selector");
+                    const selectedLanguage = document.querySelector(".selected-language");
+                    const languageDropdown = document.querySelector(".language-dropdown");
+                    const languageOptions = document.querySelectorAll(".language-dropdown li");
+
+                    if (
+                        !languageSelector ||
+                        !selectedLanguage ||
+                        !languageDropdown ||
+                        !languageOptions.length
+                    ) {
+                        return;
+                    }
+
+                    // Toggle dropdown
+                    languageSelector.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        languageSelector.classList.toggle("active");
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", () => {
+                        languageSelector.classList.remove("active");
+                    });
+
+                    // Language switching function
+                    const switchLanguage = (lang) => {
+                        // Hide all language-specific content
+                        document
+                            .querySelectorAll('[class*="En"], [class*="Ar"], [class*="Ro"]')
+                            .forEach((el) => {
+                                // Skip elements that are part of the language switcher itself
+                                if (
+                                    !el.closest(".language-switcher") &&
+                                    !el.closest(".language-selector")
+                                ) {
+                                    el.style.display = "none";
+                                }
+                            });
+
+                        // Show elements for selected language
+                        document.querySelectorAll(`.${lang}`).forEach((el) => {
+                            // Skip elements that are part of the language switcher itself
+                            if (
+                                !el.closest(".language-switcher") &&
+                                !el.closest(".language-selector")
+                            ) {
+                                el.style.display = "";
+                            }
+                        });
+
+                        // Update selected language display
+                        const selectedOption = document.querySelector(
+                            `.language-dropdown li[data-lang="${lang}"]`
+                        );
+                        if (selectedOption) {
+                            const selectedImg = selectedOption.querySelector("img").cloneNode(true);
+                            const selectedText = selectedOption.querySelector("span").textContent;
+
+                            // Clear and update selected language display
+                            selectedLanguage.innerHTML = "";
+                            selectedLanguage.appendChild(selectedImg);
+
+                            const textSpan = document.createElement("span");
+                            textSpan.textContent = selectedText;
+                            textSpan.className = lang;
+                            selectedLanguage.appendChild(textSpan);
+
+                            const chevron = document.createElement("i");
+                            chevron.className = "fas fa-chevron-down";
+                            selectedLanguage.appendChild(chevron);
+                        }
+
+                        // Set direction for RTL languages
+                        document.body.classList.toggle("rtl", lang === "Ar");
+                        document.documentElement.lang = lang;
+                        document.documentElement.dir = lang === "Ar" ? "rtl" : "ltr";
+
+                        // Update logo text visibility
+                        document.querySelector(".logo h1.En").style.display =
+                            lang === "En" ? "" : "none";
+                        document.querySelector(".logo h1.Ar").style.display =
+                            lang === "Ar" ? "" : "none";
+                        document.querySelector(".logo h1.Ro").style.display =
+                            lang === "Ro" ? "" : "none";
+                    };
+
+                    // Handle language option clicks
+                    languageOptions.forEach((option) => {
+                        option.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            const lang = option.getAttribute("data-lang");
+                            switchLanguage(lang);
+                            languageSelector.classList.remove("active");
+                        });
+                    });
+
+                    // Initialize with English
+                    switchLanguage("En");
+                };
+
+                // ==================== Back to Top Button ====================
+                const initBackToTop = () => {
+                    const backToTopButton = document.querySelector(".back-to-top");
+                    const progressFill = document.querySelector(".progress-circle-fill");
+
+                    if (!backToTopButton || !progressFill) return;
+
+                    window.addEventListener("scroll", () => {
+                        const scrollTotal =
+                            document.documentElement.scrollHeight - window.innerHeight;
+                        const scrollPosition = window.scrollY;
+                        const scrollPercentage = (scrollPosition / scrollTotal) * 125.6;
+
+                        if (scrollPosition > 300) {
+                            backToTopButton.classList.add("visible");
+                            progressFill.style.strokeDashoffset = 125.6 - scrollPercentage;
+                        } else {
+                            backToTopButton.classList.remove("visible");
+                        }
+                    });
+
+                    backToTopButton.addEventListener("click", () => {
+                        // Add charging animation
+                        backToTopButton.classList.add("charging");
+                        progressFill.style.transition = "stroke-dashoffset 1.5s linear";
+                        progressFill.style.strokeDashoffset = "0";
+
+                        // Scroll to top after animation
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth",
+                            });
+
+                            // Reset animation
+                            setTimeout(() => {
+                                backToTopButton.classList.remove("charging");
+                                progressFill.style.transition = "none";
+                                progressFill.style.strokeDashoffset = "125.6";
+                            }, 1500);
+                        }, 100);
+                    });
+                };
+
+                // ==================== Hero Slider ====================
+                const initHeroSlider = () => {
+                    const slides = document.querySelectorAll(".hero-slide");
+                    const controls = document.querySelectorAll(".hero-control");
+
+                    if (!slides.length || !controls.length) return;
+
+                    let currentSlide = 0;
+
+                    const showSlide = (index) => {
+                        slides.forEach((slide) => slide.classList.remove("active"));
+                        controls.forEach((control) => control.classList.remove("active"));
+
+                        slides[index].classList.add("active");
+                        controls[index].classList.add("active");
+                        currentSlide = index;
+                    };
+
+                    const nextSlide = () => {
+                        let next = currentSlide + 1;
+                        if (next >= slides.length) next = 0;
+                        showSlide(next);
+                    };
+
+                    // Add click events to controls
+                    controls.forEach((control, index) => {
+                        control.addEventListener("click", () => showSlide(index));
+                    });
+
+                    // Auto slide change every 5 seconds
+                    setInterval(nextSlide, 5000);
+
+                    // Initialize first slide
+                    showSlide(0);
+                };
+
+                // ==================== FAQ Accordion ====================
+                const initFAQAccordion = () => {
+                    const faqItems = document.querySelectorAll(".faq-item");
+
+                    if (!faqItems.length) return;
+
+                    faqItems.forEach((item) => {
+                        const question = item.querySelector(".faq-question");
+
+                        question.addEventListener("click", () => {
+                            // Close all other items
+                            faqItems.forEach((otherItem) => {
+                                if (otherItem !== item) {
+                                    otherItem.classList.remove("active");
+                                }
+                            });
+
+                            // Toggle current item
+                            item.classList.toggle("active");
+                        });
+                    });
+                };
+
+                // Initialize all components
+                initHamburgerMenu();
+                initLanguageSwitcher();
+                initBackToTop();
+                initHeroSlider();
+                initFAQAccordion();
+            });
+        </script>
+    </body>
+</html>

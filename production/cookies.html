@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cookie Consent Example</title>
+    <style>
+        #cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+        }
+        #cookie-consent button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        #cookie-consent button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="cookie-consent" style="display: none;">
+        <p>We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.</p>
+        <button onclick="acceptAllCookies()">Accept All Cookies</button>
+        <button onclick="hideCookieBanner()">Reject</button>
+    </div>
+
+    <script>
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-consent').style.display = 'block';
+        }
+
+        function acceptAllCookies() {
+            // Set a cookie or localStorage to remember the choice
+            localStorage.setItem('cookiesAccepted', 'true');
+            
+            // You can also set actual cookies here if needed
+            document.cookie = "cookie_consent=true; max-age=31536000; path=/";
+            
+            // Hide the banner
+            document.getElementById('cookie-consent').style.display = 'none';
+            
+            // Optional: Load tracking scripts (Google Analytics, Facebook Pixel, etc.)
+            console.log("All cookies accepted.");
+        }
+
+        function hideCookieBanner() {
+            document.getElementById('cookie-consent').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

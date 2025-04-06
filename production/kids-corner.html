@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kids Corner - Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+                --kids-blue: #3b82f6;
+                --kids-green: #10b981;
+                --kids-purple: #8b5cf6;
+                --kids-pink: #ec4899;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Comic Sans MS", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+                background-color: #f0f9ff;
+            }
+
+            .rtl {
+                direction: rtl;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--white);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                color: var(--primary-color);
+                margin-left: 10px;
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Hero Section */
+            .page-hero {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), url("img/kids-bg.jpg"));
+                background-size: cover;
+                background-position: center;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--white);
+            }
+
+            .page-hero-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            .page-hero-content p {
+                font-size: 1.2rem;
+                max-width: 700px;
+                margin: 0 auto 20px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            }
+
+            /* Kids Content Sections */
+            .kids-section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* Activities Grid */
+            .activities-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .activity-card {
+                background-color: var(--white);
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+                border: 3px solid transparent;
+            }
+
+            .activity-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .activity-card.stories {
+                border-color: var(--kids-blue);
+            }
+
+            .activity-card.videos {
+                border-color: var(--kids-green);
+            }
+
+            .activity-card.games {
+                border-color: var(--kids-purple);
+            }
+
+            .activity-card.coloring {
+                border-color: var(--kids-pink);
+            }
+
+            .activity-image {
+                height: 180px;
+                overflow: hidden;
+            }
+
+            .activity-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s;
+            }
+
+            .activity-card:hover .activity-image img {
+                transform: scale(1.1);
+            }
+
+            .activity-content {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .activity-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .activity-card.stories .activity-icon {
+                color: var(--kids-blue);
+            }
+
+            .activity-card.videos .activity-icon {
+                color: var(--kids-green);
+            }
+
+            .activity-card.games .activity-icon {
+                color: var(--kids-purple);
+            }
+
+            .activity-card.coloring .activity-icon {
+                color: var(--kids-pink);
+            }
+
+            .activity-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: 500;
+                transition: background-color 0.3s, transform 0.3s;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+                transform: scale(1.05);
+            }
+
+            .btn-kids-blue {
+                background-color: var(--kids-blue);
+            }
+
+            .btn-kids-green {
+                background-color: var(--kids-green);
+            }
+
+            .btn-kids-purple {
+                background-color: var(--kids-purple);
+            }
+
+            .btn-kids-pink {
+                background-color: var(--kids-pink);
+            }
+
+            /* Quran Section */
+            .quran-section {
+                background-color: var(--white);
+                padding: 60px 0;
+            }
+
+            .quran-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+            }
+
+            .quran-card {
+                background-color: var(--light-color);
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .quran-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .quran-card i {
+                font-size: 2.5rem;
+                color: var(--secondary-color);
+                margin-bottom: 15px;
+            }
+
+            .quran-card h3 {
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            /* Coloring Section */
+            .coloring-section {
+                background-color: #f0fdf4;
+                padding: 60px 0;
+            }
+
+            .coloring-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .coloring-item {
+                background-color: var(--white);
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .coloring-item:hover {
+                transform: scale(1.05);
+            }
+
+            .coloring-image {
+                height: 180px;
+                overflow: hidden;
+            }
+
+            .coloring-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .coloring-download {
+                padding: 15px;
+                text-align: center;
+            }
+
+            .coloring-download a {
+                display: inline-block;
+                padding: 8px 15px;
+                background-color: var(--kids-pink);
+                color: white;
+                text-decoration: none;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                transition: background-color 0.3s;
+            }
+
+            .coloring-download a:hover {
+                background-color: #db2777;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--dark-color);
+                color: var(--white);
+                padding: 60px 0 20px;
+            }
+
+            .footer-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .footer-logo img {
+                height: 50px;
+            }
+
+            .footer-about p {
+                margin-bottom: 20px;
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-icons a {
+                color: var(--white);
+                font-size: 1.2rem;
+                transition: color 0.3s;
+            }
+
+            .social-icons a:hover {
+                color: var(--secondary-color);
+            }
+
+            .footer-links h3,
+            .footer-services h3,
+            .footer-newsletter h3 {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+            }
+
+            .footer-links ul,
+            .footer-services ul {
+                list-style: none;
+            }
+
+            .footer-links li,
+            .footer-services li {
+                margin-bottom: 10px;
+            }
+
+            .footer-links a,
+            .footer-services a {
+                color: var(--gray);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .footer-links a:hover,
+            .footer-services a:hover {
+                color: var(--secondary-color);
+            }
+
+            .newsletter-form {
+                display: flex;
+                margin-top: 20px;
+            }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px 0 0 4px;
+            }
+
+            .newsletter-form button {
+                padding: 10px 15px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                border: none;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .newsletter-form button:hover {
+                background-color: #e69009;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Hamburger Menu Styles */
+            .hamburger {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1001;
+            }
+
+            .hamburger span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: var(--primary-color);
+                margin: 5px 0;
+                transition: all 0.3s ease;
+            }
+
+            /* Language Switcher */
+            .language-switcher {
+                position: relative;
+                z-index: 100;
+            }
+
+            .language-selector {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .selected-language {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                background-color: var(--white);
+                border-radius: 4px;
+                border: 1px solid var(--gray);
+            }
+
+            .language-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 150px;
+                background-color: var(--white);
+                border-radius: 4px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                list-style: none;
+                padding: 5px 0;
+                margin-top: 5px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+            }
+
+            .language-selector.active .language-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-dropdown li {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                transition: background-color 0.3s;
+            }
+
+            .language-dropdown li:hover {
+                background-color: var(--light-color);
+            }
+
+            /* Interactive Elements */
+            .interactive-box {
+                background-color: var(--white);
+                border-radius: 12px;
+                padding: 30px;
+                margin: 40px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .dua-box {
+                background-color: #f0fdf4;
+                border-left: 5px solid var(--kids-green);
+            }
+
+            .quiz-box {
+                background-color: #eff6ff;
+                border-left: 5px solid var(--kids-blue);
+            }
+
+            .dua-text {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: var(--primary-color);
+            }
+
+            .dua-translation {
+                font-style: italic;
+                margin-bottom: 20px;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .hamburger {
+                    display: block;
+                }
+
+                .nav-menu {
+                    position: fixed;
+                    top: 0;
+                    right: -100%;
+                    width: 80%;
+                    max-width: 300px;
+                    height: 100vh;
+                    background-color: var(--white);
+                    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                    transition: right 0.3s ease;
+                    z-index: 1000;
+                    padding-top: 80px;
+                    overflow-y: auto;
+                }
+
+                .nav-menu.active {
+                    right: 0;
+                }
+
+                .nav-menu ul {
+                    flex-direction: column;
+                    padding: 20px;
+                }
+
+                .nav-menu li {
+                    margin: 10px 0;
+                }
+
+                .page-hero {
+                    height: 250px;
+                }
+
+                .page-hero-content h1 {
+                    font-size: 2rem;
+                }
+
+                .section-title h2 {
+                    font-size: 1.8rem;
+                }
+
+                .activities-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .page-hero {
+                    height: 200px;
+                }
+
+                .page-hero-content h1 {
+                    font-size: 1.8rem;
+                }
+
+                .coloring-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="#" class="En">Services</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                            <li><a href="kids.html" class="En">Kids Corner</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="#" class="Ar">من نحن</a></li>
+                            <li><a href="#" class="Ar">خدمات</a></li>
+                            <li><a href="#" class="Ar">أحداث</a></li>
+                            <li><a href="#" class="Ar">اتصل بنا</a></li>
+                            <li><a href="kids.html" class="Ar">ركن الأطفال</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="#" class="Ro">Despre</a></li>
+                            <li><a href="#" class="Ro">Servicii</a></li>
+                            <li><a href="#" class="Ro">Evenimente</a></li>
+                            <li><a href="#" class="Ro">Contact</a></li>
+                            <li><a href="kids.html" class="Ro">Colțul Copiilor</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1 class="En">Kids Corner</h1>
+                    <h1 class="Ar" style="display: none">ركن الأطفال</h1>
+                    <h1 class="Ro" style="display: none">Colțul Copiilor</h1>
+                    <p class="En">Fun and educational Islamic activities for children</p>
+                    <p class="Ar" style="display: none">أنشطة إسلامية ممتعة وتعليمية للأطفال</p>
+                    <p class="Ro" style="display: none">
+                        Activități islamice distractive și educative pentru copii
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section class="kids-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Fun Activities</h2>
+                    <h2 class="Ar" style="display: none">أنشطة ممتعة</h2>
+                    <h2 class="Ro" style="display: none">Activități Distractive</h2>
+                    <p class="En">Explore our collection of Islamic activities for kids</p>
+                    <p class="Ar" style="display: none">
+                        استكشف مجموعتنا من الأنشطة الإسلامية للأطفال
+                    </p>
+                    <p class="Ro" style="display: none">
+                        Explorează colecția noastră de activități islamice pentru copii
+                    </p>
+                </div>
+
+                <div class="activities-grid">
+                    <div class="activity-card stories">
+                        <div class="activity-image">
+                            <img src="img/kids-stories.jpg" alt="Islamic Stories" />
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3 class="En">Islamic Stories</h3>
+                            <h3 class="Ar" style="display: none">قصص إسلامية</h3>
+                            <h3 class="Ro" style="display: none">Povești Islamice</h3>
+                            <p class="En">Beautiful stories of prophets and companions</p>
+                            <p class="Ar" style="display: none">قصص جميلة عن الأنبياء والصحابة</p>
+                            <p class="Ro" style="display: none">
+                                Frumoase povești despre profeți și companioni
+                            </p>
+                            <button class="btn btn-kids-blue En">Read Stories</button>
+                            <button class="btn btn-kids-blue Ar" style="display: none">
+                                اقرأ القصص
+                            </button>
+                            <button class="btn btn-kids-blue Ro" style="display: none">
+                                Citește Poveștile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="activity-card videos">
+                        <div class="activity-image">
+                            <img src="img/kids-videos.jpg" alt="Islamic Videos" />
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h3 class="En">Islamic Videos</h3>
+                            <h3 class="Ar" style="display: none">فيديوهات إسلامية</h3>
+                            <h3 class="Ro" style="display: none">Videoclipuri Islamice</h3>
+                            <p class="En">Fun and educational videos for kids</p>
+                            <p class="Ar" style="display: none">فيديوهات ممتعة وتعليمية للأطفال</p>
+                            <p class="Ro" style="display: none">
+                                Videoclipuri distractive și educative pentru copii
+                            </p>
+                            <button class="btn btn-kids-green En">Watch Videos</button>
+                            <button class="btn btn-kids-green Ar" style="display: none">
+                                شاهد الفيديوهات
+                            </button>
+                            <button class="btn btn-kids-green Ro" style="display: none">
+                                Urmărește Videoclipurile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="activity-card games">
+                        <div class="activity-image">
+                            <img src="img/kids-games.jpg" alt="Islamic Games" />
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3 class="En">Islamic Games</h3>
+                            <h3 class="Ar" style="display: none">ألعاب إسلامية</h3>
+                            <h3 class="Ro" style="display: none">Jocuri Islamice</h3>
+                            <p class="En">Play and learn about Islam</p>
+                            <p class="Ar" style="display: none">العب وتعلم عن الإسلام</p>
+                            <p class="Ro" style="display: none">Joacă și învață despre Islam</p>
+                            <button class="btn btn-kids-purple En">Play Games</button>
+                            <button class="btn btn-kids-purple Ar" style="display: none">
+                                العب الألعاب
+                            </button>
+                            <button class="btn btn-kids-purple Ro" style="display: none">
+                                Joacă Jocurile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="activity-card coloring">
+                        <div class="activity-image">
+                            <img src="img/kids-coloring.jpg" alt="Islamic Coloring" />
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="En">Islamic Coloring</h3>
+                            <h3 class="Ar" style="display: none">تلوين إسلامي</h3>
+                            <h3 class="Ro" style="display: none">Desene de Colorat Islamice</h3>
+                            <p class="En">Download and print coloring pages</p>
+                            <p class="Ar" style="display: none">حمل واطبع صفحات التلوين</p>
+                            <p class="Ro" style="display: none">
+                                Descarcă și printează desene de colorat
+                            </p>
+                            <button class="btn btn-kids-pink En">Color Now</button>
+                            <button class="btn btn-kids-pink Ar" style="display: none">
+                                لون الآن
+                            </button>
+                            <button class="btn btn-kids-pink Ro" style="display: none">
+                                Colorează Acum
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quran Section -->
+        <section class="quran-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Learn Quran</h2>
+                    <h2 class="Ar" style="display: none">تعلم القرآن</h2>
+                    <h2 class="Ro" style="display: none">Învață Coranul</h2>
+                    <p class="En">Start your Quran learning journey</p>
+                    <p class="Ar" style="display: none">ابدأ رحلتك في تعلم القرآن</p>
+                    <p class="Ro" style="display: none">
+                        Începe-ți călătoria de învățare a Coranului
+                    </p>
+                </div>
+
+                <div class="quran-cards">
+                    <div class="quran-card">
+                        <i class="fas fa-book-quran"></i>
+                        <h3 class="En">Quran Stories</h3>
+                        <h3 class="Ar" style="display: none">قصص القرآن</h3>
+                        <h3 class="Ro" style="display: none">Povești din Coran</h3>
+                        <p class="En">Beautiful stories from the Quran</p>
+                        <p class="Ar" style="display: none">قصص جميلة من القرآن</p>
+                        <p class="Ro" style="display: none">Frumoase povești din Coran</p>
+                        <button class="btn btn-kids-blue En">Read</button>
+                        <button class="btn btn-kids-blue Ar" style="display: none">اقرأ</button>
+                        <button class="btn btn-kids-blue Ro" style="display: none">Citește</button>
+                    </div>
+
+                    <div class="quran-card">
+                        <i class="fas fa-mosque"></i>
+                        <h3 class="En">Short Surahs</h3>
+                        <h3 class="Ar" style="display: none">سور قصيرة</h3>
+                        <h3 class="Ro" style="display: none">Scurte Sure</h3>
+                        <p class="En">Learn and memorize short surahs</p>
+                        <p class="Ar" style="display: none">تعلم وحفظ السور القصيرة</p>
+                        <p class="Ro" style="display: none">Învață și memorează scurte sure</p>
+                        <button class="btn btn-kids-green En">Learn</button>
+                        <button class="btn btn-kids-green Ar" style="display: none">تعلم</button>
+                        <button class="btn btn-kids-green Ro" style="display: none">Învață</button>
+                    </div>
+
+                    <div class="quran-card">
+                        <i class="fas fa-star"></i>
+                        <h3 class="En">Quran Quiz</h3>
+                        <h3 class="Ar" style="display: none">اختبار القرآن</h3>
+                        <h3 class="Ro" style="display: none">Quiz Coranic</h3>
+                        <p class="En">Test your Quran knowledge</p>
+                        <p class="Ar" style="display: none">اختبر معلوماتك القرآنية</p>
+                        <p class="Ro" style="display: none">
+                            Testează-ți cunoștințele despre Coran
+                        </p>
+                        <button class="btn btn-kids-purple En">Start Quiz</button>
+                        <button class="btn btn-kids-purple Ar" style="display: none">
+                            ابدأ الاختبار
+                        </button>
+                        <button class="btn btn-kids-purple Ro" style="display: none">
+                            Începe Quiz
+                        </button>
+                    </div>
+
+                    <div class="quran-card">
+                        <i class="fas fa-microphone"></i>
+                        <h3 class="En">Quran Recitation</h3>
+                        <h3 class="Ar" style="display: none">تلاوة القرآن</h3>
+                        <h3 class="Ro" style="display: none">Recitare Coranică</h3>
+                        <p class="En">Listen to beautiful recitations</p>
+                        <p class="Ar" style="display: none">استمع إلى تلاوات جميلة</p>
+                        <p class="Ro" style="display: none">Ascultă recitări frumoase</p>
+                        <button class="btn btn-kids-pink En">Listen</button>
+                        <button class="btn btn-kids-pink Ar" style="display: none">استمع</button>
+                        <button class="btn btn-kids-pink Ro" style="display: none">Ascultă</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dua Section -->
+        <section class="kids-section">
+            <div class="container">
+                <div class="interactive-box dua-box">
+                    <h2 class="En">Daily Dua</h2>
+                    <h2 class="Ar" style="display: none">دعاء اليوم</h2>
+                    <h2 class="Ro" style="display: none">Dua Zilnică</h2>
+
+                    <div
+                        class="dua-text Ar"
+                        style="display: none; font-size: 1.8rem; line-height: 1.8"
+                    >
+                        بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا
+                        فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ
+                    </div>
+                    <div class="dua-text En">
+                        "In the name of Allah with Whose name nothing is harmed on earth nor in the
+                        heavens, and He is the All-Hearing, All-Knowing."
+                    </div>
+                    <div class="dua-text Ro" style="display: none">
+                        "În numele lui Allah, cu al Cărui nume nimic nu este vătămat pe pământ și
+                        nici în ceruri, și El este Auzitorul, Știutorul."
+                    </div>
+
+                    <div class="dua-translation En">
+                        <strong>When to recite:</strong>
+                        Morning and evening for protection
+                    </div>
+                    <div class="dua-translation Ar" style="display: none">
+                        <strong>وقت الدعاء:</strong>
+                        صباحاً ومساءً للحماية
+                    </div>
+                    <div class="dua-translation Ro" style="display: none">
+                        <strong>Când să recite:</strong>
+                        Dimineața și seara pentru protecție
+                    </div>
+
+                    <button class="btn btn-kids-green En">Learn More Duas</button>
+                    <button class="btn btn-kids-green Ar" style="display: none">
+                        تعلم المزيد من الأدعية
+                    </button>
+                    <button class="btn btn-kids-green Ro" style="display: none">
+                        Învață Mai Multe Duas
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coloring Section -->
+        <section class="coloring-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Islamic Coloring Pages</h2>
+                    <h2 class="Ar" style="display: none">صفحات تلوين إسلامية</h2>
+                    <h2 class="Ro" style="display: none">Desene de Colorat Islamice</h2>
+                    <p class="En">Download and print these fun coloring pages</p>
+                    <p class="Ar" style="display: none">حمل واطبع صفحات التلوين الممتعة هذه</p>
+                    <p class="Ro" style="display: none">
+                        Descarcă și printează aceste desene de colorat distractive
+                    </p>
+                </div>
+
+                <div class="coloring-grid">
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-mosque.jpg" alt="Mosque Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-prophet.jpg" alt="Prophet Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-dua.jpg" alt="Dua Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-animals.jpg" alt="Animals Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-kaaba.jpg" alt="Kaaba Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+
+                    <div class="coloring-item">
+                        <div class="coloring-image">
+                            <img src="img/coloring-eid.jpg" alt="Eid Coloring" />
+                        </div>
+                        <div class="coloring-download">
+                            <a href="#" class="En">Download</a>
+                            <a href="#" class="Ar" style="display: none">تحميل</a>
+                            <a href="#" class="Ro" style="display: none">Descarcă</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="kids-section">
+            <div class="container">
+                <div class="interactive-box quiz-box">
+                    <h2 class="En">Islamic Quiz</h2>
+                    <h2 class="Ar" style="display: none">اختبار إسلامي</h2>
+                    <h2 class="Ro" style="display: none">Quiz Islamic</h2>
+
+                    <div id="quiz-question" class="En">How many pillars of Islam are there?</div>
+                    <div id="quiz-question" class="Ar" style="display: none">
+                        كم عدد أركان الإسلام؟
+                    </div>
+                    <div id="quiz-question" class="Ro" style="display: none">
+                        Câte stâlpi ai Islamului există?
+                    </div>
+
+                    <div id="quiz-options" style="margin: 20px 0">
+                        <button
+                            class="btn"
+                            style="margin: 5px; background-color: #e2e8f0; color: #1e293b"
+                        >
+                            3
+                        </button>
+                        <button
+                            class="btn"
+                            style="margin: 5px; background-color: #e2e8f0; color: #1e293b"
+                        >
+                            5
+                        </button>
+                        <button
+                            class="btn"
+                            style="margin: 5px; background-color: #e2e8f0; color: #1e293b"
+                        >
+                            7
+                        </button>
+                        <button
+                            class="btn"
+                            style="margin: 5px; background-color: #e2e8f0; color: #1e293b"
+                        >
+                            10
+                        </button>
+                    </div>
+
+                    <button class="btn btn-kids-blue En">Next Question</button>
+                    <button class="btn btn-kids-blue Ar" style="display: none">
+                        السؤال التالي
+                    </button>
+                    <button class="btn btn-kids-blue Ro" style="display: none">
+                        Următoarea Întrebare
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h2 class="En">Islam Cluj</h2>
+                            <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                            <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                        </div>
+                        <p class="En">
+                            Serving the Muslim community in Cluj-Napoca with authentic Islamic
+                            education, prayer services, and community programs. Join us in building
+                            bridges of understanding and faith.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة،
+                            وبرامج مجتمعية. انضم إلينا في بناء جسور التفاهم والإيمان.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servim comunitatea musulmană din Cluj-Napoca cu educație islamică
+                            autentică, servicii de rugăciune și programe comunitare. Alăturați-vă
+                            nouă în construirea podurilor de înțelegere și credință.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/IslamClujNapoca/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-services">
+                        <h3 class="En">Services</h3>
+                        <h3 class="Ar" style="display: none">خدمات</h3>
+                        <h3 class="Ro" style="display: none">Servicii</h3>
+                        <ul>
+                            <li><a href="#" class="En">Quran reading</a></li>
+                            <li><a href="#" class="Ar" style="display: none">قراءة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Lectura Quranului</a>
+                            </li>
+
+                            <li><a href="#" class="En">Funeral Services</a></li>
+                            <li><a href="#" class="Ar" style="display: none">خدمات الجنازة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Servicii Funerare</a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Translation</a></li>
+                            <li><a href="#" class="Ar" style="display: none">ترجمة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Traducerea Quranului
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Memorization</a></li>
+                            <li><a href="#" class="Ar" style="display: none">حفظ القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Memorizarea Quranului
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="En">Useful Links</h3>
+                        <h3 class="Ar" style="display: none">روابط مفيدة</h3>
+                        <h3 class="Ro" style="display: none">Link-uri Utile</h3>
+                        <ul>
+                            <li><a href="#" class="En">Contact</a></li>
+                            <li><a href="#" class="Ar" style="display: none">اتصل بنا</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Contact</a></li>
+
+                            <li><a href="#" class="En">About Us</a></li>
+                            <li><a href="#" class="Ar" style="display: none">من نحن</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Despre Noi</a></li>
+
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li>
+                                <a href="events.html" class="Ar" style="display: none">أحداث</a>
+                            </li>
+                            <li>
+                                <a href="events.html" class="Ro" style="display: none">
+                                    Evenimente
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Charity</a></li>
+                            <li><a href="#" class="Ar" style="display: none">صدقة</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Caritate</a></li>
+
+                            <li><a href="#" class="En">Help Center</a></li>
+                            <li><a href="#" class="Ar" style="display: none">مركز المساعدة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Centru de Ajutor</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3 class="En">Sign up for our News</h3>
+                        <h3 class="Ar" style="display: none">اشترك في نشرتنا الإخبارية</h3>
+                        <h3 class="Ro" style="display: none">
+                            Înscrieți-vă pentru știrile noastre
+                        </h3>
+                        <p class="En">Will send you updates</p>
+                        <p class="Ar" style="display: none">سوف نرسل لك التحديثات</p>
+                        <p class="Ro" style="display: none">Vă vom trimite actualizări</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" class="En" />
+                            <input
+                                type="email"
+                                placeholder="بريدك الإلكتروني"
+                                class="Ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email-ul Dvs."
+                                class="Ro"
+                                style="display: none"
+                            />
+                            <button type="submit" class="En">Subscribe</button>
+                            <button type="submit" class="Ar" style="display: none">اشتراك</button>
+                            <button type="submit" class="Ro" style="display: none">
+                                Abonează-te
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                    <p class="Ar" style="display: none">
+                        &copy; 2023 المركز الإسلامي. جميع الحقوق محفوظة.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        &copy; 2023 Cluj Islam. Toate Drepturile Rezervate.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // ==================== Hamburger Menu ====================
+                const initHamburgerMenu = () => {
+                    const hamburger = document.querySelector(".hamburger");
+                    const navMenu = document.querySelector(".nav-menu");
+
+                    if (hamburger && navMenu) {
+                        hamburger.addEventListener("click", () => {
+                            hamburger.classList.toggle("active");
+                            navMenu.classList.toggle("active");
+                        });
+                    }
+                };
+
+                // ==================== Language Switcher ====================
+                const initLanguageSwitcher = () => {
+                    const languageSelector = document.querySelector(".language-selector");
+                    const selectedLanguage = document.querySelector(".selected-language");
+                    const languageDropdown = document.querySelector(".language-dropdown");
+                    const languageOptions = document.querySelectorAll(".language-dropdown li");
+
+                    if (
+                        !languageSelector ||
+                        !selectedLanguage ||
+                        !languageDropdown ||
+                        !languageOptions.length
+                    ) {
+                        return;
+                    }
+
+                    // Toggle dropdown
+                    languageSelector.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        languageSelector.classList.toggle("active");
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", () => {
+                        languageSelector.classList.remove("active");
+                    });
+
+                    // Language switching function
+                    const switchLanguage = (lang) => {
+                        // Hide all language-specific content
+                        document
+                            .querySelectorAll('[class*="En"], [class*="Ar"], [class*="Ro"]')
+                            .forEach((el) => {
+                                // Skip elements that are part of the language switcher itself
+                                if (
+                                    !el.closest(".language-switcher") &&
+                                    !el.closest(".language-selector")
+                                ) {
+                                    el.style.display = "none";
+                                }
+                            });
+
+                        // Show elements for selected language
+                        document.querySelectorAll(`.${lang}`).forEach((el) => {
+                            // Skip elements that are part of the language switcher itself
+                            if (
+                                !el.closest(".language-switcher") &&
+                                !el.closest(".language-selector")
+                            ) {
+                                el.style.display = "";
+                            }
+                        });
+
+                        // Update selected language display
+                        const selectedOption = document.querySelector(
+                            `.language-dropdown li[data-lang="${lang}"]`
+                        );
+                        if (selectedOption) {
+                            const selectedImg = selectedOption.querySelector("img").cloneNode(true);
+                            const selectedText = selectedOption.querySelector("span").textContent;
+
+                            // Clear and update selected language display
+                            selectedLanguage.innerHTML = "";
+                            selectedLanguage.appendChild(selectedImg);
+
+                            const textSpan = document.createElement("span");
+                            textSpan.textContent = selectedText;
+                            textSpan.className = lang;
+                            selectedLanguage.appendChild(textSpan);
+
+                            const chevron = document.createElement("i");
+                            chevron.className = "fas fa-chevron-down";
+                            selectedLanguage.appendChild(chevron);
+                        }
+
+                        // Set direction for RTL languages
+                        document.body.classList.toggle("rtl", lang === "Ar");
+                        document.documentElement.lang = lang;
+                        document.documentElement.dir = lang === "Ar" ? "rtl" : "ltr";
+
+                        // Update logo text visibility
+                        document.querySelector(".logo h1.En").style.display =
+                            lang === "En" ? "" : "none";
+                        document.querySelector(".logo h1.Ar").style.display =
+                            lang === "Ar" ? "" : "none";
+                        document.querySelector(".logo h1.Ro").style.display =
+                            lang === "Ro" ? "" : "none";
+                    };
+
+                    // Handle language option clicks
+                    languageOptions.forEach((option) => {
+                        option.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            const lang = option.getAttribute("data-lang");
+                            switchLanguage(lang);
+                            languageSelector.classList.remove("active");
+                        });
+                    });
+
+                    // Initialize with English
+                    switchLanguage("En");
+                };
+
+                // Initialize all components
+                initHamburgerMenu();
+                initLanguageSwitcher();
+
+                // Simple quiz functionality
+                const quizQuestions = [
+                    {
+                        question: {
+                            En: "How many pillars of Islam are there?",
+                            Ar: "كم عدد أركان الإسلام؟",
+                            Ro: "Câte stâlpi ai Islamului există?",
+                        },
+                        options: {
+                            En: ["3", "5", "7", "10"],
+                            Ar: ["٣", "٥", "٧", "١٠"],
+                            Ro: ["3", "5", "7", "10"],
+                        },
+                        correctAnswer: 1,
+                    },
+                    {
+                        question: {
+                            En: "Which month is Ramadan?",
+                            Ar: "أي شهر هو رمضان؟",
+                            Ro: "Care lună este Ramadan?",
+                        },
+                        options: {
+                            En: ["5th", "7th", "9th", "12th"],
+                            Ar: ["الخامس", "السابع", "التاسع", "الثاني عشر"],
+                            Ro: ["a 5-a", "a 7-a", "a 9-a", "a 12-a"],
+                        },
+                        correctAnswer: 2,
+                    },
+                    {
+                        question: {
+                            En: "What is the first Surah in the Quran?",
+                            Ar: "ما هي أول سورة في القرآن؟",
+                            Ro: "Care este prima Sura din Coran?",
+                        },
+                        options: {
+                            En: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "Yasin"],
+                            Ar: ["البقرة", "الفاتحة", "الإخلاص", "يس"],
+                            Ro: ["Al-Baqarah", "Al-Fatiha", "Al-Ikhlas", "Yasin"],
+                        },
+                        correctAnswer: 1,
+                    },
+                ];
+
+                let currentQuestion = 0;
+
+                function loadQuestion() {
+                    const currentLang = document.documentElement.lang || "En";
+                    const question = quizQuestions[currentQuestion].question[currentLang];
+                    const options = quizQuestions[currentQuestion].options[currentLang];
+
+                    document.querySelectorAll("#quiz-question").forEach((el) => {
+                        if (el.classList.contains(currentLang)) {
+                            el.style.display = "";
+                            el.textContent = question;
+                        } else {
+                            el.style.display = "none";
+                        }
+                    });
+
+                    const optionsContainer = document.getElementById("quiz-options");
+                    optionsContainer.innerHTML = "";
+
+                    options.forEach((option, index) => {
+                        const button = document.createElement("button");
+                        button.className = "btn";
+                        button.style.margin = "5px";
+                        button.style.backgroundColor = "#e2e8f0";
+                        button.style.color = "#1e293b";
+                        button.textContent = option;
+                        button.addEventListener("click", function () {
+                            checkAnswer(index);
+                        });
+                        optionsContainer.appendChild(button);
+                    });
+                }
+
+                function checkAnswer(selectedIndex) {
+                    const correctIndex = quizQuestions[currentQuestion].correctAnswer;
+                    const buttons = document.querySelectorAll("#quiz-options .btn");
+
+                    if (selectedIndex === correctIndex) {
+                        buttons[selectedIndex].style.backgroundColor = "#10b981";
+                        buttons[selectedIndex].style.color = "white";
+                    } else {
+                        buttons[selectedIndex].style.backgroundColor = "#ef4444";
+                        buttons[selectedIndex].style.color = "white";
+                        buttons[correctIndex].style.backgroundColor = "#10b981";
+                        buttons[correctIndex].style.color = "white";
+                    }
+
+                    // Disable all buttons after answer
+                    buttons.forEach((button) => {
+                        button.disabled = true;
+                    });
+                }
+
+                document.querySelectorAll(".btn-kids-blue").forEach((button) => {
+                    button.addEventListener("click", function () {
+                        currentQuestion = (currentQuestion + 1) % quizQuestions.length;
+                        loadQuestion();
+                    });
+                });
+
+                // Initial load
+                loadQuestion();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="admin-page-container">
+            <h1>Page Management</h1>
+            <p>Enable or disable pages on your website</p>
+
+            <div class="page-controls">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search pages..." class="search-input" />
+                    <select class="status-filter">
+                        <option value="all">All Pages</option>
+                        <option value="active">Active Only</option>
+                        <option value="inactive">Inactive Only</option>
+                    </select>
+                </div>
+
+                <table class="pages-table">
+                    <thead>
+                        <tr>
+                            <th>Page Name</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Homepage</td>
+                            <td>/</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <button class="btn btn-toggle" data-page="home" data-state="on">
+                                    Disable
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>About Us</td>
+                            <td>/about</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <button class="btn btn-toggle" data-page="about" data-state="on">
+                                    Disable
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td>/contact</td>
+                            <td><span class="status-badge inactive">Disabled</span></td>
+                            <td>
+                                <button class="btn btn-toggle" data-page="contact" data-state="off">
+                                    Enable
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Additional pages would be listed here -->
+                    </tbody>
+                </table>
+
+                <div class="pagination-controls">
+                    <!-- Pagination would go here if many pages -->
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll(".btn-toggle").forEach((button) => {
+                button.addEventListener("click", async function () {
+                    const pageId = this.dataset.page;
+                    const currentState = this.dataset.state;
+
+                    try {
+                        const response = await fetch(`/admin/api/pages/${pageId}/toggle`, {
+                            method: "PATCH",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRF-TOKEN":
+                                    document.querySelector('meta[name="csrf-token"]').content,
+                            },
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            // Update UI
+                            const statusBadge = this.closest("tr").querySelector(".status-badge");
+                            if (currentState === "on") {
+                                this.dataset.state = "off";
+                                this.textContent = "Enable";
+                                statusBadge.classList.remove("active");
+                                statusBadge.classList.add("inactive");
+                                statusBadge.textContent = "Disabled";
+                            } else {
+                                this.dataset.state = "on";
+                                this.textContent = "Disable";
+                                statusBadge.classList.remove("inactive");
+                                statusBadge.classList.add("active");
+                                statusBadge.textContent = "Active";
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error toggling page status:", error);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            /* Admin Home Editor Styles */
+            .admin-tab {
+                padding: 20px;
+                background: #f8fafc;
+                border-radius: 8px;
+                margin-top: 20px;
+            }
+
+            .admin-header {
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .language-toggle {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .lang-btn {
+                padding: 8px 15px;
+                background: #e2e8f0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .lang-btn.active {
+                background: #1e3a8a;
+                color: white;
+            }
+
+            .sections-manager {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .available-sections,
+            .active-sections {
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            }
+
+            .section-item {
+                padding: 12px;
+                margin: 10px 0;
+                background: #f0f7ff;
+                border-radius: 5px;
+                cursor: move;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px dashed #1e3a8a;
+            }
+
+            .section-item i {
+                color: #1e3a8a;
+            }
+
+            #sortable-sections {
+                min-height: 200px;
+                border: 2px dashed #ccc;
+                padding: 15px;
+                border-radius: 5px;
+            }
+
+            .content-editor {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 500;
+            }
+
+            .form-group input[type="text"],
+            .form-group textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+            .editor-actions {
+                display: flex;
+                justify-content: flex-end;
+                gap: 15px;
+            }
+
+            .btn-primary {
+                background: #1e3a8a;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .btn-secondary {
+                background: #e2e8f0;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            @media (max-width: 768px) {
+                .sections-manager {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Add this to your admin panel HTML -->
+        <div class="admin-tab" id="home-editor-tab" style="display: block">
+            <div class="admin-header">
+                <h2 class="en">Home Page Editor</h2>
+                <h2 class="ar" style="display: none">محرر الصفحة الرئيسية</h2>
+                <h2 class="ro" style="display: none">Editor Pagină Principală</h2>
+            </div>
+
+            <div class="editor-container">
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="ar">العربية</button>
+                    <button class="lang-btn" data-lang="ro">Română</button>
+                </div>
+
+                <!-- Sections Manager -->
+                <div class="sections-manager">
+                    <div class="available-sections">
+                        <h3 class="en">Available Sections</h3>
+                        <h3 class="ar" style="display: none">الأقسام المتاحة</h3>
+                        <h3 class="ro" style="display: none">Secțiuni Disponibile</h3>
+
+                        <div class="section-item" draggable="true" data-section="hero">
+                            <i class="fas fa-image"></i>
+                            <span class="en">Hero Banner</span>
+                            <span class="ar" style="display: none">بانر البطل</span>
+                            <span class="ro" style="display: none">Banner Principal</span>
+                        </div>
+
+                        <div class="section-item" draggable="true" data-section="prayer-times">
+                            <i class="fas fa-clock"></i>
+                            <span class="en">Prayer Times</span>
+                            <span class="ar" style="display: none">أوقات الصلاة</span>
+                            <span class="ro" style="display: none">Orele de Rugăciune</span>
+                        </div>
+
+                        <!-- More sections... -->
+                    </div>
+
+                    <div class="active-sections">
+                        <h3 class="en">Active Sections</h3>
+                        <h3 class="ar" style="display: none">الأقسام النشطة</h3>
+                        <h3 class="ro" style="display: none">Secțiuni Active</h3>
+                        <div id="sortable-sections">
+                            <!-- Sections will be added here via drag-and-drop -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Editor -->
+                <div class="content-editor">
+                    <h3 class="en">Content Editor</h3>
+                    <h3 class="ar" style="display: none">محرر المحتوى</h3>
+                    <h3 class="ro" style="display: none">Editor Conținut</h3>
+
+                    <div class="editor-form" id="hero-editor" style="display: none">
+                        <div class="form-group">
+                            <label class="en">Banner Image</label>
+                            <label class="ar" style="display: none">صورة البانر</label>
+                            <label class="ro" style="display: none">Imagine Banner</label>
+                            <input type="file" id="banner-image" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="en">Title</label>
+                            <label class="ar" style="display: none">العنوان</label>
+                            <label class="ro" style="display: none">Titlu</label>
+                            <input
+                                type="text"
+                                id="banner-title-en"
+                                placeholder="English title"
+                                class="en"
+                            />
+                            <input
+                                type="text"
+                                id="banner-title-ar"
+                                placeholder="العنوان العربي"
+                                class="ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="text"
+                                id="banner-title-ro"
+                                placeholder="Titlu românesc"
+                                class="ro"
+                                style="display: none"
+                            />
+                        </div>
+
+                        <!-- More fields... -->
+                    </div>
+
+                    <!-- Other section editors... -->
+                </div>
+
+                <!-- Preview & Save -->
+                <div class="editor-actions">
+                    <button id="preview-btn" class="btn-secondary">
+                        <span class="en">Preview</span>
+                        <span class="ar" style="display: none">معاينة</span>
+                        <span class="ro" style="display: none">Previzualizare</span>
+                    </button>
+                    <button id="save-btn" class="btn-primary">
+                        <span class="en">Save Changes</span>
+                        <span class="ar" style="display: none">حفظ التغييرات</span>
+                        <span class="ro" style="display: none">Salvează Modificările</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Home Page Editor Functionality
+            document.addEventListener("DOMContentLoaded", function () {
+                // Language toggle
+                document.querySelectorAll(".lang-btn").forEach((btn) => {
+                    btn.addEventListener("click", function () {
+                        document
+                            .querySelectorAll(".lang-btn")
+                            .forEach((b) => b.classList.remove("active"));
+                        this.classList.add("active");
+                        const lang = this.dataset.lang;
+
+                        // Hide all language elements
+                        document.querySelectorAll(".en, .ar, .ro").forEach((el) => {
+                            el.style.display = "none";
+                        });
+
+                        // Show selected language elements
+                        document.querySelectorAll(`.${lang}`).forEach((el) => {
+                            el.style.display = "";
+                        });
+                    });
+                });
+
+                // Drag and drop functionality
+                const sortable = document.getElementById("sortable-sections");
+                let draggedItem = null;
+
+                document.querySelectorAll(".section-item").forEach((item) => {
+                    item.addEventListener("dragstart", function () {
+                        draggedItem = this;
+                        setTimeout(() => (this.style.opacity = "0.4"), 0);
+                    });
+
+                    item.addEventListener("dragend", function () {
+                        setTimeout(() => (this.style.opacity = "1"), 0);
+                    });
+                });
+
+                sortable.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+                });
+
+                sortable.addEventListener("dragenter", function (e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = "#f0f7ff";
+                });
+
+                sortable.addEventListener("dragleave", function () {
+                    this.style.backgroundColor = "";
+                });
+
+                sortable.addEventListener("drop", function (e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = "";
+
+                    if (draggedItem) {
+                        const clone = draggedItem.cloneNode(true);
+                        clone.addEventListener("click", function () {
+                            showSectionEditor(this.dataset.section);
+                        });
+                        this.appendChild(clone);
+                    }
+                });
+
+                // Section editor toggling
+                function showSectionEditor(section) {
+                    document.querySelectorAll(".editor-form").forEach((form) => {
+                        form.style.display = "none";
+                    });
+                    document.getElementById(`${section}-editor`).style.display = "block";
+                }
+
+                // Save functionality
+                document.getElementById("save-btn").addEventListener("click", function () {
+                    const activeSections = [];
+                    document
+                        .querySelectorAll("#sortable-sections .section-item")
+                        .forEach((item) => {
+                            activeSections.push(item.dataset.section);
+                        });
+
+                    // Get all editor values
+                    const homeContent = {
+                        sections: activeSections,
+                        hero: {
+                            title: {
+                                en: document.getElementById("banner-title-en").value,
+                                ar: document.getElementById("banner-title-ar").value,
+                                ro: document.getElementById("banner-title-ro").value,
+                            },
+                            image: document.getElementById("banner-image").files[0]?.name || "",
+                        },
+                        // Other sections data...
+                        lastUpdated: new Date().toISOString(),
+                    };
+
+                    // In a real app, you would send this to your backend
+                    console.log("Saving:", homeContent);
+                    alert("Home page content saved successfully!");
+                });
+
+                // Preview functionality
+                document.getElementById("preview-btn").addEventListener("click", function () {
+                    alert("Opening preview in new tab...");
+                    // In a real app, this would open a preview window
+                });
+            });
+        </script>
+    </body>
+</html>

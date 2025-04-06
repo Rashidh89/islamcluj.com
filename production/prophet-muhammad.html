@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Prophet Muhammad (PBUH) - Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+                --gold: #d4af37;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.8;
+                overflow-x: hidden;
+                background-color: #f8f9fa;
+            }
+
+            .rtl {
+                direction: rtl;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--white);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                color: var(--primary-color);
+                margin-left: 10px;
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Hero Section */
+            .prophet-hero {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), url("img/prophet-bg.jpg"));
+                background-size: cover;
+                background-position: center;
+                height: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--white);
+                position: relative;
+            }
+
+            .prophet-hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 2;
+            }
+
+            .prophet-hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                color: var(--gold);
+            }
+
+            .prophet-hero p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            }
+
+            .calligraphy {
+                font-family: "Traditional Arabic", "Arial", sans-serif;
+                font-size: 4rem;
+                margin: 30px 0;
+                color: var(--gold);
+                line-height: 1.2;
+            }
+
+            /* Main Content */
+            .prophet-content {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 15px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 4px;
+                background-color: var(--secondary-color);
+            }
+
+            .timeline {
+                position: relative;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 0;
+            }
+
+            .timeline::after {
+                content: "";
+                position: absolute;
+                width: 4px;
+                background-color: var(--secondary-color);
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -2px;
+            }
+
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: var(--white);
+                border: 4px solid var(--secondary-color);
+                border-radius: 50%;
+                top: 15px;
+                z-index: 1;
+            }
+
+            .left {
+                left: 0;
+                text-align: right;
+            }
+
+            .right {
+                left: 50%;
+                text-align: left;
+            }
+
+            .left::after {
+                right: -12px;
+            }
+
+            .right::after {
+                left: -12px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+                background-color: var(--white);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+
+            .timeline-content h3 {
+                color: var(--primary-color);
+                margin-bottom: 10px;
+            }
+
+            .timeline-date {
+                font-weight: bold;
+                color: var(--secondary-color);
+                margin-bottom: 5px;
+            }
+
+            /* Characteristics Section */
+            .characteristics {
+                background-color: var(--light-color);
+                padding: 60px 0;
+            }
+
+            .characteristics-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .characteristic-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                padding: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s;
+            }
+
+            .characteristic-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .characteristic-icon {
+                font-size: 2.5rem;
+                color: var(--secondary-color);
+                margin-bottom: 20px;
+            }
+
+            .characteristic-card h3 {
+                color: var(--primary-color);
+                margin-bottom: 15px;
+            }
+
+            /* Hadith Section */
+            .hadith-section {
+                padding: 60px 0;
+                background-image: linear-gradient(
+                    rgba(0, 0, 0, 0.7),
+                    url("img/mosque-pattern.jpg")
+                );
+                background-size: cover;
+                background-attachment: fixed;
+                color: var(--white);
+                text-align: center;
+            }
+
+            .hadith-box {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 8px;
+                border-left: 5px solid var(--gold);
+            }
+
+            .hadith-text {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+
+            .hadith-reference {
+                font-style: italic;
+            }
+
+            /* Gallery Section */
+            .gallery-section {
+                padding: 60px 0;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item {
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                position: relative;
+                height: 250px;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+            .gallery-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 10px;
+                text-align: center;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--dark-color);
+                color: var(--white);
+                padding: 60px 0 20px;
+            }
+
+            .footer-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .footer-logo img {
+                height: 50px;
+            }
+
+            .footer-about p {
+                margin-bottom: 20px;
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-icons a {
+                color: var(--white);
+                font-size: 1.2rem;
+                transition: color 0.3s;
+            }
+
+            .social-icons a:hover {
+                color: var(--secondary-color);
+            }
+
+            .footer-links h3,
+            .footer-services h3,
+            .footer-newsletter h3 {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+            }
+
+            .footer-links ul,
+            .footer-services ul {
+                list-style: none;
+            }
+
+            .footer-links li,
+            .footer-services li {
+                margin-bottom: 10px;
+            }
+
+            .footer-links a,
+            .footer-services a {
+                color: var(--gray);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .footer-links a:hover,
+            .footer-services a:hover {
+                color: var(--secondary-color);
+            }
+
+            .newsletter-form {
+                display: flex;
+                margin-top: 20px;
+            }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px 0 0 4px;
+            }
+
+            .newsletter-form button {
+                padding: 10px 15px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                border: none;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .newsletter-form button:hover {
+                background-color: #e69009;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Buttons */
+            .btn {
+                display: inline-block;
+                padding: 12px 25px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: 500;
+                transition: all 0.3s;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-outline {
+                background-color: transparent;
+                border: 2px solid var(--secondary-color);
+                color: var(--secondary-color);
+            }
+
+            .btn-outline:hover {
+                background-color: var(--secondary-color);
+                color: var(--white);
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .prophet-hero {
+                    height: 400px;
+                }
+
+                .prophet-hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .calligraphy {
+                    font-size: 3rem;
+                }
+
+                .timeline::after {
+                    left: 31px;
+                }
+
+                .timeline-item {
+                    width: 100%;
+                    padding-left: 70px;
+                    padding-right: 25px;
+                }
+
+                .timeline-item::after {
+                    left: 21px;
+                }
+
+                .left,
+                .right {
+                    left: 0;
+                    text-align: left;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .prophet-hero {
+                    height: 350px;
+                }
+
+                .prophet-hero h1 {
+                    font-size: 2rem;
+                }
+
+                .calligraphy {
+                    font-size: 2rem;
+                }
+
+                .section-title h2 {
+                    font-size: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="gallery.html" class="En">Gallery</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="about.html" class="Ar">من نحن</a></li>
+                            <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                            <li><a href="events.html" class="Ar">أحداث</a></li>
+                            <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="about.html" class="Ro">Despre</a></li>
+                            <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                            <li><a href="events.html" class="Ro">Evenimente</a></li>
+                            <li><a href="contact.html" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                            <span class="Ar" style="display: none">English</span>
+                            <span class="Ro" style="display: none">Engleză</span>
+                            <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="prophet-hero">
+            <div class="prophet-hero-content">
+                <h1 class="En">
+                    Prophet Muhammad
+                    <span class="En">(PBUH)</span>
+                </h1>
+                <h1 class="Ar" style="display: none">
+                    محمد رسول الله
+                    <span class="Ar">(صلى الله عليه وسلم)</span>
+                </h1>
+                <h1 class="Ro" style="display: none">
+                    Profetul Muhammad
+                    <span class="Ro">(Pacea lui Allah fie asupra lui)</span>
+                </h1>
+
+                <div class="calligraphy" style="font-family: 'Traditional Arabic'">
+                    <span class="Ar" style="display: none">ﷺ</span>
+                    <span class="En">Muhammad</span>
+                    <span class="Ro" style="display: none">Muhammad</span>
+                </div>
+
+                <p class="En">The Seal of Prophets | Mercy to Mankind</p>
+                <p class="Ar" style="display: none">خاتم الأنبياء | رحمة للعالمين</p>
+                <p class="Ro" style="display: none">
+                    Sigiliul Profeților | Milostivenia pentru toate făpturile
+                </p>
+
+                <a href="#life" class="btn btn-outline En">Explore His Life</a>
+                <a href="#life" class="btn btn-outline Ar" style="display: none">استكشف حياته</a>
+                <a href="#life" class="btn btn-outline Ro" style="display: none">
+                    Explorează Viața Lui
+                </a>
+            </div>
+        </section>
+
+        <!-- Life Timeline Section -->
+        <section id="life" class="prophet-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Life of Prophet Muhammad (PBUH)</h2>
+                    <h2 class="Ar" style="display: none">حياة النبي محمد (صلى الله عليه وسلم)</h2>
+                    <h2 class="Ro" style="display: none">
+                        Viața Profetului Muhammad (Pacea lui Allah fie asupra lui)
+                    </h2>
+                    <p class="En">A timeline of the Prophet's life and mission</p>
+                    <p class="Ar" style="display: none">خط زمني لحياة النبي ورسالته</p>
+                    <p class="Ro" style="display: none">Cronologia vieții și misiunii Profetului</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">570 CE</div>
+                            <h3 class="En">Birth in Mecca</h3>
+                            <h3 class="Ar" style="display: none">الميلاد في مكة</h3>
+                            <h3 class="Ro" style="display: none">Nașterea în Mecca</h3>
+                            <p class="En">Born in the Year of the Elephant to Abdullah and Amina</p>
+                            <p class="Ar" style="display: none">ولد في عام الفيل لعبد الله وآمنة</p>
+                            <p class="Ro" style="display: none">
+                                Născut în Anul Elefantului, din Abdullah și Amina
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">576 CE</div>
+                            <h3 class="En">Mother's Passing</h3>
+                            <h3 class="Ar" style="display: none">وفاة الأم</h3>
+                            <h3 class="Ro" style="display: none">Părinții</h3>
+                            <p class="En">
+                                His mother Amina passes away, raised by grandfather and uncle
+                            </p>
+                            <p class="Ar" style="display: none">
+                                توفيت أمه آمنة وتربى عند جده وعمه
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Mama sa Amina a murit, crescut de bunicul și unchiul său
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">595 CE</div>
+                            <h3 class="En">Marriage to Khadijah</h3>
+                            <h3 class="Ar" style="display: none">الزواج من خديجة</h3>
+                            <h3 class="Ro" style="display: none">Căsătoria cu Khadija</h3>
+                            <p class="En">Marries Khadijah bint Khuwaylid, a noble businesswoman</p>
+                            <p class="Ar" style="display: none">
+                                تزوج خديجة بنت خويلد، سيدة أعمال نبيلة
+                            </p>
+                            <p class="Ro" style="display: none">
+                                S-a căsătorit cu Khadija bint Khuwaylid, o femeie de afaceri nobilă
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">610 CE</div>
+                            <h3 class="En">First Revelation</h3>
+                            <h3 class="Ar" style="display: none">أول وحي</h3>
+                            <h3 class="Ro" style="display: none">Prima Revelație</h3>
+                            <p class="En">
+                                Receives first revelation from Angel Jibreel in Cave Hira
+                            </p>
+                            <p class="Ar" style="display: none">
+                                تلقى أول وحي من الملاك جبريل في غار حراء
+                            </p>
+                            <p class="Ro" style="display: none">
+                                A primit prima revelație de la Îngerul Gabriel în Peștera Hira
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">613 CE</div>
+                            <h3 class="En">Public Preaching</h3>
+                            <h3 class="Ar" style="display: none">الدعوة العلنية</h3>
+                            <h3 class="Ro" style="display: none">Predica Publică</h3>
+                            <p class="En">Begins public preaching of Islam in Mecca</p>
+                            <p class="Ar" style="display: none">
+                                بدأ الدعوة العلنية للإسلام في مكة
+                            </p>
+                            <p class="Ro" style="display: none">
+                                A început predicarea publică a Islamului în Mecca
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">622 CE</div>
+                            <h3 class="En">Hijra to Medina</h3>
+                            <h3 class="Ar" style="display: none">الهجرة إلى المدينة</h3>
+                            <h3 class="Ro" style="display: none">Hijra la Medina</h3>
+                            <p class="En">Migrates to Medina, marking start of Islamic calendar</p>
+                            <p class="Ar" style="display: none">
+                                هاجر إلى المدينة، معلنا بداية التقويم الإسلامي
+                            </p>
+                            <p class="Ro" style="display: none">
+                                A migrat la Medina, marcând începutul calendarului islamic
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">630 CE</div>
+                            <h3 class="En">Conquest of Mecca</h3>
+                            <h3 class="Ar" style="display: none">فتح مكة</h3>
+                            <h3 class="Ro" style="display: none">Cucerirea Meccăi</h3>
+                            <p class="En">Returns to Mecca in victory, forgives former enemies</p>
+                            <p class="Ar" style="display: none">
+                                عاد إلى مكة منتصرا، وسامح أعداءه السابقين
+                            </p>
+                            <p class="Ro" style="display: none">
+                                S-a întors la Mecca victorios, iertându-și foștii dușmani
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">632 CE</div>
+                            <h3 class="En">Farewell Pilgrimage</h3>
+                            <h3 class="Ar" style="display: none">حجة الوداع</h3>
+                            <h3 class="Ro" style="display: none">Pelerinajul de Adio</h3>
+                            <p class="En">Delivers farewell sermon, completes message of Islam</p>
+                            <p class="Ar" style="display: none">
+                                ألقى خطبة الوداع، وأكمل رسالة الإسلام
+                            </p>
+                            <p class="Ro" style="display: none">
+                                A ținut predica de adio, completând mesajul Islamului
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">632 CE</div>
+                            <h3 class="En">Passing Away</h3>
+                            <h3 class="Ar" style="display: none">الوفاة</h3>
+                            <h3 class="Ro" style="display: none">Moartea</h3>
+                            <p class="En">Passes away in Medina at age 63, buried in his house</p>
+                            <p class="Ar" style="display: none">
+                                توفي في المدينة عن عمر 63 عاما، ودفن في بيته
+                            </p>
+                            <p class="Ro" style="display: none">
+                                A murit în Medina la vârsta de 63 de ani, îngropat în casa sa
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Characteristics Section -->
+        <section class="characteristics">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Characteristics of the Prophet</h2>
+                    <h2 class="Ar" style="display: none">صفات النبي</h2>
+                    <h2 class="Ro" style="display: none">Trăsăturile Profetului</h2>
+                    <p class="En">The noble qualities that made him a mercy to mankind</p>
+                    <p class="Ar" style="display: none">الصفات النبيلة التي جعلته رحمة للعالمين</p>
+                    <p class="Ro" style="display: none">
+                        Calitățile nobile care l-au făcut milostivenie pentru toate făpturile
+                    </p>
+                </div>
+
+                <div class="characteristics-grid">
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="En">Compassionate</h3>
+                        <h3 class="Ar" style="display: none">رحيم</h3>
+                        <h3 class="Ro" style="display: none">Îndurător</h3>
+                        <p class="En">
+                            "We have sent you as a mercy to all the worlds." (Quran 21:107)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "وما أرسلناك إلا رحمة للعالمين" (القرآن 21:107)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "Ți-am trimis pe tine doar ca milă pentru toate lumile." (Coranul
+                            21:107)
+                        </p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="En">Generous</h3>
+                        <h3 class="Ar" style="display: none">كريم</h3>
+                        <h3 class="Ro" style="display: none">Generos</h3>
+                        <p class="En">
+                            "He was the most generous of people, especially in Ramadan." (Hadith)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "كان أجود الناس، وكان أجود ما يكون في رمضان" (حديث)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "El a fost cel mai darnic dintre oameni, mai ales în Ramadan." (Hadis)
+                        </p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="En">Just</h3>
+                        <h3 class="Ar" style="display: none">عادل</h3>
+                        <h3 class="Ro" style="display: none">Drept</h3>
+                        <p class="En">
+                            "Even if my daughter Fatima stole, I would cut her hand." (Hadith)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "لو أن فاطمة بنت محمد سرقت لقطعت يدها" (حديث)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "Chiar dacă Fatima, fiica mea, ar fi furat, i-aș tăia mâna." (Hadis)
+                        </p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <h3 class="En">Devout</h3>
+                        <h3 class="Ar" style="display: none">عابد</h3>
+                        <h3 class="Ro" style="display: none">Religios</h3>
+                        <p class="En">
+                            "He would stand in prayer until his feet swelled." (Hadith)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "كان يقوم يصلي حتى تتفطر قدماه" (حديث)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "El stătea în rugăciune până când picioarele i se umflau." (Hadis)
+                        </p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3 class="En">Cheerful</h3>
+                        <h3 class="Ar" style="display: none">بشوش</h3>
+                        <h3 class="Ro" style="display: none">Vesel</h3>
+                        <p class="En">
+                            "I never saw anyone smile more than the Messenger of Allah." (Hadith)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "ما رأيت أحدا أكثر تبسما من رسول الله" (حديث)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "N-am văzut pe nimeni să zâmbească mai mult decât Mesagerul lui Allah."
+                            (Hadis)
+                        </p>
+                    </div>
+
+                    <div class="characteristic-card">
+                        <div class="characteristic-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="En">Humble</h3>
+                        <h3 class="Ar" style="display: none">متواضع</h3>
+                        <h3 class="Ro" style="display: none">Umil</h3>
+                        <p class="En">
+                            "He would mend his own shoes, sew his clothes, and serve his family."
+                            (Hadith)
+                        </p>
+                        <p class="Ar" style="display: none">
+                            "كان يخصف نعله، ويخيط ثوبه، ويخدم أهله" (حديث)
+                        </p>
+                        <p class="Ro" style="display: none">
+                            "Își repara singur pantofii, își coșea hainele și își servea familia."
+                            (Hadis)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hadith Section -->
+        <section class="hadith-section">
+            <div class="container">
+                <div class="hadith-box">
+                    <div
+                        class="hadith-text Ar"
+                        style="display: none; font-size: 2rem; line-height: 1.8"
+                    >
+                        "إنما بعثت لأتمم مكارم الأخلاق"
+                    </div>
+                    <div class="hadith-text En">"I have been sent to perfect good character."</div>
+                    <div class="hadith-text Ro" style="display: none">
+                        "Am fost trimis pentru a desăvârși caracterul bun."
+                    </div>
+
+                    <div class="hadith-reference En">(Hadith - Al-Bukhari)</div>
+                    <div class="hadith-reference Ar" style="display: none">(حديث - البخاري)</div>
+                    <div class="hadith-reference Ro" style="display: none">
+                        (Hadis - Al-Bukhari)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Sacred Places</h2>
+                    <h2 class="Ar" style="display: none">أماكن مقدسة</h2>
+                    <h2 class="Ro" style="display: none">Locuri Sacre</h2>
+                    <p class="En">Important sites related to the Prophet's life</p>
+                    <p class="Ar" style="display: none">مواقع مهمة مرتبطة بحياة النبي</p>
+                    <p class="Ro" style="display: none">
+                        Locuri importante legate de viața Profetului
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="img/kaaba.jpg" alt="Kaaba" />
+                        <div class="gallery-caption En">The Kaaba in Mecca</div>
+                        <div class="gallery-caption Ar" style="display: none">الكعبة في مكة</div>
+                        <div class="gallery-caption Ro" style="display: none">Kaaba din Mecca</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="img/hira.jpg" alt="Cave Hira" />
+                        <div class="gallery-caption En">Cave of Hira</div>
+                        <div class="gallery-caption Ar" style="display: none">غار حراء</div>
+                        <div class="gallery-caption Ro" style="display: none">Peștera Hira</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="img/prophet-mosque.jpg" alt="Prophet's Mosque" />
+                        <div class="gallery-caption En">The Prophet's Mosque</div>
+                        <div class="gallery-caption Ar" style="display: none">المسجد النبوي</div>
+                        <div class="gallery-caption Ro" style="display: none">
+                            Moscheea Profetului
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="img/rawda.jpg" alt="Rawdah" />
+                        <div class="gallery-caption En">Rawdah (Garden of Paradise)</div>
+                        <div class="gallery-caption Ar" style="display: none">
+                            الروضة (جنة من جنات الجنة)
+                        </div>
+                        <div class="gallery-caption Ro" style="display: none">
+                            Rawdah (Grădina Raiului)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h2 class="En">Islam Cluj</h2>
+                            <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                            <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                        </div>
+                        <p class="En">
+                            Serving the Muslim community in Cluj-Napoca with authentic Islamic
+                            education, prayer services, and community programs. Join us in building
+                            bridges of understanding and faith.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة،
+                            وبرامج مجتمعية. انضم إلينا في بناء جسور التفاهم والإيمان.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servim comunitatea musulmană din Cluj-Napoca cu educație islamică
+                            autentică, servicii de rugăciune și programe comunitare. Alăturați-vă
+                            nouă în construirea podurilor de înțelegere și credință.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/IslamClujNapoca/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-services">
+                        <h3 class="En">Services</h3>
+                        <h3 class="Ar" style="display: none">خدمات</h3>
+                        <h3 class="Ro" style="display: none">Servicii</h3>
+                        <ul>
+                            <li><a href="#" class="En">Quran reading</a></li>
+                            <li><a href="#" class="Ar" style="display: none">قراءة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Lectura Quranului</a>
+                            </li>
+
+                            <li><a href="#" class="En">Funeral Services</a></li>
+                            <li><a href="#" class="Ar" style="display: none">خدمات الجنازة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Servicii Funerare</a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Translation</a></li>
+                            <li><a href="#" class="Ar" style="display: none">ترجمة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Traducerea Quranului
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Memorization</a></li>
+                            <li><a href="#" class="Ar" style="display: none">حفظ القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Memorizarea Quranului
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="En">Useful Links</h3>
+                        <h3 class="Ar" style="display: none">روابط مفيدة</h3>
+                        <h3 class="Ro" style="display: none">Link-uri Utile</h3>
+                        <ul>
+                            <li><a href="#" class="En">Contact</a></li>
+                            <li><a href="#" class="Ar" style="display: none">اتصل بنا</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Contact</a></li>
+
+                            <li><a href="#" class="En">About Us</a></li>
+                            <li><a href="#" class="Ar" style="display: none">من نحن</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Despre Noi</a></li>
+
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li>
+                                <a href="events.html" class="Ar" style="display: none">أحداث</a>
+                            </li>
+                            <li>
+                                <a href="events.html" class="Ro" style="display: none">
+                                    Evenimente
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Charity</a></li>
+                            <li><a href="#" class="Ar" style="display: none">صدقة</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Caritate</a></li>
+
+                            <li><a href="#" class="En">Help Center</a></li>
+                            <li><a href="#" class="Ar" style="display: none">مركز المساعدة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Centru de Ajutor</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3 class="En">Sign up for our News</h3>
+                        <h3 class="Ar" style="display: none">اشترك في نشرتنا الإخبارية</h3>
+                        <h3 class="Ro" style="display: none">
+                            Înscrieți-vă pentru știrile noastre
+                        </h3>
+                        <p class="En">Will send you updates</p>
+                        <p class="Ar" style="display: none">سوف نرسل لك التحديثات</p>
+                        <p class="Ro" style="display: none">Vă vom trimite actualizări</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" class="En" />
+                            <input
+                                type="email"
+                                placeholder="بريدك الإلكتروني"
+                                class="Ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email-ul Dvs."
+                                class="Ro"
+                                style="display: none"
+                            />
+                            <button type="submit" class="En">Subscribe</button>
+                            <button type="submit" class="Ar" style="display: none">اشتراك</button>
+                            <button type="submit" class="Ro" style="display: none">
+                                Abonează-te
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                    <p class="Ar" style="display: none">
+                        &copy; 2023 المركز الإسلامي. جميع الحقوق محفوظة.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        &copy; 2023 Cluj Islam. Toate Drepturile Rezervate.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+        
+    </body>
+</html>

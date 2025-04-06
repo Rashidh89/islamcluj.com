@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="En">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Us - Islam Cluj</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+        <style>
+            /* Reuse your existing styles */
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* Contact Page Specific Styles */
+            .contact-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                margin-top: 40px;
+            }
+
+            .contact-info {
+                background-color: var(--light-color);
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .contact-info h3 {
+                color: var(--primary-color);
+                margin-bottom: 20px;
+                font-size: 1.5rem;
+            }
+
+            .contact-item {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+
+            .contact-icon {
+                background-color: var(--primary-color);
+                color: var(--white);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                flex-shrink: 0;
+            }
+
+            .contact-text h4 {
+                color: var(--dark-color);
+                margin-bottom: 5px;
+            }
+
+            .contact-text p,
+            .contact-text a {
+                color: var(--text-color);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .contact-text a:hover {
+                color: var(--secondary-color);
+            }
+
+            .contact-form {
+                background-color: var(--white);
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: var(--dark-color);
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid var(--gray);
+                border-radius: 4px;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--primary-color);
+            }
+
+            textarea.form-control {
+                min-height: 150px;
+                resize: vertical;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 12px 25px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+            }
+
+            .map-container {
+                height: 400px;
+                margin-top: 40px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .map-container iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .contact-container {
+                    grid-template-columns: 1fr;
+                }
+
+                section {
+                    padding: 40px 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="gallery.html" class="En">Gallery</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="about.html" class="Ar">من نحن</a></li>
+                            <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                            <li><a href="events.html" class="Ar">أحداث</a></li>
+                            <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="about.html" class="Ro">Despre</a></li>
+                            <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                            <li><a href="events.html" class="Ro">Evenimente</a></li>
+                            <li><a href="contact.html" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                            <span class="Ar" style="display: none">English</span>
+                            <span class="Ro" style="display: none">Engleză</span>
+                            <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Contact Us</h2>
+                    <h2 class="Ar" style="display: none">اتصل بنا</h2>
+                    <h2 class="Ro" style="display: none">Contactați-ne</h2>
+                    <p class="En">
+                        We'd love to hear from you. Get in touch with us through any of the
+                        following ways.
+                    </p>
+                    <p class="Ar" style="display: none">
+                        نحن نحب أن نسمع منك. تواصل معنا من خلال أي من الطرق التالية.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        Am dori să auzim de la dvs. Luați legătura cu noi prin oricare dintre
+                        următoarele metode.
+                    </p>
+                </div>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d341.6495395167863!2d23.57789929282635!3d46.76102673204255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e809d0341d9%3A0x5e32b646fb05f56a!2sMosque%20(Islamic%20%26%20Cultural%20League%20of%20Romania)!5e0!3m2!1sen!2sus!4v1743650041232!5m2!1sen!2sus"
+                        width="600"
+                        height="450"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3 class="En">Contact Information</h3>
+                        <h3 class="Ar" style="display: none">معلومات الاتصال</h3>
+                        <h3 class="Ro" style="display: none">Informații de contact</h3>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="En">Address</h4>
+                                <h4 class="Ar" style="display: none">العنوان</h4>
+                                <h4 class="Ro" style="display: none">Adresă</h4>
+                                <p class="En">Strada Păstorului 17, Cluj-Napoca, Romania</p>
+                                <p class="Ar" style="display: none">
+                                    شارع سوميشولوي 12، كلوج نابوكا، رومانيا
+                                </p>
+                                <p class="Ro" style="display: none">
+                                    Strada Someșului 12, Cluj-Napoca, România
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="En">Phone</h4>
+                                <h4 class="Ar" style="display: none">هاتف</h4>
+                                <h4 class="Ro" style="display: none">Telefon</h4>
+                                <p><a href="tel:+40744123456">+40 744 123 456</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="En">Email</h4>
+                                <h4 class="Ar" style="display: none">البريد الإلكتروني</h4>
+                                <h4 class="Ro" style="display: none">Email</h4>
+                                <p>
+                                    <a href="mailto:islamcluj@outlook.com">islamcluj@outlook.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="En">Opening Hours</h4>
+                                <h4 class="Ar" style="display: none">برنامج</h4>
+                                <h4 class="Ro" style="display: none">Program</h4>
+                                <p class="En">Daily: Open during designated prayer times</p>
+                                <p class="Ar" style="display: none">
+                                    يوميًا: مفتوح خلال أوقات الصلاة المحددة
+                                </p>
+                                <p class="Ro" style="display: none">
+                                    Zilnic: Deschis în timpul orelor de rugăciune stabilite
+                                </p>
+                                <p class="En">Friday Prayer: 14:00</p>
+                                <p class="Ar" style="display: none">صلاة الجمعة: 14:00 ظهراً</p>
+                                <p class="Ro" style="display: none">Rugăciunea de Vineri: 14:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3 class="En">Send Us a Message</h3>
+                        <h3 class="Ar" style="display: none">أرسل لنا رسالة</h3>
+                        <h3 class="Ro" style="display: none">Trimiteți-ne un mesaj</h3>
+
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="En">Your Name</label>
+                                <label for="name" class="Ar" style="display: none">اسمك</label>
+                                <label for="name" class="Ro" style="display: none">
+                                    Numele Dvs.
+                                </label>
+                                <input type="text" id="name" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="En">Email Address</label>
+                                <label for="email" class="Ar" style="display: none">
+                                    البريد الإلكتروني
+                                </label>
+                                <label for="email" class="Ro" style="display: none">
+                                    Adresa de email
+                                </label>
+                                <input type="email" id="email" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="En">Subject</label>
+                                <label for="subject" class="Ar" style="display: none">
+                                    الموضوع
+                                </label>
+                                <label for="subject" class="Ro" style="display: none">
+                                    Subiect
+                                </label>
+                                <input type="text" id="subject" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="En">Your Message</label>
+                                <label for="message" class="Ar" style="display: none">رسالتك</label>
+                                <label for="message" class="Ro" style="display: none">
+                                    Mesajul Dvs.
+                                </label>
+                                <textarea id="message" class="form-control" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn en">Send Message</button>
+                            <button type="submit" class="btn ar" style="display: none">
+                                إرسال الرسالة
+                            </button>
+                            <button type="submit" class="btn ro" style="display: none">
+                                Trimite Mesaj
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Include your footer here -->
+        <footer>
+            <!-- Your existing footer content -->
+        </footer>
+
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+        <script>
+            // Form submission
+            document.getElementById("contactForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Get form values
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const subject = document.getElementById("subject").value;
+                const message = document.getElementById("message").value;
+
+                // Here you would typically send the form data to a server
+                console.log({ name, email, subject, message });
+
+                // Show success message
+                alert(
+                    document.querySelector(".en")
+                        ? "Message sent successfully!"
+                        : document.querySelector(".ar")
+                        ? "تم إرسال الرسالة بنجاح!"
+                        : "Mesaj trimis cu succes!"
+                );
+
+                // Reset form
+                this.reset();
+            });
+        </script>
+    </body>
+</html>

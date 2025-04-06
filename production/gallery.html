@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Islamic Gallery - Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css"
+        />
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .rtl {
+                direction: rtl;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--white);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                color: var(--primary-color);
+                margin-left: 10px;
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Hero Section */
+            .page-hero {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url("https://images.unsplash.com/photo-1542816417-0983670d25b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+                background-size: cover;
+                background-position: center;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--white);
+                /* margin-top: 80px; */
+            }
+
+            .page-hero-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .page-hero-content p {
+                font-size: 1.2rem;
+                max-width: 700px;
+                margin: 0 auto 20px;
+            }
+
+            .breadcrumb {
+                display: flex;
+                justify-content: center;
+                list-style: none;
+            }
+
+            .breadcrumb li {
+                margin: 0 10px;
+                position: relative;
+            }
+
+            .breadcrumb li:not(:last-child)::after {
+                content: "/";
+                position: absolute;
+                right: -15px;
+                color: var(--white);
+            }
+
+            .breadcrumb a {
+                color: var(--white);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .breadcrumb a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Section Styles */
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* Gallery Styles */
+            .gallery-container {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .gallery-filter {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .filter-btn {
+                padding: 8px 20px;
+                background-color: var(--light-color);
+                border: 1px solid var(--gray);
+                border-radius: 30px;
+                cursor: pointer;
+                transition: all 0.3s;
+                font-weight: 500;
+            }
+
+            .filter-btn.active {
+                background-color: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+            .filter-btn:hover:not(.active) {
+                background-color: var(--gray);
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item {
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+                aspect-ratio: 1;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .gallery-item.video::before {
+                content: "\f144";
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 3rem;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .gallery-item.video:hover::before {
+                opacity: 1;
+            }
+
+            .gallery-item .item-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+                color: white;
+                padding: 15px;
+                transform: translateY(100%);
+                transition: transform 0.3s;
+            }
+
+            .gallery-item:hover .item-overlay {
+                transform: translateY(0);
+            }
+
+            .item-overlay h3 {
+                margin-bottom: 5px;
+                font-size: 1.1rem;
+            }
+
+            .item-overlay p {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+
+            /* Lightbox Overrides */
+            .lg-backdrop {
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+
+            .lg-outer .lg-thumb-item.active,
+            .lg-outer .lg-thumb-item:hover {
+                border-color: var(--secondary-color);
+            }
+
+            .lg-progress-bar .lg-progress {
+                background-color: var(--secondary-color);
+            }
+
+            .lg-toolbar .lg-icon {
+                color: var(--white);
+            }
+
+            .lg-actions .lg-next,
+            .lg-actions .lg-prev {
+                background-color: rgba(0, 0, 0, 0.3);
+                color: var(--white);
+            }
+
+            /* Load More Button */
+            .load-more {
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .load-more-btn {
+                padding: 12px 30px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: background-color 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .load-more-btn:hover {
+                background-color: #152c6e;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--dark-color);
+                color: var(--white);
+                padding: 60px 0 20px;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .page-hero {
+                    height: 250px;
+                    margin-top: 80px;
+                }
+
+                .page-hero-content h1 {
+                    font-size: 2rem;
+                }
+
+                .gallery-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                }
+            }
+
+            @media (max-width: 480px) {
+                .gallery-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="gallery.html" class="En">Gallery</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="about.html" class="Ar">من نحن</a></li>
+                            <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                            <li><a href="events.html" class="Ar">أحداث</a></li>
+                            <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="about.html" class="Ro">Despre</a></li>
+                            <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                            <li><a href="events.html" class="Ro">Evenimente</a></li>
+                            <li><a href="contact.html" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                                    <span class="Ar" style="display: none">English</span>
+                                    <span class="Ro" style="display: none">Engleză</span>
+                                    <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1 class="En">Islamic Gallery</h1>
+                    <h1 class="Ar" style="display: none">المعرض الإسلامي</h1>
+                    <h1 class="Ro" style="display: none">Galerie Islamică</h1>
+                    <p class="En">Explore our collection of Islamic images and videos</p>
+                    <p class="Ar" style="display: none">
+                        استكشف مجموعتنا من الصور ومقاطع الفيديو الإسلامية
+                    </p>
+                    <p class="Ro" style="display: none">
+                        Explorează colecția noastră de imagini și videoclipuri islamice
+                    </p>
+                    <!-- <ul class="breadcrumb">
+                        <li><a href="index.html" class="En">Home</a></li>
+                        <li><a href="gallery.html" class="En">Gallery</a></li>
+                    </ul>
+                    <ul class="breadcrumb" style="display: none">
+                        <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                        <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                    </ul>
+                    <ul class="breadcrumb" style="display: none">
+                        <li><a href="index.html" class="Ro">Acasă</a></li>
+                        <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <div class="container">
+                <div class="gallery-container">
+                    <div class="section-title">
+                        <h2 class="En">Islamic Media Collection</h2>
+                        <h2 class="Ar" style="display: none">المجموعة الإعلامية الإسلامية</h2>
+                        <h2 class="Ro" style="display: none">Colecție Media Islamică</h2>
+                    </div>
+
+                    <!-- Gallery Filter -->
+                    <div class="gallery-filter">
+                        <button class="filter-btn active" data-filter="all">
+                            <span class="En">All</span>
+                            <span class="Ar" style="display: none">الكل</span>
+                            <span class="Ro" style="display: none">Toate</span>
+                        </button>
+                        <button class="filter-btn" data-filter="masjid">
+                            <span class="En">Mosques</span>
+                            <span class="Ar" style="display: none">المساجد</span>
+                            <span class="Ro" style="display: none">Moschei</span>
+                        </button>
+                        <button class="filter-btn" data-filter="nature">
+                            <span class="En">Nature</span>
+                            <span class="Ar" style="display: none">الطبيعة</span>
+                            <span class="Ro" style="display: none">Natură</span>
+                        </button>
+                        <button class="filter-btn" data-filter="events">
+                            <span class="En">Events</span>
+                            <span class="Ar" style="display: none">الفعاليات</span>
+                            <span class="Ro" style="display: none">Evenimente</span>
+                        </button>
+                        <button class="filter-btn" data-filter="quran">
+                            <span class="En">Quran</span>
+                            <span class="Ar" style="display: none">القرآن</span>
+                            <span class="Ro" style="display: none">Coran</span>
+                        </button>
+                        <button class="filter-btn" data-filter="video">
+                            <span class="En">Videos</span>
+                            <span class="Ar" style="display: none">مقاطع الفيديو</span>
+                            <span class="Ro" style="display: none">Videoclipuri</span>
+                        </button>
+                    </div>
+
+                    <!-- Gallery Grid -->
+                    <div class="gallery-grid" id="lightgallery">
+                        <!-- Masjid Items -->
+                        <a
+                            href="https://images.unsplash.com/photo-1542816417-0983670d25b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item masjid"
+                            data-sub-html="<h3>Al-Masjid an-Nabawi</h3><p>The Prophet's Mosque in Medina, Saudi Arabia</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1542816417-0983670d25b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Al-Masjid an-Nabawi"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Al-Masjid an-Nabawi</h3>
+                                <h3 class="Ar" style="display: none">المسجد النبوي</h3>
+                                <h3 class="Ro" style="display: none">Al-Masjid an-Nabawi</h3>
+                                <p class="En">The Prophet's Mosque in Medina</p>
+                                <p class="Ar" style="display: none">
+                                    مسجد النبي في المدينة المنورة
+                                </p>
+                                <p class="Ro" style="display: none">
+                                    Moscheea Profetului din Medina
+                                </p>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item masjid"
+                            data-sub-html="<h3>Al-Masjid al-Haram</h3><p>The Great Mosque of Mecca with Kaaba</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Al-Masjid al-Haram"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Al-Masjid al-Haram</h3>
+                                <h3 class="Ar" style="display: none">المسجد الحرام</h3>
+                                <h3 class="Ro" style="display: none">Al-Masjid al-Haram</h3>
+                                <p class="En">The Great Mosque of Mecca with Kaaba</p>
+                                <p class="Ar" style="display: none">المسجد الحرام مع الكعبة</p>
+                                <p class="Ro" style="display: none">
+                                    Marea Moschee din Mecca cu Kaaba
+                                </p>
+                            </div>
+                        </a>
+
+                        <!-- Nature Items -->
+                        <a
+                            href="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item nature"
+                            data-sub-html="<h3>Desert Sunset</h3><p>Beautiful sunset in the Arabian desert</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Desert Sunset"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Desert Sunset</h3>
+                                <h3 class="Ar" style="display: none">غروب الصحراء</h3>
+                                <h3 class="Ro" style="display: none">Apus în Deșert</h3>
+                                <p class="En">Beautiful sunset in the Arabian desert</p>
+                                <p class="Ar" style="display: none">غروب جميل في الصحراء العربية</p>
+                                <p class="Ro" style="display: none">Apus frumos în deșertul arab</p>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80"
+                            class="gallery-item nature"
+                            data-sub-html="<h3>Oasis</h3><p>Peaceful oasis in the desert</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Oasis"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Oasis</h3>
+                                <h3 class="Ar" style="display: none">واحة</h3>
+                                <h3 class="Ro" style="display: none">Oază</h3>
+                                <p class="En">Peaceful oasis in the desert</p>
+                                <p class="Ar" style="display: none">واحة سلمية في الصحراء</p>
+                                <p class="Ro" style="display: none">Oază liniștită în deșert</p>
+                            </div>
+                        </a>
+
+                        <!-- Events Items -->
+                        <a
+                            href="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item events"
+                            data-sub-html="<h3>Eid Prayer</h3><p>Muslims performing Eid prayer in congregation</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Eid Prayer"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Eid Prayer</h3>
+                                <h3 class="Ar" style="display: none">صلاة العيد</h3>
+                                <h3 class="Ro" style="display: none">Rugăciunea de Eid</h3>
+                                <p class="En">Muslims performing Eid prayer</p>
+                                <p class="Ar" style="display: none">المسلمون يؤدون صلاة العيد</p>
+                                <p class="Ro" style="display: none">
+                                    Musulmanii fac rugăciunea de Eid
+                                </p>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item events"
+                            data-sub-html="<h3>Islamic Lecture</h3><p>Scholar giving lecture at Islamic center</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Islamic Lecture"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Islamic Lecture</h3>
+                                <h3 class="Ar" style="display: none">محاضرة إسلامية</h3>
+                                <h3 class="Ro" style="display: none">Conferință Islamică</h3>
+                                <p class="En">Scholar giving lecture at Islamic center</p>
+                                <p class="Ar" style="display: none">
+                                    عالم يلقي محاضرة في المركز الإسلامي
+                                </p>
+                                <p class="Ro" style="display: none">
+                                    Savant care ține o conferință la centrul islamic
+                                </p>
+                            </div>
+                        </a>
+
+                        <!-- Quran Items -->
+                        <a
+                            href="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item quran"
+                            data-sub-html="<h3>Quran Page</h3><p>Beautifully illuminated Quran page</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Quran Page"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Quran Page</h3>
+                                <h3 class="Ar" style="display: none">صفحة قرآنية</h3>
+                                <h3 class="Ro" style="display: none">Pagină din Coran</h3>
+                                <p class="En">Beautifully illuminated Quran page</p>
+                                <p class="Ar" style="display: none">صفحة قرآنية مضيئة بشكل جميل</p>
+                                <p class="Ro" style="display: none">
+                                    Pagină din Coran frumos iluminată
+                                </p>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            class="gallery-item quran"
+                            data-sub-html="<h3>Quran Recitation</h3><p>Young boy reciting Quran</p>"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                alt="Quran Recitation"
+                            />
+                            <div class="item-overlay">
+                                <h3 class="En">Quran Recitation</h3>
+                                <h3 class="Ar" style="display: none">تلاوة القرآن</h3>
+                                <h3 class="Ro" style="display: none">Recitare Coranică</h3>
+                                <p class="En">Young boy reciting Quran</p>
+                                <p class="Ar" style="display: none">صبي صغير يتلو القرآن</p>
+                                <p class="Ro" style="display: none">Băiat recitând Coranul</p>
+                            </div>
+                        </a>
+
+                        <!-- Video Items -->
+                        <a
+                            href="https://www.youtube.com/watch?v=9xwazD5SyVg"
+                            class="gallery-item video"
+                            data-sub-html="<h3>Beautiful Quran Recitation</h3><p>Heart-touching recitation by Mishary Rashid</p>"
+                        >
+                            <img src="/production/img/youtube.png" alt="Quran Recitation Video" />
+                            <div class="item-overlay">
+                                <h3 class="En">Beautiful Quran Recitation</h3>
+                                <h3 class="Ar" style="display: none">تلاوة قرآنية جميلة</h3>
+                                <h3 class="Ro" style="display: none">
+                                    Recitare Frumoasă a Coranului
+                                </h3>
+                                <p class="En">Heart-touching recitation by Mishary Rashid</p>
+                                <p class="Ar" style="display: none">تلاوة مؤثرة لمشاري راشد</p>
+                                <p class="Ro" style="display: none">
+                                    Recitare emoționantă de Mishary Rashid
+                                </p>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://www.youtube.com/watch?v=2Hj3zW5WX0M"
+                            class="gallery-item video"
+                            data-sub-html="<h3>Islamic Documentary</h3><p>The story of Prophet Muhammad (PBUH)</p>"
+                        >
+                            <img src="/production/img/youtube.png" alt="Islamic Documentary" />
+                            <div class="item-overlay">
+                                <h3 class="En">Islamic Documentary</h3>
+                                <h3 class="Ar" style="display: none">وثائقي إسلامي</h3>
+                                <h3 class="Ro" style="display: none">Documentar Islamic</h3>
+                                <p class="En">The story of Prophet Muhammad (PBUH)</p>
+                                <p class="Ar" style="display: none">
+                                    قصة النبي محمد صلى الله عليه وسلم
+                                </p>
+                                <p class="Ro" style="display: none">
+                                    Povestea Profetului Muhammad (Pacea fie asupra lui)
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="load-more">
+                        <button class="load-more-btn">
+                            <span class="En">Load More</span>
+                            <span class="Ar" style="display: none">تحميل المزيد</span>
+                            <span class="Ro" style="display: none">Încarcă Mai Mult</span>
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <!-- Lightgallery JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+        <script>
+            // ==================== Gallery Filter ====================
+            const initGalleryFilter = () => {
+                const filterBtns = document.querySelectorAll(".filter-btn");
+                const galleryItems = document.querySelectorAll(".gallery-item");
+
+                if (!filterBtns.length || !galleryItems.length) return;
+
+                filterBtns.forEach((btn) => {
+                    btn.addEventListener("click", function () {
+                        // Set active button
+                        document.querySelector(".filter-btn.active").classList.remove("active");
+                        this.classList.add("active");
+
+                        const filterValue = this.getAttribute("data-filter");
+
+                        // Filter items
+                        galleryItems.forEach((item) => {
+                            if (filterValue === "all" || item.classList.contains(filterValue)) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            };
+
+            // ==================== LightGallery ====================
+            const initLightGallery = () => {
+                const lightGallery = document.getElementById("lightgallery");
+
+                if (lightGallery) {
+                    lightGallery.addEventListener("click", (e) => {
+                        if (e.target.closest(".gallery-item")) {
+                            e.preventDefault();
+                        }
+                    });
+
+                    lightGallery.lightGallery({
+                        selector: ".gallery-item",
+                        download: false,
+                        youtubePlayerParams: {
+                            modestbranding: 1,
+                            showinfo: 0,
+                            rel: 0,
+                        },
+                        vimeoPlayerParams: {
+                            byline: 0,
+                            portrait: 0,
+                            color: "A90707",
+                        },
+                    });
+                }
+            };
+
+            // ==================== Load More Button ====================
+            const initLoadMore = () => {
+                const loadMoreBtn = document.querySelector(".load-more-btn");
+
+                if (!loadMoreBtn) return;
+
+                loadMoreBtn.addEventListener("click", function () {
+                    // Simulate loading more items
+                    this.innerHTML =
+                        this.querySelector("span").textContent === "Load More"
+                            ? '<i class="fas fa-spinner fa-spin"></i> Loading...'
+                            : '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
+
+                    setTimeout(() => {
+                        // In a real implementation, you would fetch more items from the server
+                        this.innerHTML =
+                            '<span class="En">Load More</span><span class="Ar" style="display: none">تحميل المزيد</span><span class="Ro" style="display: none">Încarcă Mai Mult</span><i class="fas fa-sync-alt"></i>';
+                        alert("More items would be loaded here in a real implementation");
+                    }, 1500);
+                });
+            };
+
+            // Initialize all components
+            initGalleryFilter();
+            initLightGallery();
+            initLoadMore();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Islam Cluj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f59e0b;
+            --light-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-control {
+            height: 45px;
+            border-radius: 6px;
+            padding-left: 15px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+        }
+
+        .input-group-text {
+            background-color: white;
+            border-right: none;
+        }
+
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            transform: scale(0.85) translateY(-0.8rem) translateX(0.15rem);
+            color: var(--primary-color);
+        }
+
+        .btn-login {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            height: 45px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #172a58;
+            color: white;
+        }
+
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .alert {
+            border-radius: 6px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-container {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <select class="form-select form-select-sm" onchange="switchLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="ro">Română</option>
+            </select>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-container">
+            <div class="login-header">
+                <img src="img/pattern (1).png" alt="Islam Cluj Logo">
+                <h2 class="en">Admin Login</h2>
+                <h2 class="ar" style="display: none">تسجيل الدخول للإدارة</h2>
+                <h2 class="ro" style="display: none">Autentificare Admin</h2>
+                <p class="en text-muted">Please enter your credentials</p>
+                <p class="ar text-muted" style="display: none">الرجاء إدخال بيانات الاعتماد الخاصة بك</p>
+                <p class="ro text-muted" style="display: none">Vă rugăm să introduceți acreditările</p>
+            </div>
+
+            <!-- Error Message (shown when login fails) -->
+            <div class="alert alert-danger d-none" id="error-message">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span class="en">Invalid username or password</span>
+                <span class="ar" style="display: none">اسم مستخدم أو كلمة مرور غير صالحة</span>
+                <span class="ro" style="display: none">Nume de utilizator sau parolă invalidă</span>
+            </div>
+
+            <form id="loginForm" method="POST" action="authenticate.php">
+                <!-- CSRF Token (for security) -->
+                <input type="hidden" name="csrf_token" value="GENERATE_CSRF_TOKEN_HERE">
+
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                        <label for="username">
+                            <span class="en">Username</span>
+                            <span class="ar" style="display: none">اسم المستخدم</span>
+                            <span class="ro" style="display: none">Nume utilizator</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <span class="input-group-text bg-transparent" style="cursor: pointer" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </span>
+                            <label for="password">
+                                <span class="en">Password</span>
+                                <span class="ar" style="display: none">كلمة المرور</span>
+                                <span class="ro" style="display: none">Parolă</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">
+                            <span class="en">Remember me</span>
+                            <span class="ar" style="display: none">تذكرني</span>
+                            <span class="ro" style="display: none">Ține-mă minte</span>
+                        </label>
+                    </div>
+                    <a href="forgot-password.php" class="forgot-password">
+                        <span class="en">Forgot password?</span>
+                        <span class="ar" style="display: none">نسيت كلمة السر؟</span>
+                        <span class="ro" style="display: none">Ai uitat parola?</span>
+                    </a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-login w-100">
+                    <i class="fas fa-sign-in-alt me-2"></i>
+                    <span class="en">Login</span>
+                    <span class="ar" style="display: none">تسجيل الدخول</span>
+                    <span class="ro" style="display: none">Autentificare</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Toggle Password Visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // // Language Switching
+        // function switchLanguage(lang) {
+        //     // Hide all language elements
+        //     document.querySelectorAll('[class*="en"], [class*="ar"], [class*="ro"]').forEach(el => {
+        //         el.style.display = 'none';
+        //     });
+            
+        //     // Show elements for selected language
+        //     document.querySelectorAll(`.${lang}`).forEach(el => {
+        //         el.style.display = '';
+        //     });
+            
+        //     // Set direction for RTL languages
+        //     document.body.classList.toggle('rtl', lang === 'ar');
+        // }
+
+        // Form Submission with Validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide error message if shown
+            document.getElementById('error-message').classList.add('d-none');
+            
+            // Get form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Basic client-side validation
+            if (!username || !password) {
+                showError('Please fill in all fields');
+                return;
+            }
+            
+            // In a real implementation, this would be an AJAX call to your server
+            // For demo, we'll simulate a response
+            simulateLogin(username, password);
+        });
+
+        function simulateLogin(username, password) {
+            // This is just for demonstration - replace with actual API call
+            console.log('Attempting login with:', username, password);
+            
+            // Simulate network delay
+            setTimeout(() => {
+                // This would be replaced with your actual authentication logic
+                if (username === 'admin' && password === 'admin123') {
+                    // Successful login - redirect to admin panel
+                    window.location.href = 'admin.php';
+                } else {
+                    // Show error message
+                    showError();
+                }
+            }, 800);
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            
+            if (message) {
+                // Update error message text in all languages
+                document.querySelectorAll('#error-message span').forEach(span => {
+                    if (span.classList.contains('en')) span.textContent = message;
+                });
+            }
+            
+            errorElement.classList.remove('d-none');
+        }
+
+        // Initialize with English
+        switchLanguage('en');
+    </script>
+</body>
+</html>

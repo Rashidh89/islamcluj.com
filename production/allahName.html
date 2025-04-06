@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="En">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+
+        <style>
+            /* Allah Names Section Styles */
+            #allah-names {
+                padding: 60px 0;
+            }
+
+            .names-controls {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 20px auto 30px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-container {
+                position: relative;
+                flex-grow: 1;
+                max-width: 500px;
+            }
+
+            .search-container input {
+                width: 100%;
+                padding: 12px 15px 12px 40px;
+                border: 1px solid #ddd;
+                border-radius: 30px;
+                font-size: 16px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .search-container i {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #777;
+            }
+
+            .view-toggle {
+                display: flex;
+                gap: 5px;
+            }
+
+            .view-toggle button {
+                background: white;
+                border: 1px solid #ddd;
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .view-toggle button.active {
+                background-color: #1e3a8a;
+                color: white;
+                border-color: #1e3a8a;
+            }
+
+            .names-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .names-grid.list-view {
+                grid-template-columns: 1fr;
+            }
+
+            .name-card {
+                background-color: white;
+                border-radius: 8px;
+                padding: 15px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .name-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                background-color: #f0f7ff;
+            }
+
+            .name-card.grid-view {
+                min-height: 120px;
+                justify-content: center;
+            }
+
+            .name-card.list-view {
+                flex-direction: row;
+                text-align: left;
+                gap: 15px;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .name-card h3 {
+                color: #1e3a8a;
+                margin-bottom: 5px;
+                font-size: 18px;
+            }
+
+            .name-card p {
+                font-size: 24px;
+                color: #1e3a8a;
+                margin: 0;
+                font-weight: bold;
+            }
+
+            .name-card.list-view p {
+                font-size: 28px;
+                margin-right: 15px;
+            }
+
+            .name-card .name-number {
+                background-color: #1e3a8a;
+                color: white;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .name-card.list-view .name-number {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+
+            .name-details {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                padding: 20px;
+            }
+
+            .details-content {
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #777;
+            }
+
+            .details-content h3 {
+                color: #1e3a8a;
+                font-size: 24px;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .detail-item {
+                margin-bottom: 15px;
+            }
+
+            .detail-item strong {
+                color: #1e3a8a;
+            }
+
+            .save-btn {
+                background-color: #1e3a8a;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .save-btn i {
+                font-size: 16px;
+            }
+
+            .favorite .name-card {
+                border: 2px solid #f59e0b;
+            }
+
+            .favorite .name-card {
+                border: 2px solid #f59e0b;
+                position: relative;
+            }
+
+            .favorite-icon {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: #f59e0b;
+                font-size: 16px;
+            }
+
+            .save-btn .fas {
+                color: #f59e0b;
+            }
+
+            @media (max-width: 768px) {
+                .names-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                }
+
+                .names-controls {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .search-container {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="gallery.html" class="En">Gallery</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="about.html" class="Ar">من نحن</a></li>
+                            <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                            <li><a href="events.html" class="Ar">أحداث</a></li>
+                            <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="about.html" class="Ro">Despre</a></li>
+                            <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                            <li><a href="events.html" class="Ro">Evenimente</a></li>
+                            <li><a href="contact.html" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                                    <span class="Ar" style="display: none">English</span>
+                                    <span class="Ro" style="display: none">Engleză</span>
+                                    <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Add this section after any other section in your HTML -->
+        <section id="allah-names" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">The 99 Names of Allah</h2>
+                    <h2 class="Ar" style="display: none">أسماء الله الحسنى</h2>
+                    <h2 class="Ro" style="display: none">Cele 99 de Nume ale lui Allah</h2>
+                    <p class="En">Learn and reflect upon the beautiful names of Allah</p>
+                    <p class="Ar" style="display: none">تعلم وتفكر في أسماء الله الحسنى</p>
+                    <p class="Ro" style="display: none">
+                        Învățați și reflectați asupra frumoaselor nume ale lui Allah
+                    </p>
+                </div>
+
+                <div class="names-controls">
+                    <div class="search-container">
+                        <input
+                            type="text"
+                            id="name-search"
+                            placeholder="Search names..."
+                            class="En"
+                        />
+                        <input
+                            type="text"
+                            id="name-search"
+                            placeholder="ابحث عن الأسماء..."
+                            class="Ar"
+                            style="display: none"
+                        />
+                        <input
+                            type="text"
+                            id="name-search"
+                            placeholder="Căutați nume..."
+                            class="Ro"
+                            style="display: none"
+                        />
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <div class="view-toggle">
+                        <button id="grid-view" class="active"><i class="fas fa-th"></i></button>
+                        <button id="list-view"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+
+                <div class="names-grid" id="names-container">
+                    <!-- Names will be loaded here by JavaScript -->
+                </div>
+
+                <div class="name-details" id="name-details" style="display: none">
+                    <div class="details-content">
+                        <button class="close-btn" onclick="closeDetails()">&times;</button>
+                        <h3 id="detail-name"></h3>
+                        <p id="detail-arabic" style="font-size: 2rem; text-align: center"></p>
+                        <div class="detail-item">
+                            <span class="En"><strong>Meaning:</strong></span>
+                            <span class="Ar" style="display: none"><strong>المعنى:</strong></span>
+                            <span class="Ro" style="display: none"><strong>Înțeles:</strong></span>
+                            <span id="detail-meaning"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="En"><strong>Benefits:</strong></span>
+                            <span class="Ar" style="display: none"><strong>الفوائد:</strong></span>
+                            <span class="Ro" style="display: none">
+                                <strong>Beneficii:</strong>
+                            </span>
+                            <span id="detail-benefits"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="En"><strong>Occurrences in Quran:</strong></span>
+                            <span class="Ar" style="display: none">
+                                <strong>وروده في القرآن:</strong>
+                            </span>
+                            <span class="Ro" style="display: none">
+                                <strong>Apariții în Coran:</strong>
+                            </span>
+                            <span id="detail-occurrences"></span>
+                        </div>
+                        <button class="save-btn" onclick="toggleFavorite()">
+                            <span class="En">
+                                <i class="far fa-bookmark"></i>
+                                Save
+                            </span>
+                            <span class="Ar" style="display: none">
+                                <i class="far fa-bookmark"></i>
+                                حفظ
+                            </span>
+                            <span class="Ro" style="display: none">
+                                <i class="far fa-bookmark"></i>
+                                Salvează
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+        <script>
+            // Complete 99 Names of Allah Data
+            const allahNames = [
+                {
+                    number: 1,
+                    name: "ar-rahman",
+                    arabic: "الرَّحْمَنُ",
+                    meaning: "the all-compassionate",
+                    meaningar: "الرحمن",
+                    meaningro: "cel mult-îndurător",
+                    benefits: "he who wills goodness and mercy for all his creatures.",
+                    benefitsar: "الذي يريد الخير والرحمة لجميع مخلوقاته",
+                    benefitsro: "cel care voiește bunătatea și mila pentru toate creaturile sale.",
+                    occurrences: "56 times in quran",
+                },
+                {
+                    number: 2,
+                    name: "ar-raheem",
+                    arabic: "الرَّحِيمُ",
+                    meaning: "the all-merciful",
+                    meaningar: "الرحيم",
+                    meaningro: "cel milostiv",
+                    benefits: "he who acts with extreme kindness and bestows his mercy.",
+                    occurrences: "114 times in quran",
+                },
+                {
+                    number: 3,
+                    name: "al-malik",
+                    arabic: "الْمَلِكُ",
+                    meaning: "the absolute ruler",
+                    meaningar: "الملك",
+                    meaningro: "regele",
+                    benefits: "the sovereign lord, the one with the complete dominion.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 4,
+                    name: "al-quddus",
+                    arabic: "الْقُدُّوسُ",
+                    meaning: "the pure one",
+                    meaningar: "القدوس",
+                    meaningro: "cel sfânt",
+                    benefits: "the one who is free from any imperfection.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 5,
+                    name: "as-salam",
+                    arabic: "السَّلاَمُ",
+                    meaning: "the source of peace",
+                    meaningar: "السلام",
+                    meaningro: "sursa păcii",
+                    benefits: "the one who grants peace and security.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 6,
+                    name: "al-mu'min",
+                    arabic: "الْمُؤْمِنُ",
+                    meaning: "the inspirer of faith",
+                    meaningar: "المؤمن",
+                    meaningro: "inspiratorul credinței",
+                    benefits: "the one who grants security and removes fear.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 7,
+                    name: "al-muhaymin",
+                    arabic: "الْمُهَيْمِنُ",
+                    meaning: "the guardian",
+                    meaningar: "المهيمن",
+                    meaningro: "păzitorul",
+                    benefits: "the protector and witness over all things.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 8,
+                    name: "al-aziz",
+                    arabic: "الْعَزِيزُ",
+                    meaning: "the victorious",
+                    meaningar: "العزيز",
+                    meaningro: "cel puternic",
+                    benefits: "the mighty and strong who cannot be defeated.",
+                    occurrences: "92 times in quran",
+                },
+                {
+                    number: 9,
+                    name: "al-jabbar",
+                    arabic: "الْجَبَّارُ",
+                    meaning: "the compeller",
+                    meaningar: "الجبار",
+                    meaningro: "cel care împlinește voia sa",
+                    benefits: "the restorer who repairs all matters.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 10,
+                    name: "al-mutakabbir",
+                    arabic: "الْمُتَكَبِّرُ",
+                    meaning: "the greatest",
+                    meaningar: "المتكبر",
+                    meaningro: "cel măreț",
+                    benefits: "the supreme who is far above any imperfection.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 11,
+                    name: "al-khaliq",
+                    arabic: "الْخَالِقُ",
+                    meaning: "the creator",
+                    meaningar: "الخالق",
+                    meaningro: "creatorul",
+                    benefits: "the one who brings everything from non-existence to existence.",
+                    occurrences: "8 times in quran",
+                },
+                {
+                    number: 11,
+                    name: "al-khaliq",
+                    arabic: "الْخَالِقُ",
+                    meaning: "the creator",
+                    meaningar: "الخالق",
+                    meaningro: "creatorul",
+                    benefits: "he who creates everything in perfect measure.",
+                    benefitsar: "الذي يخلق كل شيء بمقدار",
+                    benefitsro: "cel care creează totul cu măsură perfectă.",
+                    occurrences: "8 times in quran",
+                },
+                {
+                    number: 12,
+                    name: "al-bari'",
+                    arabic: "الْبَارِئُ",
+                    meaning: "the evolver",
+                    meaningar: "البارئ",
+                    meaningro: "cel care dă formă",
+                    benefits: "he who shapes all creation perfectly.",
+                    benefitsar: "الذي يشكل كل الخلق بإتقان",
+                    benefitsro: "cel care modelează toată creația cu perfecțiune.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 13,
+                    name: "al-musawwir",
+                    arabic: "الْمُصَوِّرُ",
+                    meaning: "the fashioner",
+                    meaningar: "المصور",
+                    meaningro: "făuritorul",
+                    benefits: "he who designs all things uniquely.",
+                    benefitsar: "الذي يصمم كل الأشياء بشكل فريد",
+                    benefitsro: "cel care proiectează toate lucrurile în mod unic.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 14,
+                    name: "al-ghaffar",
+                    arabic: "الْغَفَّارُ",
+                    meaning: "the repeatedly forgiving",
+                    meaningar: "الغفار",
+                    meaningro: "iertătorul",
+                    benefits: "he who forgives sins abundantly.",
+                    benefitsar: "الذي يغفر الذنوب بكثرة",
+                    benefitsro: "cel care iartă păcatele din belșug.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 15,
+                    name: "al-qahhar",
+                    arabic: "الْقَهَّارُ",
+                    meaning: "the subduer",
+                    meaningar: "القهار",
+                    meaningro: "supunătorul",
+                    benefits: "he who dominates all creation.",
+                    benefitsar: "الذي يسيطر على كل الخلق",
+                    benefitsro: "cel care stăpânește întreaga creație.",
+                    occurrences: "6 times in quran",
+                },
+                {
+                    number: 16,
+                    name: "al-wahhab",
+                    arabic: "الْوَهَّابُ",
+                    meaning: "the bestower",
+                    meaningar: "الوهاب",
+                    meaningro: "dăruitorul",
+                    benefits: "he who gives endlessly without expectation.",
+                    benefitsar: "الذي يعطي بلا حدود ولا توقع",
+                    benefitsro: "cel care dăruiește fără așteptare.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 17,
+                    name: "ar-razzaq",
+                    arabic: "الرَّزَّاقُ",
+                    meaning: "the provider",
+                    meaningar: "الرزاق",
+                    meaningro: "provizorul",
+                    benefits: "he who sustains all living beings.",
+                    benefitsar: "الذي يرزق جميع الكائنات الحية",
+                    benefitsro: "cel care întreține toate ființele vii.",
+                    occurrences: "6 times in quran",
+                },
+                {
+                    number: 18,
+                    name: "al-fattah",
+                    arabic: "الْفَتَّاحُ",
+                    meaning: "the opener",
+                    meaningar: "الفتاح",
+                    meaningro: "deschizătorul",
+                    benefits: "he who opens doors of solutions and mercy.",
+                    benefitsar: "الذي يفتح أبواب الحلول والرحمة",
+                    benefitsro: "cel care deschide ușile soluțiilor și ale milei.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 19,
+                    name: "al-alim",
+                    arabic: "الْعَلِيمُ",
+                    meaning: "the all-knowing",
+                    meaningar: "العليم",
+                    meaningro: "totștiutorul",
+                    benefits: "he who knows the seen and unseen.",
+                    benefitsar: "الذي يعلم الغيب والشهادة",
+                    benefitsro: "cel care cunoaște văzutul și nevăzutul.",
+                    occurrences: "158 times in quran",
+                },
+                {
+                    number: 20,
+                    name: "al-qabid",
+                    arabic: "الْقَابِضُ",
+                    meaning: "the restrainer",
+                    meaningar: "القابض",
+                    meaningro: "reținătorul",
+                    benefits: "he who withholds blessings or expands them.",
+                    benefitsar: "الذي يمنع النعم أو يوسعها",
+                    benefitsro: "cel care reține binecuvântările sau le extinde.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 21,
+                    name: "al-basit",
+                    arabic: "الْبَاسِطُ",
+                    meaning: "the expander",
+                    meaningar: "الباسط",
+                    meaningro: "extinzătorul",
+                    benefits: "he who grants abundance and ease.",
+                    benefitsar: "الذي يمنح الوفرة واليسر",
+                    benefitsro: "cel care acordă abundență și ușurință.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 22,
+                    name: "al-khafid",
+                    arabic: "الْخَافِضُ",
+                    meaning: "the abaser",
+                    meaningar: "الخافض",
+                    meaningro: "smeritorul",
+                    benefits: "he who humbles the arrogant.",
+                    benefitsar: "الذي يذل المتكبرين",
+                    benefitsro: "cel care smeresc pe cei mândri.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 23,
+                    name: "ar-rafi'",
+                    arabic: "الرَّافِعُ",
+                    meaning: "the exalter",
+                    meaningar: "الرافع",
+                    meaningro: "înălțătorul",
+                    benefits: "he who elevates in rank and honor.",
+                    benefitsar: "الذي يرفع في الدرجة والشرف",
+                    benefitsro: "cel care înalță în rang și cinste.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 24,
+                    name: "al-mu'izz",
+                    arabic: "الْمُعِزُّ",
+                    meaning: "the honorer",
+                    meaningar: "المعز",
+                    meaningro: "onoratorul",
+                    benefits: "he who grants honor and dignity.",
+                    benefitsar: "الذي يمنح الشرف والكرامة",
+                    benefitsro: "cel care acordă onoare și demnitate.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 25,
+                    name: "al-mudhill",
+                    arabic: "الْمُذِلُّ",
+                    meaning: "the humiliator",
+                    meaningar: "المذل",
+                    meaningro: "umilitorul",
+                    benefits: "he who humiliates the unjust.",
+                    benefitsar: "الذي يذل الظالمين",
+                    benefitsro: "cel care umilește pe nedrepți.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 26,
+                    name: "as-sami'",
+                    arabic: "السَّمِيعُ",
+                    meaning: "the all-hearing",
+                    meaningar: "السميع",
+                    meaningro: "cel care aude totul",
+                    benefits: "he who hears every prayer and whisper.",
+                    benefitsar: "الذي يسمع كل دعاء وهمس",
+                    benefitsro: "cel care aude orice rugăciune și șoaptă.",
+                    occurrences: "45 times in quran",
+                },
+                {
+                    number: 27,
+                    name: "al-basir",
+                    arabic: "الْبَصِيرُ",
+                    meaning: "the all-seeing",
+                    meaningar: "البصير",
+                    meaningro: "cel care vedе totul",
+                    benefits: "he who observes all actions and intentions.",
+                    benefitsar: "الذي يرى كل الأفعال والنيات",
+                    benefitsro: "cel care vede toate faptele și intențiile.",
+                    occurrences: "42 times in quran",
+                },
+                {
+                    number: 28,
+                    name: "al-hakam",
+                    arabic: "الْحَكَمُ",
+                    meaning: "the judge",
+                    meaningar: "الحكم",
+                    meaningro: "judecătorul",
+                    benefits: "he who delivers perfect justice.",
+                    benefitsar: "الذي ينفذ العدل الكامل",
+                    benefitsro: "cel care aduce dreptate perfectă.",
+                    occurrences: "6 times in quran",
+                },
+                {
+                    number: 29,
+                    name: "al-adl",
+                    arabic: "الْعَدْلُ",
+                    meaning: "the just",
+                    meaningar: "العدل",
+                    meaningro: "dreptul",
+                    benefits: "he who ensures absolute fairness.",
+                    benefitsar: "الذي يضمن الإنصاف المطلق",
+                    benefitsro: "cel care asigură dreptate absolută.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 30,
+                    name: "al-latif",
+                    arabic: "اللَّطِيفُ",
+                    meaning: "the subtle",
+                    meaningar: "اللطيف",
+                    meaningro: "subtilele",
+                    benefits: "he who acts with gentleness and grace.",
+                    benefitsar: "الذي يتصرف بلطف ونعمة",
+                    benefitsro: "cel care acționează cu blândețe și grație.",
+                    occurrences: "7 times in quran",
+                },
+                {
+                    number: 31,
+                    name: "al-khabir",
+                    arabic: "الْخَبِيرُ",
+                    meaning: "the all-aware",
+                    meaningar: "الخبير",
+                    meaningro: "totștiutorul",
+                    benefits: "he who has perfect knowledge of all things hidden and manifest.",
+                    benefitsar: "الذي يعلم كل شيء خفي وظاهر",
+                    benefitsro: "cel care cunoaște perfect tot ceea ce este ascuns și vizibil.",
+                    occurrences: "45 times in quran",
+                },
+                {
+                    number: 32,
+                    name: "al-halim",
+                    arabic: "الْحَلِيمُ",
+                    meaning: "the forbearing",
+                    meaningar: "الحليم",
+                    meaningro: "cel îndelung răbdător",
+                    benefits: "he who delays punishment for the repentant.",
+                    benefitsar: "الذي يؤخر العقوبة للتائبين",
+                    benefitsro: "cel care amână pedeapsa pentru cei care se căiesc.",
+                    occurrences: "15 times in quran",
+                },
+                {
+                    number: 33,
+                    name: "al-azim",
+                    arabic: "الْعَظِيمُ",
+                    meaning: "the magnificent",
+                    meaningar: "العظيم",
+                    meaningro: "mărețul",
+                    benefits: "he whose greatness is beyond comprehension.",
+                    benefitsar: "الذي عظمته تفوق الإدراك",
+                    benefitsro: "cel a cărui măreție depășește înțelegerea.",
+                    occurrences: "9 times in quran",
+                },
+                {
+                    number: 34,
+                    name: "al-ghafur",
+                    arabic: "الْغَفُورُ",
+                    meaning: "the forgiving",
+                    meaningar: "الغفور",
+                    meaningro: "iertătorul",
+                    benefits: "he who forgives sins repeatedly.",
+                    benefitsar: "الذي يغفر الذنوب مرارًا",
+                    benefitsro: "cel care iartă păcatele iar și iar.",
+                    occurrences: "91 times in quran",
+                },
+                {
+                    number: 35,
+                    name: "ash-shakur",
+                    arabic: "الشَّكُورُ",
+                    meaning: "the appreciative",
+                    meaningar: "الشكور",
+                    meaningro: "recunoscătorul",
+                    benefits: "he who multiplies rewards for good deeds.",
+                    benefitsar: "الذي يضاعف الثواب على الأعمال الصالحة",
+                    benefitsro: "cel care înmulțește răsplata pentru faptele bune.",
+                    occurrences: "4 times in quran",
+                },
+                {
+                    number: 36,
+                    name: "al-ali",
+                    arabic: "الْعَلِيُّ",
+                    meaning: "the most high",
+                    meaningar: "العلي",
+                    meaningro: "cel preaînalt",
+                    benefits: "he who is exalted above all creation.",
+                    benefitsar: "الذي تعالى فوق كل الخلق",
+                    benefitsro: "cel care este înălțat deasupra întregii creații.",
+                    occurrences: "31 times in quran",
+                },
+                {
+                    number: 37,
+                    name: "al-kabir",
+                    arabic: "الْكَبِيرُ",
+                    meaning: "the greatest",
+                    meaningar: "الكبير",
+                    meaningro: "cel mare",
+                    benefits: "he whose greatness has no equal.",
+                    benefitsar: "الذي لا مثيل لعظمته",
+                    benefitsro: "cel a cărui măreție nu are egal.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 38,
+                    name: "al-hafiz",
+                    arabic: "الْحَفِيظُ",
+                    meaning: "the preserver",
+                    meaningar: "الحفيظ",
+                    meaningro: "păstrătorul",
+                    benefits: "he who protects and guards all things.",
+                    benefitsar: "الذي يحمي ويحرس كل شيء",
+                    benefitsro: "cel care protejează și păzește toate lucrurile.",
+                    occurrences: "12 times in quran",
+                },
+                {
+                    number: 39,
+                    name: "al-muqit",
+                    arabic: "الْمُقِيتُ",
+                    meaning: "the sustainer",
+                    meaningar: "المقيت",
+                    meaningro: "întreținătorul",
+                    benefits: "he who provides nourishment and strength.",
+                    benefitsar: "الذي يوفر الغذاء والقوة",
+                    benefitsro: "cel care asigură hrană și putere.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 40,
+                    name: "al-hasib",
+                    arabic: "الْحَسِيبُ",
+                    meaning: "the reckoner",
+                    meaningar: "الحسيب",
+                    meaningro: "socotitorul",
+                    benefits: "he who accounts for all deeds.",
+                    benefitsar: "الذي يحاسب على جميع الأعمال",
+                    benefitsro: "cel care ține socoteala tuturor faptelor.",
+                    occurrences: "4 times in quran",
+                },
+                {
+                    number: 41,
+                    name: "al-jalil",
+                    arabic: "الْجَلِيلُ",
+                    meaning: "the majestic",
+                    meaningar: "الجليل",
+                    meaningro: "majestuosul",
+                    benefits: "he who possesses sublime dignity.",
+                    benefitsar: "الذي يمتلك الكرامة السامية",
+                    benefitsro: "cel care posedă demnitate sublimă.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 42,
+                    name: "al-karim",
+                    arabic: "الْكَرِيمُ",
+                    meaning: "the generous",
+                    meaningar: "الكريم",
+                    meaningro: "generosul",
+                    benefits: "he who gives abundantly without measure.",
+                    benefitsar: "الذي يعطي بلا حدود",
+                    benefitsro: "cel care dăruiește din belșug.",
+                    occurrences: "27 times in quran",
+                },
+                {
+                    number: 43,
+                    name: "ar-raqib",
+                    arabic: "الرَّقِيبُ",
+                    meaning: "the watchful",
+                    meaningar: "الرقيب",
+                    meaningro: "veghetorul",
+                    benefits: "he who observes all actions and intentions.",
+                    benefitsar: "الذي يراقب كل الأفعال والنيات",
+                    benefitsro: "cel care veghează asupra tuturor faptelor și intențiilor.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 44,
+                    name: "al-mujib",
+                    arabic: "الْمُجِيبُ",
+                    meaning: "the responsive",
+                    meaningar: "المجيب",
+                    meaningro: "cel care răspunde",
+                    benefits: "he who answers prayers and supplications.",
+                    benefitsar: "الذي يستجيب للدعوات والابتهالات",
+                    benefitsro: "cel care răspunde rugăciunilor și chemărilor.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 45,
+                    name: "al-wasi'",
+                    arabic: "الْوَاسِعُ",
+                    meaning: "the all-encompassing",
+                    meaningar: "الواسع",
+                    meaningro: "cel cuprinzător",
+                    benefits: "he whose mercy and knowledge embrace all things.",
+                    benefitsar: "الذي رحمته وعلمه يشملان كل شيء",
+                    benefitsro: "cel a cărui milă și cunoaștere cuprind totul.",
+                    occurrences: "10 times in quran",
+                },
+                {
+                    number: 46,
+                    name: "al-hakim",
+                    arabic: "الْحَكِيمُ",
+                    meaning: "the wise",
+                    meaningar: "الحكيم",
+                    meaningro: "înțeleptul",
+                    benefits: "he who acts with perfect wisdom.",
+                    benefitsar: "الذي يتصرف بحكمة كاملة",
+                    benefitsro: "cel care acționează cu înțelepciune perfectă.",
+                    occurrences: "93 times in quran",
+                },
+                {
+                    number: 47,
+                    name: "al-wadud",
+                    arabic: "الْوَدُودُ",
+                    meaning: "the loving",
+                    meaningar: "الودود",
+                    meaningro: "iubitorul",
+                    benefits: "he who loves and is loved by his creation.",
+                    benefitsar: "الذي يحب ويحبه الخلق",
+                    benefitsro: "cel care iubește și este iubit de creația sa.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 48,
+                    name: "al-majid",
+                    arabic: "الْمَجِيدُ",
+                    meaning: "the glorious",
+                    meaningar: "المجيد",
+                    meaningro: "gloriosul",
+                    benefits: "he who is noble and generous in essence.",
+                    benefitsar: "الذي هو كريم وطيب في الجوهر",
+                    benefitsro: "cel care este nobil și generos în esență.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 49,
+                    name: "al-ba'ith",
+                    arabic: "الْبَاعِثُ",
+                    meaning: "the resurrector",
+                    meaningar: "الباعث",
+                    meaningro: "înviatorul",
+                    benefits: "he who resurrects creation on judgment day.",
+                    benefitsar: "الذي يبعث الخلق يوم القيامة",
+                    benefitsro: "cel care va învia creația în ziua judecății.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 50,
+                    name: "ash-shahid",
+                    arabic: "الشَّهِيدُ",
+                    meaning: "the witness",
+                    meaningar: "الشهيد",
+                    meaningro: "martorul",
+                    benefits: "he who witnesses all deeds and events.",
+                    benefitsar: "الذي يشهد كل الأعمال والأحداث",
+                    benefitsro: "cel care este martor la toate faptele și evenimentele.",
+                    occurrences: "19 times in quran",
+                },
+                {
+                    number: 51,
+                    name: "al-haqq",
+                    arabic: "الْحَقُّ",
+                    meaning: "the truth",
+                    meaningar: "الحق",
+                    meaningro: "adevărul",
+                    benefits: "he who is the ultimate reality and justice.",
+                    benefitsar: "الذي هو الحقيقة المطلقة والعدالة",
+                    benefitsro: "cel care este realitatea supremă și dreptatea.",
+                    occurrences: "20 times in quran",
+                },
+                {
+                    number: 52,
+                    name: "al-wakil",
+                    arabic: "الْوَكِيلُ",
+                    meaning: "the trustee",
+                    meaningar: "الوكيل",
+                    meaningro: "depozitarul",
+                    benefits: "he who manages all affairs perfectly.",
+                    benefitsar: "الذي يدير كل الأمور بإتقان",
+                    benefitsro: "cel care gestionează toate lucrurile cu perfecțiune.",
+                    occurrences: "14 times in quran",
+                },
+                {
+                    number: 53,
+                    name: "al-qawi",
+                    arabic: "الْقَوِيُّ",
+                    meaning: "the strong",
+                    meaningar: "القوي",
+                    meaningro: "puternicul",
+                    benefits: "he who possesses infinite strength.",
+                    benefitsar: "الذي يمتلك قوة لا حدود لها",
+                    benefitsro: "cel care posedă putere infinită.",
+                    occurrences: "9 times in quran",
+                },
+                {
+                    number: 54,
+                    name: "al-matin",
+                    arabic: "الْمَتِينُ",
+                    meaning: "the firm",
+                    meaningar: "المتين",
+                    meaningro: "tăria",
+                    benefits: "he who is unbreakable in might.",
+                    benefitsar: "الذي لا ينكسر في قوته",
+                    benefitsro: "cel a cărui putere este de neatins.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 55,
+                    name: "al-wali",
+                    arabic: "الْوَلِيُّ",
+                    meaning: "the protector",
+                    meaningar: "الولي",
+                    meaningro: "protectorul",
+                    benefits: "he who is the guardian of the believers.",
+                    benefitsar: "الذي هو حامي المؤمنين",
+                    benefitsro: "cel care este ocrotitorul credincioșilor.",
+                    occurrences: "15 times in quran",
+                },
+                {
+                    number: 56,
+                    name: "al-hamid",
+                    arabic: "الْحَمِيدُ",
+                    meaning: "the praiseworthy",
+                    meaningar: "الحميد",
+                    meaningro: "lăudatul",
+                    benefits: "he who deserves all praise and gratitude.",
+                    benefitsar: "الذي يستحق كل الثناء والشكر",
+                    benefitsro: "cel care merită toată lauda și recunoștința.",
+                    occurrences: "17 times in quran",
+                },
+                {
+                    number: 57,
+                    name: "al-muhsi",
+                    arabic: "الْمُحْصِي",
+                    meaning: "the accounter",
+                    meaningar: "المحصي",
+                    meaningro: "numărătorul",
+                    benefits: "he who counts and records all deeds.",
+                    benefitsar: "الذي يحصي ويسجل كل الأعمال",
+                    benefitsro: "cel care numără și înregistrează toate faptele.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 58,
+                    name: "al-mubdi'",
+                    arabic: "الْمُبْدِئُ",
+                    meaning: "the originator",
+                    meaningar: "المبدئ",
+                    meaningro: "inițiatorul",
+                    benefits: "he who creates all things from nothing.",
+                    benefitsar: "الذي يخلق كل شيء من لا شيء",
+                    benefitsro: "cel care creează totul din nimic.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 59,
+                    name: "al-mu'id",
+                    arabic: "الْمُعِيدُ",
+                    meaning: "the restorer",
+                    meaningar: "المعيد",
+                    meaningro: "restabilitorul",
+                    benefits: "he who restores life after death.",
+                    benefitsar: "الذي يعيد الحياة بعد الموت",
+                    benefitsro: "cel care readuce la viață după moarte.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 60,
+                    name: "al-muhyi",
+                    arabic: "الْمُحْيِي",
+                    meaning: "the giver of life",
+                    meaningar: "المحيي",
+                    meaningro: "dătătorul de viață",
+                    benefits: "he who grants life to all beings.",
+                    benefitsar: "الذي يمنح الحياة لجميع الكائنات",
+                    benefitsro: "cel care dăruiește viață tuturor ființelor.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 61,
+                    name: "al-mumit",
+                    arabic: "الْمُمِيتُ",
+                    meaning: "the taker of life",
+                    meaningar: "المميت",
+                    meaningro: "cel care ia viața",
+                    benefits: "he who causes death with wisdom.",
+                    benefitsar: "الذي يتسبب في الموت بحكمة",
+                    benefitsro: "cel care ia viața cu înțelepciune.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 62,
+                    name: "al-hayy",
+                    arabic: "الْحَيُّ",
+                    meaning: "the ever-living",
+                    meaningar: "الحي",
+                    meaningro: "cel viu",
+                    benefits: "he who is eternally alive and self-sustaining.",
+                    benefitsar: "الذي هو حي إلى الأبد",
+                    benefitsro: "cel care este veșnic viu și se susține singur.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 63,
+                    name: "al-qayyum",
+                    arabic: "الْقَيُّومُ",
+                    meaning: "the self-sustaining",
+                    meaningar: "القيوم",
+                    meaningro: "cel care se auto-susține",
+                    benefits: "he who sustains all existence.",
+                    benefitsar: "الذي يحافظ على كل الوجود",
+                    benefitsro: "cel care întreține întreaga existență.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 64,
+                    name: "al-wajid",
+                    arabic: "الْوَاجِدُ",
+                    meaning: "the finder",
+                    meaningar: "الواجد",
+                    meaningro: "găsitorul",
+                    benefits: "he who lacks nothing and fulfills all needs.",
+                    benefitsar: "الذي لا ينقصه شيء ويلبي كل الاحتياجات",
+                    benefitsro: "cel căruia nu-i lipsește nimic și satisface toate nevoile.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 65,
+                    name: "al-majid",
+                    arabic: "الْمَجِيدُ",
+                    meaning: "the noble",
+                    meaningar: "المجيد",
+                    meaningro: "nobilul",
+                    benefits: "he who is glorified in essence and actions.",
+                    benefitsar: "الذي تمجده الذات والأفعال",
+                    benefitsro: "cel care este glorificat în esență și acțiuni.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 66,
+                    name: "al-wahid",
+                    arabic: "الْوَاحِدُ",
+                    meaning: "the unique",
+                    meaningar: "الواحد",
+                    meaningro: "unicul",
+                    benefits: "he who is one in essence, attributes, and actions.",
+                    benefitsar: "الذي هو واحد في الذات والصفات والأفعال",
+                    benefitsro: "cel care este unic în esență, atribute și acțiuni.",
+                    occurrences: "22 times in quran",
+                },
+                {
+                    number: 67,
+                    name: "al-ahad",
+                    arabic: "الْأَحَدُ",
+                    meaning: "the one",
+                    meaningar: "الأحد",
+                    meaningro: "unul",
+                    benefits: "he who has no partners or equals.",
+                    benefitsar: "الذي لا شريك له ولا مثيل",
+                    benefitsro: "cel care nu are partasi sau egali.",
+                    occurrences: "1 time in quran (surah al-ikhlas)",
+                },
+                {
+                    number: 68,
+                    name: "as-samad",
+                    arabic: "الصَّمَدُ",
+                    meaning: "the eternal",
+                    meaningar: "الصمد",
+                    meaningro: "eternul",
+                    benefits: "he who is depended on by all creation.",
+                    benefitsar: "الذي تعتمد عليه كل الخليقة",
+                    benefitsro: "cel de care depinde întreaga creație.",
+                    occurrences: "1 time in quran (surah al-ikhlas)",
+                },
+                {
+                    number: 69,
+                    name: "al-qadir",
+                    arabic: "الْقَادِرُ",
+                    meaning: "the powerful",
+                    meaningar: "القادر",
+                    meaningro: "puternicul",
+                    benefits: "he who has power over all things.",
+                    benefitsar: "الذي له سلطان على كل شيء",
+                    benefitsro: "cel care are putere asupra tuturor lucrurilor.",
+                    occurrences: "12 times in quran",
+                },
+                {
+                    number: 70,
+                    name: "al-muqtadir",
+                    arabic: "الْمُقْتَدِرُ",
+                    meaning: "the omnipotent",
+                    meaningar: "المقتدر",
+                    meaningro: "atotputernicul",
+                    benefits: "he who enacts his will with perfect power.",
+                    benefitsar: "الذي ينفذ إرادته بقوة كاملة",
+                    benefitsro: "cel care își realizează voința cu putere perfectă.",
+                    occurrences: "4 times in quran",
+                },
+                {
+                    number: 71,
+                    name: "al-muqaddim",
+                    arabic: "الْمُقَدِّمُ",
+                    meaning: "the expediter",
+                    meaningar: "المقدم",
+                    meaningro: "grăbitorul",
+                    benefits: "he who advances whom he wills.",
+                    benefitsar: "الذي يقدم من يشاء",
+                    benefitsro: "cel care avansează pe cine voiește.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 72,
+                    name: "al-mu'akhkhir",
+                    arabic: "الْمُؤَخِّرُ",
+                    meaning: "the delayer",
+                    meaningar: "المؤخر",
+                    meaningro: "ântârziatorul",
+                    benefits: "he who delays or postpones according to his wisdom.",
+                    benefitsar: "الذي يؤخر أو يؤجل بحكمته",
+                    benefitsro: "cel care întârzie sau amână după înțelepciunea sa.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 73,
+                    name: "al-awwal",
+                    arabic: "الْأَوَّلُ",
+                    meaning: "the first",
+                    meaningar: "الأول",
+                    meaningro: "primul",
+                    benefits: "he who existed before all creation.",
+                    benefitsar: "الذي وجد قبل كل الخلق",
+                    benefitsro: "cel care a existat înainte de toată creația.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 74,
+                    name: "al-akhir",
+                    arabic: "الْآخِرُ",
+                    meaning: "the last",
+                    meaningar: "الآخر",
+                    meaningro: "ultimul",
+                    benefits: "he who remains after all creation perishes.",
+                    benefitsar: "الذي يبقى بعد فناء الخلق",
+                    benefitsro: "cel care rămâne după ce toată creația dispare.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 75,
+                    name: "az-zahir",
+                    arabic: "الظَّاهِرُ",
+                    meaning: "the manifest",
+                    meaningar: "الظاهر",
+                    meaningro: "vizibilul",
+                    benefits: "he who is evident through his creation.",
+                    benefitsar: "الذي يتجلى من خلال خلقه",
+                    benefitsro: "cel care se manifestă prin creația sa.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 76,
+                    name: "al-batin",
+                    arabic: "الْبَاطِنُ",
+                    meaning: "the hidden",
+                    meaningar: "الباطن",
+                    meaningro: "ascunsul",
+                    benefits: "he whose essence is beyond human perception.",
+                    benefitsar: "الذي جوهره يفوق إدراك البشر",
+                    benefitsro: "cel a cărui esență depășește percepția umană.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 77,
+                    name: "al-wali",
+                    arabic: "الْوَلِيُّ",
+                    meaning: "the governor",
+                    meaningar: "الولي",
+                    meaningro: "guvernatorul",
+                    benefits: "he who governs and protects the believers.",
+                    benefitsar: "الذي يحكم ويحمي المؤمنين",
+                    benefitsro: "cel care guvernează și protejează credincioșii.",
+                    occurrences: "15 times in quran",
+                },
+                {
+                    number: 78,
+                    name: "al-muta'ali",
+                    arabic: "الْمُتَعَالِي",
+                    meaning: "the supreme",
+                    meaningar: "المتعالي",
+                    meaningro: "supremul",
+                    benefits: "he who is exalted above all imperfections.",
+                    benefitsar: "الذي تعالى عن كل نقص",
+                    benefitsro: "cel care este înălțat deasupra tuturor imperfecțiunilor.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 79,
+                    name: "al-barr",
+                    arabic: "الْبَرُّ",
+                    meaning: "the source of goodness",
+                    meaningar: "البر",
+                    meaningro: "sursa bunătății",
+                    benefits: "he who is kind and generous to his creation.",
+                    benefitsar: "الذي هو لطيف وكريم مع خلقه",
+                    benefitsro: "cel care este bun și generos cu creația sa.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 80,
+                    name: "at-tawwab",
+                    arabic: "التَّوَّابُ",
+                    meaning: "the accepter of repentance",
+                    meaningar: "التواب",
+                    meaningro: "cel care primește căința",
+                    benefits: "he who forgives those who turn to him.",
+                    benefitsar: "الذي يغفر لمن يتوب إليه",
+                    benefitsro: "cel care îi iartă pe cei care se întorc către el.",
+                    occurrences: "11 times in quran",
+                },
+                {
+                    number: 81,
+                    name: "al-muntaqim",
+                    arabic: "الْمُنْتَقِمُ",
+                    meaning: "the avenger",
+                    meaningar: "المنتقم",
+                    meaningro: "răzbunătorul",
+                    benefits: "he who justly punishes the wrongdoers.",
+                    benefitsar: "الذي يعاقب الظالمين بعدل",
+                    benefitsro: "cel care pedepsește nedrepții cu dreptate.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 82,
+                    name: "al-afu",
+                    arabic: "الْعَفُوُّ",
+                    meaning: "the pardoner",
+                    meaningar: "العفو",
+                    meaningro: "iertătorul",
+                    benefits: "he who erases sins and overlooks faults.",
+                    benefitsar: "الذي يمحو الذنوب ويتغاضى عن الزلات",
+                    benefitsro: "cel care șterge păcatele și trece cu vederea greșelile.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 83,
+                    name: "ar-ra'uf",
+                    arabic: "الرَّءُوفُ",
+                    meaning: "the kind",
+                    meaningar: "الرؤوف",
+                    meaningro: "blândul",
+                    benefits: "he who is gentle and compassionate.",
+                    benefitsar: "الذي هو لطيف ورحيم",
+                    benefitsro: "cel care este blând și milos.",
+                    occurrences: "10 times in quran",
+                },
+                {
+                    number: 84,
+                    name: "malik al-mulk",
+                    arabic: "مَالِكُ الْمُلْكِ",
+                    meaning: "owner of all sovereignty",
+                    meaningar: "مالك الملك",
+                    meaningro: "stăpânul întregii suveranități",
+                    benefits: "he who controls all dominion and authority.",
+                    benefitsar: "الذي يسيطر على كل الملك والسلطة",
+                    benefitsro: "cel care controlează întreaga suveranitate și autoritate.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 85,
+                    name: "dhu al-jalal wal-ikram",
+                    arabic: "ذُو الْجَلَالِ وَالْإِكْرَامِ",
+                    meaning: "lord of majesty & generosity",
+                    meaningar: "ذو الجلال والإكرام",
+                    meaningro: "domnul măreției și generozității",
+                    benefits: "he who possesses ultimate majesty and honor.",
+                    benefitsar: "الذي يمتلك الجلال والشرف المطلق",
+                    benefitsro: "cel care posedă măreția și onoarea supremă.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 86,
+                    name: "al-muqsit",
+                    arabic: "الْمُقْسِطُ",
+                    meaning: "the equitable",
+                    meaningar: "المقسط",
+                    meaningro: "echitabilul",
+                    benefits: "he who ensures perfect justice and balance.",
+                    benefitsar: "الذي يضمن العدل والتوازن الكامل",
+                    benefitsro: "cel care asigură dreptate și echilibru perfect.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 87,
+                    name: "al-jami'",
+                    arabic: "الْجَامِعُ",
+                    meaning: "the gatherer",
+                    meaningar: "الجامع",
+                    meaningro: "adunătorul",
+                    benefits: "he who gathers all creation on judgment day.",
+                    benefitsar: "الذي يجمع كل الخلق يوم القيامة",
+                    benefitsro: "cel care va aduna toată creația în ziua judecății.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 88,
+                    name: "al-ghani",
+                    arabic: "الْغَنِيُّ",
+                    meaning: "the self-sufficient",
+                    meaningar: "الغني",
+                    meaningro: "cel autosuficient",
+                    benefits: "he who needs nothing and is needed by all.",
+                    benefitsar: "الذي لا يحتاج إلى شيء ويحتاجه الجميع",
+                    benefitsro: "cel care nu are nevoie de nimic și de el au nevoie toți.",
+                    occurrences: "18 times in quran",
+                },
+                {
+                    number: 89,
+                    name: "al-mughni",
+                    arabic: "الْمُغْنِي",
+                    meaning: "the enricher",
+                    meaningar: "المغني",
+                    meaningro: "îmbelșugătorul",
+                    benefits: "he who enriches whom he wills.",
+                    benefitsar: "الذي يغني من يشاء",
+                    benefitsro: "cel care îmbogățește pe cine voiește.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 90,
+                    name: "al-mani'",
+                    arabic: "الْمَانِعُ",
+                    meaning: "the preventer",
+                    meaningar: "المانع",
+                    meaningro: "împiedicătorul",
+                    benefits: "he who protects and prevents harm.",
+                    benefitsar: "الذي يحمي ويمنع الضرر",
+                    benefitsro: "cel care protejează și împiedică răul.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 91,
+                    name: "ad-darr",
+                    arabic: "الضَّارُّ",
+                    meaning: "the afflicter",
+                    meaningar: "الضار",
+                    meaningro: "cel care provocă necazul",
+                    benefits: "he who tests creation with hardship for wisdom.",
+                    benefitsar: "الذي يختبر الخلق بالشدائد حكمة",
+                    benefitsro: "cel care îi testează pe creaturi cu greutăți, după înțelepciune.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 92,
+                    name: "an-nafi'",
+                    arabic: "النَّافِعُ",
+                    meaning: "the benefactor",
+                    meaningar: "النافع",
+                    meaningro: "binefăcătorul",
+                    benefits: "he who grants benefits and blessings.",
+                    benefitsar: "الذي يمنح المنافع والبركات",
+                    benefitsro: "cel care acordă beneficii și binecuvântări.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 93,
+                    name: "an-nur",
+                    arabic: "النُّورُ",
+                    meaning: "the light",
+                    meaningar: "النور",
+                    meaningro: "lumina",
+                    benefits: "he who illuminates the heavens and earth.",
+                    benefitsar: "الذي ينير السموات والأرض",
+                    benefitsro: "cel care luminează cerurile și pământul.",
+                    occurrences: "5 times in quran",
+                },
+                {
+                    number: 94,
+                    name: "al-hadi",
+                    arabic: "الْهَادِي",
+                    meaning: "the guide",
+                    meaningar: "الهادي",
+                    meaningro: "călăuzitorul",
+                    benefits: "he who guides hearts to truth and righteousness.",
+                    benefitsar: "الذي يهدي القلوب إلى الحق والصلاح",
+                    benefitsro: "cel care călăuzește inimile către adevăr și dreptate.",
+                    occurrences: "12 times in quran",
+                },
+                {
+                    number: 95,
+                    name: "al-badi'",
+                    arabic: "الْبَدِيعُ",
+                    meaning: "the incomparable",
+                    meaningar: "البديع",
+                    meaningro: "incomparabilul",
+                    benefits: "he who creates in unique and wondrous ways.",
+                    benefitsar: "الذي يخلق بطرق فريدة وعجيبة",
+                    benefitsro: "cel care creează în moduri unice și minunate.",
+                    occurrences: "2 times in quran",
+                },
+                {
+                    number: 96,
+                    name: "al-baqi",
+                    arabic: "الْبَاقِي",
+                    meaning: "the everlasting",
+                    meaningar: "الباقي",
+                    meaningro: "vesnicul",
+                    benefits: "he who remains forever without end.",
+                    benefitsar: "الذي يبقى إلى الأبد بلا نهاية",
+                    benefitsro: "cel care rămâne veșnic fără sfârșit.",
+                    occurrences: "1 time in quran",
+                },
+                {
+                    number: 97,
+                    name: "al-warith",
+                    arabic: "الْوَارِثُ",
+                    meaning: "the inheritor",
+                    meaningar: "الوارث",
+                    meaningro: "moștenitorul",
+                    benefits: "he who inherits all creation after its end.",
+                    benefitsar: "الذي يرث كل الخلق بعد فنائه",
+                    benefitsro: "cel care moștenește toată creația după sfârșitul ei.",
+                    occurrences: "3 times in quran",
+                },
+                {
+                    number: 98,
+                    name: "ar-rashid",
+                    arabic: "الرَّشِيدُ",
+                    meaning: "the righteous teacher",
+                    meaningar: "الرشيد",
+                    meaningro: "învățătorul drept",
+                    benefits: "he who guides creation to righteousness.",
+                    benefitsar: "الذي يهدي الخلق إلى الصلاح",
+                    benefitsro: "cel care călăuzește creația către dreptate.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 99,
+                    name: "as-sabur",
+                    arabic: "الصَّبُورُ",
+                    meaning: "the patient",
+                    meaningar: "الصبور",
+                    meaningro: "răbdătorul",
+                    benefits: "he who is patient and delays punishment for wisdom.",
+                    benefitsar: "الذي يصبر ويؤخر العقوبة حكمة",
+                    benefitsro: "cel care este răbdător și amână pedeapsa după înțelepciune.",
+                    occurrences: "mentioned in hadith",
+                },
+                {
+                    number: 99,
+                    name: "as-sabur",
+                    arabic: "الصَّبُورُ",
+                    meaning: "the patient",
+                    meaningar: "الصبور",
+                    meaningro: "cel răbdător",
+                    benefits: "the one who does not quickly punish the sinners.",
+                    benefitsar: "الذي لا يعجل بعقاب العصاة",
+                    benefitsro: "cel care nu pedepsește repede păcătoșii.",
+                    occurrences: "11 times in quran",
+                },
+            ];
+
+            // Initialize names section
+            document.addEventListener("DOMContentLoaded", function () {
+                displayNames(allahNames);
+
+                // Search functionality
+                document.getElementById("name-search").addEventListener("input", function (e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const filteredNames = allahNames.filter(
+                        (name) =>
+                            name.name.toLowerCase().includes(searchTerm) ||
+                            name.arabic.includes(searchTerm) ||
+                            name.meaning.toLowerCase().includes(searchTerm)
+                    );
+                    displayNames(filteredNames);
+                });
+
+                // View toggle functionality
+                document.getElementById("grid-view").addEventListener("click", function () {
+                    document.getElementById("names-container").classList.remove("list-view");
+                    document.getElementById("grid-view").classList.add("active");
+                    document.getElementById("list-view").classList.remove("active");
+                });
+
+                document.getElementById("list-view").addEventListener("click", function () {
+                    document.getElementById("names-container").classList.add("list-view");
+                    document.getElementById("list-view").classList.add("active");
+                    document.getElementById("grid-view").classList.remove("active");
+                });
+            });
+
+            // Display names in grid
+            function displayNames(names) {
+                const container = document.getElementById("names-container");
+                container.innerHTML = "";
+
+                names.forEach((name) => {
+                    const card = document.createElement("div");
+                    card.className = "name-card grid-view";
+                    card.innerHTML = `
+                                    <div class="name-number">${name.number}</div>
+                                    <h3>${name.name}</h3>
+                                    <p>${name.arabic}</p>
+                                `;
+                    card.addEventListener("click", () => showNameDetails(name));
+                    container.appendChild(card);
+                });
+            }
+
+            // Show name details
+            let currentName = null;
+            function showNameDetails(name) {
+                currentName = name;
+                document.getElementById("detail-name").textContent = name.name;
+                document.getElementById("detail-arabic").textContent = name.arabic;
+                document.getElementById("detail-meaning").textContent = name.meaning;
+                document.getElementById("detail-benefits").textContent = name.benefits;
+                document.getElementById("detail-occurrences").textContent = name.occurrences;
+
+                document.getElementById("name-details").style.display = "flex";
+            }
+
+            // Close details modal
+            function closeDetails() {
+                document.getElementById("name-details").style.display = "none";
+            }
+
+            // Toggle favorite
+            function toggleFavorite() {
+                // Implement favorite functionality here
+                alert("Favorite functionality would be implemented here");
+            }
+        </script>
+    </body>
+</html>

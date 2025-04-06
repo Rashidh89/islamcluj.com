@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="En">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About Us - Islam Cluj</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+        <style>
+            /* Reuse your existing styles */
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* About Page Specific Styles */
+            .about-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                align-items: center;
+            }
+
+            .about-text {
+                padding: 20px;
+            }
+
+            .about-text h3 {
+                color: var(--primary-color);
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+            }
+
+            .about-image {
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.5s;
+            }
+
+            .about-image:hover img {
+                transform: scale(1.05);
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .feature-card {
+                background-color: var(--white);
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                text-align: center;
+                transition: transform 0.3s;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                background-color: var(--primary-color);
+                color: var(--white);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 20px;
+                font-size: 1.5rem;
+            }
+
+            .feature-card h4 {
+                color: var(--primary-color);
+                margin-bottom: 15px;
+                font-size: 1.3rem;
+            }
+
+            .timeline {
+                position: relative;
+                max-width: 800px;
+                margin: 40px auto 0;
+            }
+
+            .timeline::before {
+                content: "";
+                position: absolute;
+                width: 2px;
+                background-color: var(--primary-color);
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -1px;
+            }
+
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item:nth-child(odd) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 50%;
+            }
+
+            .timeline-content {
+                padding: 20px;
+                background-color: var(--white);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+
+            .timeline-content::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: var(--white);
+                border: 3px solid var(--primary-color);
+                border-radius: 50%;
+                top: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                right: -10px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+            }
+
+            .timeline-date {
+                font-weight: bold;
+                color: var(--secondary-color);
+                margin-bottom: 10px;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .timeline::before {
+                    left: 31px;
+                }
+
+                .timeline-item {
+                    width: 100%;
+                    padding-left: 70px;
+                    padding-right: 0;
+                }
+
+                .timeline-item:nth-child(even) {
+                    left: 0;
+                }
+
+                .timeline-item:nth-child(odd) .timeline-content::after,
+                .timeline-item:nth-child(even) .timeline-content::after {
+                    left: -35px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="gallery.html" class="En">Gallery</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="about.html" class="Ar">من نحن</a></li>
+                            <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                            <li><a href="events.html" class="Ar">أحداث</a></li>
+                            <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="about.html" class="Ro">Despre</a></li>
+                            <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                            <li><a href="events.html" class="Ro">Evenimente</a></li>
+                            <li><a href="contact.html" class="Ro">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                            <!-- <span class="En">English</span>
+                            <span class="Ar" style="display: none">English</span>
+                            <span class="Ro" style="display: none">Engleză</span>
+                            <i class="fas fa-chevron-down"></i> -->
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="about-mosque">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">About Our Mosque</h2>
+                    <h2 class="Ar" style="display: none">عن مسجدنا</h2>
+                    <h2 class="Ro" style="display: none">Despre Moscheea Noastră</h2>
+                    <p class="En">
+                        Discover the history and mission of the Islamic Cultural Center in
+                        Cluj-Napoca
+                    </p>
+                    <p class="Ar" style="display: none">
+                        اكتشف تاريخ ورسالة المركز الثقافي الإسلامي في كلوج نابوكا
+                    </p>
+                    <p class="Ro" style="display: none">
+                        Descoperiți istoria și misiunea Centrului Cultural Islamic din Cluj-Napoca
+                    </p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 class="En">Welcome to Our Islamic Center</h3>
+                        <h3 class="Ar" style="display: none">مرحباً بكم في مركزنا الإسلامي</h3>
+                        <h3 class="Ro" style="display: none">
+                            Bun venit la Centrul nostru Islamic
+                        </h3>
+                        <p class="En">
+                            The Islamic Cultural Center in Cluj-Napoca serves as a spiritual home
+                            for Muslims in Transylvania and a bridge for intercultural dialogue.
+                            Established in 2005, our center provides religious services, educational
+                            programs, and community support while promoting the true message of
+                            Islam as a religion of peace and tolerance.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            يخدم المركز الثقافي الإسلامي في كلوج نابوكا كبيت روحي للمسلمين في
+                            ترانسيلفانيا وجسر للحوار بين الثقافات. تأسس مركزنا عام 2005 ويقدم خدمات
+                            دينية وبرامج تعليمية ودعمًا مجتمعيًا مع تعزيز الرسالة الحقيقية للإسلام
+                            كدين للسلام والتسامح.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Centrul Cultural Islamic din Cluj-Napoca servește ca o casă spirituală
+                            pentru musulmanii din Transilvania și ca o punte pentru dialogul
+                            intercultural. Înființat în 2005, centrul nostru oferă servicii
+                            religioase, programe educaționale și sprijin comunitar, promovând în
+                            același timp mesajul autentic al Islamului ca religie a păcii și
+                            toleranței.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/cluj-mosque.png" alt="Cluj Mosque" />
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <h4 class="En">Daily Prayers</h4>
+                        <h4 class="Ar" style="display: none">الصلوات اليومية</h4>
+                        <h4 class="Ro" style="display: none">Rugăciuni Zilnice</h4>
+                        <p class="En">
+                            All five daily prayers with Jumu'ah congregation every Friday
+                        </p>
+                        <p class="Ar" style="display: none">
+                            جميع الصلوات الخمس اليومية مع صلاة الجمعة كل أسبوع
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Toate cele cinci rugăciuni zilnice cu rugăciunea de Vineri în fiecare
+                            săptămână
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-quran"></i>
+                        </div>
+                        <h4 class="En">Quran Classes</h4>
+                        <h4 class="Ar" style="display: none">دروس القرآن</h4>
+                        <h4 class="Ro" style="display: none">Cursuri de Coran</h4>
+                        <p class="En">Tajweed, memorization and tafsir for all age groups</p>
+                        <p class="Ar" style="display: none">
+                            التجويد والحفظ والتفسير لجميع الفئات العمرية
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Tajweed, memorizare și tafsir pentru toate grupele de vârstă
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h4 class="En">Community Services</h4>
+                        <h4 class="Ar" style="display: none">خدمات المجتمع</h4>
+                        <h4 class="Ro" style="display: none">Servicii Comunitare</h4>
+                        <p class="En">Marriage services, counseling, funeral services and more</p>
+                        <p class="Ar" style="display: none">
+                            خدمات الزواج، الإرشاد، خدمات الجنازات والمزيد
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servicii matrimoniale, consiliere, servicii funerare și altele
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="En">Education</h4>
+                        <h4 class="Ar" style="display: none">التعليم</h4>
+                        <h4 class="Ro" style="display: none">Educație</h4>
+                        <p class="En">
+                            Islamic studies, Arabic language courses and youth programs
+                        </p>
+                        <p class="Ar" style="display: none">
+                            الدراسات الإسلامية ودورات اللغة العربية وبرامج الشباب
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Studii islamice, cursuri de limbă arabă și programe pentru tineret
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" style="background-color: var(--light-color)">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Our History</h2>
+                    <h2 class="Ar" style="display: none">تاريخنا</h2>
+                    <h2 class="Ro" style="display: none">Istoria Noastră</h2>
+                    <p class="En">
+                        The journey of Islam in Cluj-Napoca and our center's development
+                    </p>
+                    <p class="Ar" style="display: none">رحلة الإسلام في كلوج نابوكا وتطور مركزنا</p>
+                    <p class="Ro" style="display: none">
+                        Călătoria Islamului în Cluj-Napoca și dezvoltarea centrului nostru
+                    </p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1990</div>
+                            <h4 class="En">First Muslim Community</h4>
+                            <h4 class="Ar" style="display: none">أول مجتمع مسلم</h4>
+                            <h4 class="Ro" style="display: none">Prima Comunitate Musulmană</h4>
+                            <p class="En">
+                                Establishment of the first organized Muslim community in Cluj-Napoca
+                                by students and immigrants
+                            </p>
+                            <p class="Ar" style="display: none">
+                                تأسيس أول مجتمع مسلم منظم في كلوج نابوكا من قبل الطلاب والمهاجرين
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Înființarea primei comunități musulmane organizate în Cluj-Napoca de
+                                către studenți și imigranți
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2003</div>
+                            <h4 class="En">First Prayer Space</h4>
+                            <h4 class="Ar" style="display: none">أول مكان للصلاة</h4>
+                            <h4 class="Ro" style="display: none">Primul Spațiu de Rugăciune</h4>
+                            <p class="En">
+                                Acquisition of a small apartment converted into the city's first
+                                prayer room
+                            </p>
+                            <p class="Ar" style="display: none">
+                                الحصول على شقة صغيرة تم تحويلها إلى أول غرفة صلاة في المدينة
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Achiziționarea unui apartament mic transformat în prima sală de
+                                rugăciune din oraș
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2005</div>
+                            <h4 class="En">Official Recognition</h4>
+                            <h4 class="Ar" style="display: none">الاعتراف الرسمي</h4>
+                            <h4 class="Ro" style="display: none">Recunoaștere Oficială</h4>
+                            <p class="En">
+                                Registration of the Islamic Cultural League of Romania and official
+                                establishment of the center
+                            </p>
+                            <p class="Ar" style="display: none">
+                                تسجيل الجامعة الثقافية الإسلامية لرومانيا والتأسيس الرسمي للمركز
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Înregistrarea Ligii Culturale Islamice din România și înființarea
+                                oficială a centrului
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2010</div>
+                            <h4 class="En">Current Location</h4>
+                            <h4 class="Ar" style="display: none">الموقع الحالي</h4>
+                            <h4 class="Ro" style="display: none">Locația Actuală</h4>
+                            <p class="En">
+                                Move to our current larger facility to accommodate the growing
+                                community
+                            </p>
+                            <p class="Ar" style="display: none">
+                                الانتقال إلى منشأتنا الحالية الأكبر لاستيعاب المجتمع المتنامي
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Mutarea în spațiul nostru actual mai mare pentru a găzdui
+                                comunitatea în creștere
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2018</div>
+                            <h4 class="En">Cultural Center Expansion</h4>
+                            <h4 class="Ar" style="display: none">توسيع المركز الثقافي</h4>
+                            <h4 class="Ro" style="display: none">Extinderea Centrului Cultural</h4>
+                            <p class="En">
+                                Addition of educational facilities and women's prayer area
+                            </p>
+                            <p class="Ar" style="display: none">
+                                إضافة مرافق تعليمية ومنطقة صلاة للنساء
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Adăugarea de facilități educaționale și a unei zone de rugăciune
+                                pentru femei
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Our Mission &amp; Vision</h2>
+                    <h2 class="Ar" style="display: none">مهمتنا ورؤيتنا</h2>
+                    <h2 class="Ro" style="display: none">Misiunea și Viziunea Noastră</h2>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Islamic Education"
+                        />
+                    </div>
+                    <div class="about-text">
+                        <h3 class="En">Our Guiding Principles</h3>
+                        <h3 class="Ar" style="display: none">مبادئنا التوجيهية</h3>
+                        <h3 class="Ro" style="display: none">Principiile Noastre de Orientare</h3>
+                        <p class="En">
+                            We strive to be a beacon of authentic Islamic knowledge and practice in
+                            Transylvania, serving both Muslims and the wider community. Our mission
+                            is to:
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نسعى جاهدين لأن نكون منارة للمعرفة والممارسة الإسلامية الأصيلة في
+                            ترانسيلفانيا، ونخدم كلًا من المسلمين والمجتمع الأوسع. مهمتنا هي:
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Ne străduim să fim un far al cunoașterii și practicii islamice autentice
+                            în Transilvania, servind atât musulmanii cât și comunitatea mai largă.
+                            Misiunea noastră este:
+                        </p>
+
+                        <ul style="margin-top: 15px; padding-left: 20px">
+                            <li class="En">
+                                Provide accurate Islamic education based on Quran and Sunnah
+                            </li>
+                            <li class="Ar" style="display: none">
+                                تقديم تعليم إسلامي دقيق يعتمد على القرآن والسنة
+                            </li>
+                            <li class="Ro" style="display: none">
+                                Oferim educație islamică corectă bazată pe Coran și Sunnah
+                            </li>
+
+                            <li class="En">Serve as a bridge between cultures and faiths</li>
+                            <li class="Ar" style="display: none">
+                                أن نكون جسراً بين الثقافات والأديان
+                            </li>
+                            <li class="Ro" style="display: none">
+                                Să fim o punte între culturi și religii
+                            </li>
+
+                            <li class="En">Support the spiritual and social needs of Muslims</li>
+                            <li class="Ar" style="display: none">
+                                دعم الاحتياجات الروحية والاجتماعية للمسلمين
+                            </li>
+                            <li class="Ro" style="display: none">
+                                Să sprijinim nevoile spirituale și sociale ale musulmanilor
+                            </li>
+
+                            <li class="En">Promote community service and social responsibility</li>
+                            <li class="Ar" style="display: none">
+                                تعزيز خدمة المجتمع والمسؤولية الاجتماعية
+                            </li>
+                            <li class="Ro" style="display: none">
+                                Promovăm serviciul comunității și responsabilitatea socială
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Include your footer here -->
+        <footer>
+            <!-- Your existing footer content -->
+        </footer>
+
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+    </body>
+</html>

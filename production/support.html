@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Community Support - Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="/site/public/assets/css/navbar.css" />
+        <style>
+            /* Reuse your existing CSS variables and base styles */
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+                --gold: #d4af37;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.8;
+                overflow-x: hidden;
+                background-color: #f8f9fa;
+            }
+
+            /* Reuse your header/footer styles from existing pages */
+
+            /* New styles for the support system */
+            .support-hero {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url("https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+                background-size: cover;
+                background-position: center;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--white);
+                position: relative;
+            }
+
+            .support-hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 2;
+            }
+
+            .support-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                color: var(--gold);
+            }
+
+            .support-container {
+                padding: 60px 0;
+            }
+
+            .support-tabs {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+                border-bottom: 2px solid var(--gray);
+            }
+
+            .tab-btn {
+                padding: 12px 25px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: var(--dark-color);
+                position: relative;
+                transition: all 0.3s;
+            }
+
+            .tab-btn.active {
+                color: var(--primary-color);
+            }
+
+            .tab-btn.active::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            .tab-content {
+                display: none;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 30px;
+                background-color: var(--white);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .tab-content.active {
+                display: block;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid var(--gray);
+                border-radius: 4px;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--secondary-color);
+            }
+
+            select.form-control {
+                appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right 10px center;
+                background-size: 1em;
+            }
+
+            .checkbox-group {
+                margin-top: 10px;
+            }
+
+            .checkbox-label {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+                cursor: pointer;
+            }
+
+            .checkbox-label input {
+                margin-right: 10px;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 12px 25px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: 500;
+                transition: all 0.3s;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-block {
+                display: block;
+                width: 100%;
+            }
+
+            .need-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid var(--secondary-color);
+            }
+
+            .need-card h3 {
+                color: var(--primary-color);
+                margin-bottom: 10px;
+            }
+
+            .need-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-bottom: 15px;
+                color: var(--dark-color);
+                font-size: 0.9rem;
+            }
+
+            .need-meta span {
+                display: flex;
+                align-items: center;
+            }
+
+            .need-meta i {
+                margin-right: 5px;
+                color: var(--secondary-color);
+            }
+
+            .urgency-high {
+                color: #dc2626;
+                font-weight: bold;
+            }
+
+            .urgency-medium {
+                color: #d97706;
+                font-weight: bold;
+            }
+
+            .urgency-low {
+                color: #059669;
+                font-weight: bold;
+            }
+
+            .privacy-note {
+                font-size: 0.9rem;
+                color: var(--text-color);
+                margin-top: 30px;
+                text-align: center;
+            }
+
+            @media (max-width: 768px) {
+                .support-hero {
+                    height: 300px;
+                }
+
+                .support-hero h1 {
+                    font-size: 2.2rem;
+                }
+
+                .tab-content {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header (reuse from your existing pages) -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li><a href="about.html" class="En">About</a></li>
+                            <li><a href="#" class="En">Services</a></li>
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                            <li><a href="support.html" class="En active">Community Support</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                            <li><a href="#" class="Ar">من نحن</a></li>
+                            <li><a href="#" class="Ar">خدمات</a></li>
+                            <li><a href="#" class="Ar">أحداث</a></li>
+                            <li><a href="#" class="Ar">اتصل بنا</a></li>
+                            <li><a href="support.html" class="Ar active">الدعم المجتمعي</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html" class="Ro">Acasă</a></li>
+                            <li><a href="#" class="Ro">Despre</a></li>
+                            <li><a href="#" class="Ro">Servicii</a></li>
+                            <li><a href="#" class="Ro">Evenimente</a></li>
+                            <li><a href="#" class="Ro">Contact</a></li>
+                            <li><a href="support.html" class="Ro active">Suport Comunitar</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="support-hero">
+            <div class="support-hero-content">
+                <h1 class="En">Community Support System</h1>
+                <h1 class="Ar" style="display: none">نظام الدعم المجتمعي</h1>
+                <h1 class="Ro" style="display: none">Sistem de Suport Comunitar</h1>
+
+                <p class="En">Connecting those in need with those who can help</p>
+                <p class="Ar" style="display: none">ربط المحتاجين مع القادرين على المساعدة</p>
+                <p class="Ro" style="display: none">
+                    Conectăm cei care au nevoie cu cei care pot ajuta
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="support-container">
+            <div class="container">
+                <div class="support-tabs">
+                    <button class="tab-btn active En" data-tab="seek-help">I Need Help</button>
+                    <button class="tab-btn En" data-tab="offer-help">I Can Help</button>
+                    <button class="tab-btn En" data-tab="view-needs">View Current Needs</button>
+
+                    <button class="tab-btn active Ar" style="display: none" data-tab="seek-help">
+                        أحتاج مساعدة
+                    </button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="offer-help">
+                        يمكنني المساعدة
+                    </button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="view-needs">
+                        عرض الاحتياجات الحالية
+                    </button>
+
+                    <button class="tab-btn En" data-tab="refer-needs">
+                        Know Someone Who Needs Help?
+                    </button>
+                    <button class="tab-btn Ar" style="display: none" data-tab="refer-needs">
+                        تعرف على شخص يحتاج مساعدة؟
+                    </button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="refer-needs">
+                        Cunoști Pe Cineva Care Are Nevoie de Ajutor?
+                    </button>
+
+                    <button class="tab-btn active Ro" style="display: none" data-tab="seek-help">
+                        Am Nevoie de Ajutor
+                    </button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="offer-help">
+                        Pot Ajuta
+                    </button>
+                    <button class="tab-btn Ro" style="display: none" data-tab="view-needs">
+                        Vezi Nevoile Curente
+                    </button>
+                </div>
+
+                <!-- Seek Help Form -->
+                <div id="seek-help" class="tab-content active">
+                    <h2 class="En">Request Assistance</h2>
+                    <h2 class="Ar" style="display: none">طلب المساعدة</h2>
+                    <h2 class="Ro" style="display: none">Solicită Asistență</h2>
+
+                    <form id="help-request-form">
+                        <div class="form-group">
+                            <label for="name" class="En">Your Name</label>
+                            <label for="name" class="Ar" style="display: none">اسمك</label>
+                            <label for="name" class="Ro" style="display: none">Numele Dvs.</label>
+                            <input type="text" id="name" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact" class="En">Contact Information</label>
+                            <label for="contact" class="Ar" style="display: none">
+                                معلومات الاتصال
+                            </label>
+                            <label for="contact" class="Ro" style="display: none">
+                                Informații de Contact
+                            </label>
+                            <input
+                                type="text"
+                                id="contact"
+                                class="form-control"
+                                required
+                                placeholder="Phone/Email"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="need-type" class="En">Type of Assistance Needed</label>
+                            <label for="need-type" class="Ar" style="display: none">
+                                نوع المساعدة المطلوبة
+                            </label>
+                            <label for="need-type" class="Ro" style="display: none">
+                                Tipul de Asistență Necesar
+                            </label>
+                            <select id="need-type" class="form-control" required>
+                                <option value="" class="En">Select an option</option>
+                                <option value="food" class="En">Food/Groceries</option>
+                                <option value="clothing" class="En">Clothing</option>
+                                <option value="shelter" class="En">Temporary Shelter</option>
+                                <option value="medical" class="En">Medical Assistance</option>
+                                <option value="financial" class="En">Financial Aid</option>
+                                <option value="other" class="En">Other</option>
+
+                                <option value="" class="Ar" style="display: none">
+                                    اختر خيارًا
+                                </option>
+                                <option value="food" class="Ar" style="display: none">
+                                    طعام/بقالة
+                                </option>
+                                <option value="clothing" class="Ar" style="display: none">
+                                    ملابس
+                                </option>
+                                <option value="shelter" class="Ar" style="display: none">
+                                    مأوى مؤقت
+                                </option>
+                                <option value="medical" class="Ar" style="display: none">
+                                    مساعدة طبية
+                                </option>
+                                <option value="financial" class="Ar" style="display: none">
+                                    مساعدة مالية
+                                </option>
+                                <option value="other" class="Ar" style="display: none">أخرى</option>
+
+                                <option value="" class="Ro" style="display: none">
+                                    Selectați o opțiune
+                                </option>
+                                <option value="food" class="Ro" style="display: none">
+                                    Alimente
+                                </option>
+                                <option value="clothing" class="Ro" style="display: none">
+                                    Îmbrăcăminte
+                                </option>
+                                <option value="shelter" class="Ro" style="display: none">
+                                    Adăpost Temporar
+                                </option>
+                                <option value="medical" class="Ro" style="display: none">
+                                    Asistență Medicală
+                                </option>
+                                <option value="financial" class="Ro" style="display: none">
+                                    Ajutor Financiar
+                                </option>
+                                <option value="other" class="Ro" style="display: none">
+                                    Altele
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency" class="En">Urgency Level</label>
+                            <label for="urgency" class="Ar" style="display: none">
+                                مستوى الاستعجال
+                            </label>
+                            <label for="urgency" class="Ro" style="display: none">
+                                Nivel de Urgență
+                            </label>
+                            <select id="urgency" class="form-control" required>
+                                <option value="high" class="En">High (need immediate help)</option>
+                                <option value="medium" class="En">Medium (need help soon)</option>
+                                <option value="low" class="En">Low (ongoing need)</option>
+
+                                <option value="high" class="Ar" style="display: none">
+                                    عالي (بحاجة لمساعدة فورية)
+                                </option>
+                                <option value="medium" class="Ar" style="display: none">
+                                    متوسط (بحاجة لمساعدة قريبًا)
+                                </option>
+                                <option value="low" class="Ar" style="display: none">
+                                    منخفض (حاجة مستمرة)
+                                </option>
+
+                                <option value="high" class="Ro" style="display: none">
+                                    Ridicată (nevoie imediată)
+                                </option>
+                                <option value="medium" class="Ro" style="display: none">
+                                    Medie (nevoie în curând)
+                                </option>
+                                <option value="low" class="Ro" style="display: none">
+                                    Scăzută (nevoie continuă)
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details" class="En">Additional Details</label>
+                            <label for="details" class="Ar" style="display: none">
+                                تفاصيل إضافية
+                            </label>
+                            <label for="details" class="Ro" style="display: none">
+                                Detalii Adiționale
+                            </label>
+                            <textarea id="details" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="En">Family Members</label>
+                            <label class="Ar" style="display: none">أفراد الأسرة</label>
+                            <label class="Ro" style="display: none">Membri Familie</label>
+                            <input
+                                type="number"
+                                id="family-size"
+                                class="form-control"
+                                min="1"
+                                value="1"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" id="anonymous" />
+                                    Keep my information anonymous
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" id="anonymous" />
+                                    ابق معلوماتي مجهولة
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" id="anonymous" />
+                                    Păstrează informațiile mele anonime
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-block En">Submit Request</button>
+                        <button type="submit" class="btn btn-block Ar" style="display: none">
+                            إرسال الطلب
+                        </button>
+                        <button type="submit" class="btn btn-block Ro" style="display: none">
+                            Trimite Cererea
+                        </button>
+                    </form>
+
+                    <p class="privacy-note En">
+                        Your information will only be shared with verified volunteers. For urgent
+                        needs, please call our helpline.
+                    </p>
+                    <p class="privacy-note Ar" style="display: none">
+                        سيتم مشاركة معلوماتك فقط مع متطوعين موثوق بهم. للحاجات العاجلة، يرجى الاتصال
+                        بخط المساعدة.
+                    </p>
+                    <p class="privacy-note Ro" style="display: none">
+                        Informațiile dvs. vor fi partajate doar cu voluntari verificați. Pentru
+                        nevoi urgente, vă rugăm să sunați la linia noastră de ajutor.
+                    </p>
+                </div>
+
+                <!-- Offer Help Form -->
+                <div id="offer-help" class="tab-content">
+                    <h2 class="En">Offer Assistance</h2>
+                    <h2 class="Ar" style="display: none">عرض المساعدة</h2>
+                    <h2 class="Ro" style="display: none">Oferă Ajutor</h2>
+
+                    <form id="help-offer-form">
+                        <div class="form-group">
+                            <label for="helper-name" class="En">Your Name</label>
+                            <label for="helper-name" class="Ar" style="display: none">اسمك</label>
+                            <label for="helper-name" class="Ro" style="display: none">
+                                Numele Dvs.
+                            </label>
+                            <input type="text" id="helper-name" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="helper-contact" class="En">Contact Information</label>
+                            <label for="helper-contact" class="Ar" style="display: none">
+                                معلومات الاتصال
+                            </label>
+                            <label for="helper-contact" class="Ro" style="display: none">
+                                Informații de Contact
+                            </label>
+                            <input
+                                type="text"
+                                id="helper-contact"
+                                class="form-control"
+                                required
+                                placeholder="Phone/Email"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="En">I Can Help With:</label>
+                            <label class="Ar" style="display: none">يمكنني المساعدة في:</label>
+                            <label class="Ro" style="display: none">Pot Ajuta Cu:</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="food" />
+                                    Food/Groceries
+                                </label>
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="clothing" />
+                                    Clothing
+                                </label>
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="shelter" />
+                                    Temporary Shelter
+                                </label>
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="medical" />
+                                    Medical Assistance
+                                </label>
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="financial" />
+                                    Financial Aid
+                                </label>
+                                <label class="checkbox-label En">
+                                    <input type="checkbox" name="help-type" value="other" />
+                                    Other
+                                </label>
+
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="food" />
+                                    طعام/بقالة
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="clothing" />
+                                    ملابس
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="shelter" />
+                                    مأوى مؤقت
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="medical" />
+                                    مساعدة طبية
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="financial" />
+                                    مساعدة مالية
+                                </label>
+                                <label class="checkbox-label Ar" style="display: none">
+                                    <input type="checkbox" name="help-type" value="other" />
+                                    أخرى
+                                </label>
+
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="food" />
+                                    Alimente
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="clothing" />
+                                    Îmbrăcăminte
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="shelter" />
+                                    Adăpost Temporar
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="medical" />
+                                    Asistență Medicală
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="financial" />
+                                    Ajutor Financiar
+                                </label>
+                                <label class="checkbox-label Ro" style="display: none">
+                                    <input type="checkbox" name="help-type" value="other" />
+                                    Altele
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availability" class="En">Availability</label>
+                            <label for="availability" class="Ar" style="display: none">
+                                التوفر
+                            </label>
+                            <label for="availability" class="Ro" style="display: none">
+                                Disponibilitate
+                            </label>
+                            <select id="availability" class="form-control">
+                                <option value="immediate" class="En">Can help immediately</option>
+                                <option value="week" class="En">Within a week</option>
+                                <option value="month" class="En">Within a month</option>
+                                <option value="ongoing" class="En">Ongoing basis</option>
+
+                                <option value="immediate" class="Ar" style="display: none">
+                                    يمكن المساعدة فورًا
+                                </option>
+                                <option value="week" class="Ar" style="display: none">
+                                    خلال أسبوع
+                                </option>
+                                <option value="month" class="Ar" style="display: none">
+                                    خلال شهر
+                                </option>
+                                <option value="ongoing" class="Ar" style="display: none">
+                                    على أساس مستمر
+                                </option>
+
+                                <option value="immediate" class="Ro" style="display: none">
+                                    Pot ajuta imediat
+                                </option>
+                                <option value="week" class="Ro" style="display: none">
+                                    Într-o săptămână
+                                </option>
+                                <option value="month" class="Ro" style="display: none">
+                                    Într-o lună
+                                </option>
+                                <option value="ongoing" class="Ro" style="display: none">
+                                    Pe bază continuă
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes" class="En">Additional Notes</label>
+                            <label for="notes" class="Ar" style="display: none">
+                                ملاحظات إضافية
+                            </label>
+                            <label for="notes" class="Ro" style="display: none">
+                                Note Adiționale
+                            </label>
+                            <textarea id="notes" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-block En">Submit Offer</button>
+                        <button type="submit" class="btn btn-block Ar" style="display: none">
+                            إرسال العرض
+                        </button>
+                        <button type="submit" class="btn btn-block Ro" style="display: none">
+                            Trimite Oferta
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Refer Needs Tab -->
+                <div id="refer-needs" class="tab-content">
+                    <h2 class="En">Refer Someone in Need</h2>
+                    <h2 class="Ar" style="display: none">إحالة شخص محتاج</h2>
+                    <h2 class="Ro" style="display: none">Referă Pe Cineva Care Are Nevoie</h2>
+
+                    <form id="referral-form">
+                        <div class="form-group">
+                            <label for="referrer-name" class="En">Your Name</label>
+                            <label for="referrer-name" class="Ar" style="display: none">اسمك</label>
+                            <label for="referrer-name" class="Ro" style="display: none">
+                                Numele Dvs.
+                            </label>
+                            <input type="text" id="referrer-name" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referrer-contact" class="En">
+                                Your Contact Information
+                            </label>
+                            <label for="referrer-contact" class="Ar" style="display: none">
+                                معلومات الاتصال الخاصة بك
+                            </label>
+                            <label for="referrer-contact" class="Ro" style="display: none">
+                                Informațiile Dvs. de Contact
+                            </label>
+                            <input
+                                type="text"
+                                id="referrer-contact"
+                                class="form-control"
+                                required
+                                placeholder="Phone/Email"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="person-name" class="En">Person/Family in Need Name</label>
+                            <label for="person-name" class="Ar" style="display: none">
+                                اسم الشخص/العائلة المحتاجة
+                            </label>
+                            <label for="person-name" class="Ro" style="display: none">
+                                Numele Persoanei/Familiei în Nevoie
+                            </label>
+                            <input type="text" id="person-name" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="person-contact" class="En">
+                                Their Contact Information (if available)
+                            </label>
+                            <label for="person-contact" class="Ar" style="display: none">
+                                معلومات الاتصال الخاصة بهم (إن وجدت)
+                            </label>
+                            <label for="person-contact" class="Ro" style="display: none">
+                                Informațiile Lor de Contact (dacă este disponibil)
+                            </label>
+                            <input
+                                type="text"
+                                id="person-contact"
+                                class="form-control"
+                                placeholder="Phone/Email"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral-type" class="En">Type of Assistance Needed</label>
+                            <label for="referral-type" class="Ar" style="display: none">
+                                نوع المساعدة المطلوبة
+                            </label>
+                            <label for="referral-type" class="Ro" style="display: none">
+                                Tipul de Asistență Necesar
+                            </label>
+                            <select id="referral-type" class="form-control" required>
+                                <option value="" class="En">Select an option</option>
+                                <option value="food" class="En">Food/Groceries</option>
+                                <option value="clothing" class="En">Clothing</option>
+                                <option value="shelter" class="En">Temporary Shelter</option>
+                                <option value="medical" class="En">Medical Assistance</option>
+                                <option value="financial" class="En">Financial Aid</option>
+                                <option value="other" class="En">Other</option>
+
+                                <option value="" class="Ar" style="display: none">
+                                    اختر خيارًا
+                                </option>
+                                <option value="food" class="Ar" style="display: none">
+                                    طعام/بقالة
+                                </option>
+                                <option value="clothing" class="Ar" style="display: none">
+                                    ملابس
+                                </option>
+                                <option value="shelter" class="Ar" style="display: none">
+                                    مأوى مؤقت
+                                </option>
+                                <option value="medical" class="Ar" style="display: none">
+                                    مساعدة طبية
+                                </option>
+                                <option value="financial" class="Ar" style="display: none">
+                                    مساعدة مالية
+                                </option>
+                                <option value="other" class="Ar" style="display: none">أخرى</option>
+
+                                <option value="" class="Ro" style="display: none">
+                                    Selectați o opțiune
+                                </option>
+                                <option value="food" class="Ro" style="display: none">
+                                    Alimente
+                                </option>
+                                <option value="clothing" class="Ro" style="display: none">
+                                    Îmbrăcăminte
+                                </option>
+                                <option value="shelter" class="Ro" style="display: none">
+                                    Adăpost Temporar
+                                </option>
+                                <option value="medical" class="Ro" style="display: none">
+                                    Asistență Medicală
+                                </option>
+                                <option value="financial" class="Ro" style="display: none">
+                                    Ajutor Financiar
+                                </option>
+                                <option value="other" class="Ro" style="display: none">
+                                    Altele
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral-urgency" class="En">Urgency Level</label>
+                            <label for="referral-urgency" class="Ar" style="display: none">
+                                مستوى الاستعجال
+                            </label>
+                            <label for="referral-urgency" class="Ro" style="display: none">
+                                Nivel de Urgență
+                            </label>
+                            <select id="referral-urgency" class="form-control" required>
+                                <option value="high" class="En">High (need immediate help)</option>
+                                <option value="medium" class="En">Medium (need help soon)</option>
+                                <option value="low" class="En">Low (ongoing need)</option>
+
+                                <option value="high" class="Ar" style="display: none">
+                                    عالي (بحاجة لمساعدة فورية)
+                                </option>
+                                <option value="medium" class="Ar" style="display: none">
+                                    متوسط (بحاجة لمساعدة قريبًا)
+                                </option>
+                                <option value="low" class="Ar" style="display: none">
+                                    منخفض (حاجة مستمرة)
+                                </option>
+
+                                <option value="high" class="Ro" style="display: none">
+                                    Ridicată (nevoie imediată)
+                                </option>
+                                <option value="medium" class="Ro" style="display: none">
+                                    Medie (nevoie în curând)
+                                </option>
+                                <option value="low" class="Ro" style="display: none">
+                                    Scăzută (nevoie continuă)
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral-details" class="En">
+                                Details About the Situation
+                            </label>
+                            <label for="referral-details" class="Ar" style="display: none">
+                                تفاصيل عن الحالة
+                            </label>
+                            <label for="referral-details" class="Ro" style="display: none">
+                                Detalii Despre Situație
+                            </label>
+                            <textarea
+                                id="referral-details"
+                                class="form-control"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral-consent" class="En">
+                                Have you spoken to them about this referral?
+                            </label>
+                            <label for="referral-consent" class="Ar" style="display: none">
+                                هل تحدثت معهم عن هذه الإحالة؟
+                            </label>
+                            <label for="referral-consent" class="Ro" style="display: none">
+                                Ai vorbit cu ei despre această referire?
+                            </label>
+                            <select id="referral-consent" class="form-control" required>
+                                <option value="yes" class="En">Yes, they are aware</option>
+                                <option value="no" class="En">
+                                    No, but I believe they need help
+                                </option>
+
+                                <option value="yes" class="Ar" style="display: none">
+                                    نعم، هم على علم
+                                </option>
+                                <option value="no" class="Ar" style="display: none">
+                                    لا، لكني أعتقد أنهم بحاجة إلى مساعدة
+                                </option>
+
+                                <option value="yes" class="Ro" style="display: none">
+                                    Da, sunt conștienți
+                                </option>
+                                <option value="no" class="Ro" style="display: none">
+                                    Nu, dar cred că au nevoie de ajutor
+                                </option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-block En">Submit Referral</button>
+                        <button type="submit" class="btn btn-block Ar" style="display: none">
+                            إرسال الإحالة
+                        </button>
+                        <button type="submit" class="btn btn-block Ro" style="display: none">
+                            Trimite Referința
+                        </button>
+                    </form>
+
+                    <p class="privacy-note En">
+                        We will handle all information with sensitivity and respect privacy. For
+                        urgent cases, we may reach out to you for more information.
+                    </p>
+                    <p class="privacy-note Ar" style="display: none">
+                        سنتعامل مع جميع المعلومات بحساسية ونحترم الخصوصية. للحالات العاجلة، قد نتصل
+                        بك للحصول على مزيد من المعلومات.
+                    </p>
+                    <p class="privacy-note Ro" style="display: none">
+                        Vom gestiona toate informațiile cu sensibilitate și respectăm
+                        confidențialitatea. Pentru cazuri urgente, este posibil să vă contactăm
+                        pentru mai multe informații.
+                    </p>
+                </div>
+
+                <!-- View Needs Section -->
+                <div id="view-needs" class="tab-content">
+                    <h2 class="En">Current Community Needs</h2>
+                    <h2 class="Ar" style="display: none">احتياجات المجتمع الحالية</h2>
+                    <h2 class="Ro" style="display: none">Nevoi Actuale ale Comunității</h2>
+
+                    <div class="need-card">
+                        <h3 class="En">Food Assistance Needed</h3>
+                        <h3 class="Ar" style="display: none">حاجة إلى مساعدة غذائية</h3>
+                        <h3 class="Ro" style="display: none">Nevoie de Ajutor Alimentar</h3>
+
+                        <div class="need-meta">
+                            <span>
+                                <i class="fas fa-user"></i>
+                                <span class="En">Family of 4</span>
+                                <span class="Ar" style="display: none">عائلة مكونة من 4 أفراد</span>
+                                <span class="Ro" style="display: none">Familie de 4</span>
+                            </span>
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Cluj-Napoca</span>
+                                <span class="Ar" style="display: none">كلوج نابوكا</span>
+                                <span class="Ro" style="display: none">Cluj-Napoca</span>
+                            </span>
+                            <span class="urgency-high">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span class="En">High Urgency</span>
+                                <span class="Ar" style="display: none">عاجل</span>
+                                <span class="Ro" style="display: none">Urgență Ridicată</span>
+                            </span>
+                        </div>
+
+                        <p class="En">
+                            Need groceries for the next two weeks. Prefer halal options if possible.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            بحاجة إلى بقالة للأسبوعين المقبلين. تفضل الخيارات الحلال إذا أمكن.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Nevoie de alimente pentru următoarele două săptămâni. Prefer opțiuni
+                            halal dacă este posibil.
+                        </p>
+
+                        <button class="btn En" style="margin-top: 15px">
+                            I Can Help With This
+                        </button>
+                        <button class="btn Ar" style="margin-top: 15px; display: none">
+                            يمكنني المساعدة في هذا
+                        </button>
+                        <button class="btn Ro" style="margin-top: 15px; display: none">
+                            Pot Ajuta Cu Aceasta
+                        </button>
+                    </div>
+
+                    <div class="need-card">
+                        <h3 class="En">Winter Clothing Needed</h3>
+                        <h3 class="Ar" style="display: none">حاجة إلى ملابس شتوية</h3>
+                        <h3 class="Ro" style="display: none">Nevoie de Îmbrăcăminte de Iarnă</h3>
+
+                        <div class="need-meta">
+                            <span>
+                                <i class="fas fa-user"></i>
+                                <span class="En">2 Children (ages 5 & 7)</span>
+                                <span class="Ar" style="display: none">طفلان (5 و7 سنوات)</span>
+                                <span class="Ro" style="display: none">2 Copii (5 și 7 ani)</span>
+                            </span>
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Cluj-Napoca</span>
+                                <span class="Ar" style="display: none">كلوج نابوكا</span>
+                                <span class="Ro" style="display: none">Cluj-Napoca</span>
+                            </span>
+                            <span class="urgency-medium">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span class="En">Medium Urgency</span>
+                                <span class="Ar" style="display: none">متوسط الاستعجال</span>
+                                <span class="Ro" style="display: none">Urgență Medie</span>
+                            </span>
+                        </div>
+
+                        <p class="En">
+                            Looking for winter coats and boots for two children before the cold
+                            weather arrives.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            البحث عن معاطف شتوية وأحذية لطفلين قبل وصول الطقس البارد.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Cautăm haine și cizme de iarnă pentru doi copii înainte de venirea
+                            frigului.
+                        </p>
+
+                        <button class="btn En" style="margin-top: 15px">
+                            I Can Help With This
+                        </button>
+                        <button class="btn Ar" style="margin-top: 15px; display: none">
+                            يمكنني المساعدة في هذا
+                        </button>
+                        <button class="btn Ro" style="margin-top: 15px; display: none">
+                            Pot Ajuta Cu Aceasta
+                        </button>
+                    </div>
+
+                    <div class="need-card">
+                        <h3 class="En">Temporary Accommodation</h3>
+                        <h3 class="Ar" style="display: none">سكن مؤقت</h3>
+                        <h3 class="Ro" style="display: none">Cazare Temporară</h3>
+
+                        <div class="need-meta">
+                            <span>
+                                <i class="fas fa-user"></i>
+                                <span class="En">Single mother + infant</span>
+                                <span class="Ar" style="display: none">أم عزباء مع رضيع</span>
+                                <span class="Ro" style="display: none">Mamă singură + copil</span>
+                            </span>
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="En">Cluj Area</span>
+                                <span class="Ar" style="display: none">منطقة كلوج</span>
+                                <span class="Ro" style="display: none">Zona Cluj</span>
+                            </span>
+                            <span class="urgency-high">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span class="En">High Urgency</span>
+                                <span class="Ar" style="display: none">عاجل</span>
+                                <span class="Ro" style="display: none">Urgență Ridicată</span>
+                            </span>
+                        </div>
+
+                        <p class="En">
+                            Need safe place to stay for 2-3 weeks while finding permanent housing.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            بحاجة إلى مكان آمن للإقامة لمدة 2-3 أسابيع أثناء البحث عن سكن دائم.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Nevoie de un loc sigur pentru 2-3 săptămâni în timp ce caută locuință
+                            permanentă.
+                        </p>
+
+                        <button class="btn En" style="margin-top: 15px">
+                            I Can Help With This
+                        </button>
+                        <button class="btn Ar" style="margin-top: 15px; display: none">
+                            يمكنني المساعدة في هذا
+                        </button>
+                        <button class="btn Ro" style="margin-top: 15px; display: none">
+                            Pot Ajuta Cu Aceasta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (reuse from your existing pages) -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h2 class="En">Islam Cluj</h2>
+                            <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                            <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                        </div>
+                        <p class="En">
+                            Serving the Muslim community in Cluj-Napoca with authentic Islamic
+                            education, prayer services, and community programs. Join us in building
+                            bridges of understanding and faith.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة،
+                            وبرامج مجتمعية. انضم إلينا في بناء جسور التفاهم والإيمان.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servim comunitatea musulmană din Cluj-Napoca cu educație islamică
+                            autentică, servicii de rugăciune și programe comunitare. Alăturați-vă
+                            nouă în construirea podurilor de înțelegere și credință.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/IslamClujNapoca/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-services">
+                        <h3 class="En">Services</h3>
+                        <h3 class="Ar" style="display: none">خدمات</h3>
+                        <h3 class="Ro" style="display: none">Servicii</h3>
+                        <ul>
+                            <li><a href="#" class="En">Quran reading</a></li>
+                            <li><a href="#" class="Ar" style="display: none">قراءة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Lectura Quranului</a>
+                            </li>
+
+                            <li><a href="#" class="En">Funeral Services</a></li>
+                            <li><a href="#" class="Ar" style="display: none">خدمات الجنازة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Servicii Funerare</a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Translation</a></li>
+                            <li><a href="#" class="Ar" style="display: none">ترجمة القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Traducerea Quranului
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Memorization</a></li>
+                            <li><a href="#" class="Ar" style="display: none">حفظ القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">
+                                    Memorizarea Quranului
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="En">Useful Links</h3>
+                        <h3 class="Ar" style="display: none">روابط مفيدة</h3>
+                        <h3 class="Ro" style="display: none">Link-uri Utile</h3>
+                        <ul>
+                            <li><a href="#" class="En">Contact</a></li>
+                            <li><a href="#" class="Ar" style="display: none">اتصل بنا</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Contact</a></li>
+
+                            <li><a href="#" class="En">About Us</a></li>
+                            <li><a href="#" class="Ar" style="display: none">من نحن</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Despre Noi</a></li>
+
+                            <li><a href="events.html" class="En">Events</a></li>
+                            <li>
+                                <a href="events.html" class="Ar" style="display: none">أحداث</a>
+                            </li>
+                            <li>
+                                <a href="events.html" class="Ro" style="display: none">
+                                    Evenimente
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Charity</a></li>
+                            <li><a href="#" class="Ar" style="display: none">صدقة</a></li>
+                            <li><a href="#" class="Ro" style="display: none">Caritate</a></li>
+
+                            <li><a href="#" class="En">Help Center</a></li>
+                            <li><a href="#" class="Ar" style="display: none">مركز المساعدة</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Centru de Ajutor</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3 class="En">Sign up for our News</h3>
+                        <h3 class="Ar" style="display: none">اشترك في نشرتنا الإخبارية</h3>
+                        <h3 class="Ro" style="display: none">
+                            Înscrieți-vă pentru știrile noastre
+                        </h3>
+                        <p class="En">Will send you updates</p>
+                        <p class="Ar" style="display: none">سوف نرسل لك التحديثات</p>
+                        <p class="Ro" style="display: none">Vă vom trimite actualizări</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" class="En" />
+                            <input
+                                type="email"
+                                placeholder="بريدك الإلكتروني"
+                                class="Ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email-ul Dvs."
+                                class="Ro"
+                                style="display: none"
+                            />
+                            <button type="submit" class="En">Subscribe</button>
+                            <button type="submit" class="Ar" style="display: none">اشتراك</button>
+                            <button type="submit" class="Ro" style="display: none">
+                                Abonează-te
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                    <p class="Ar" style="display: none">
+                        &copy; 2023 المركز الإسلامي. جميع الحقوق محفوظة.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        &copy; 2023 Cluj Islam. Toate Drepturile Rezervate.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Language Switcher (reuse from existing pages)
+
+                // Tab functionality
+                const tabBtns = document.querySelectorAll(".tab-btn");
+                const tabContents = document.querySelectorAll(".tab-content");
+
+                tabBtns.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const tabId = btn.getAttribute("data-tab");
+
+                        // Hide all tab contents
+                        tabContents.forEach((content) => {
+                            content.classList.remove("active");
+                        });
+
+                        // Deactivate all tab buttons
+                        tabBtns.forEach((btn) => {
+                            btn.classList.remove("active");
+                        });
+
+                        // Show selected tab content
+                        document.getElementById(tabId).classList.add("active");
+                        btn.classList.add("active");
+                    });
+                });
+
+                // Form submission (basic example)
+                const helpRequestForm = document.getElementById("help-request-form");
+                const helpOfferForm = document.getElementById("help-offer-form");
+
+                if (helpRequestForm) {
+                    helpRequestForm.addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        alert("Thank you for your request. Our team will contact you soon.");
+                        this.reset();
+                    });
+                }
+
+                if (helpOfferForm) {
+                    helpOfferForm.addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        alert(
+                            "Thank you for your generosity! We will match you with someone in need."
+                        );
+                        this.reset();
+                    });
+                }
+
+                // "I Can Help" buttons in View Needs section
+                const helpButtons = document.querySelectorAll("#view-needs .btn");
+                helpButtons.forEach((btn) => {
+                    btn.addEventListener("click", function () {
+                        // In a real implementation, this would connect to your database
+                        alert("Thank you! We will connect you with this family in need.");
+                    });
+                });
+            });
+            
+            // Add this to your existing script
+            const referralForm = document.getElementById("referral-form");
+            if (referralForm) {
+                referralForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    alert(
+                        "Thank you for your referral. We will follow up with them while respecting their privacy."
+                    );
+                    this.reset();
+                });
+            }
+        </script>
+        <script src="/site/public/assets/js/navbar.js"></script>
+    </body>
+</html>

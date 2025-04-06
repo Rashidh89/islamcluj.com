@@ -1,0 +1,505 @@
+<!-- Settings Section -->
+<section id="settings" style="display: block;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        <a href="#general-settings" class="list-group-item list-group-item-action active" data-bs-toggle="list">
+                            <i class="fas fa-cog me-2"></i> General
+                        </a>
+                        <a href="#prayer-settings" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-clock me-2"></i> Prayer Times
+                        </a>
+                        <a href="#email-settings" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-envelope me-2"></i> Email
+                        </a>
+                        <a href="#social-settings" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-share-alt me-2"></i> Social Media
+                        </a>
+                        <a href="#backup-settings" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-database me-2"></i> Backup
+                        </a>
+                        <a href="#maintenance-settings" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                            <i class="fas fa-tools me-2"></i> Maintenance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-info-circle text-primary mb-3" style="font-size: 2rem;"></i>
+                    <h5>System Information</h5>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li class="mb-2">
+                            <small class="text-muted">Version:</small>
+                            <div>v2.3.1</div>
+                        </li>
+                        <li class="mb-2">
+                            <small class="text-muted">Last Updated:</small>
+                            <div>2023-06-10</div>
+                        </li>
+                        <li class="mb-2">
+                            <small class="text-muted">PHP Version:</small>
+                            <div>8.1.5</div>
+                        </li>
+                        <li>
+                            <small class="text-muted">Database:</small>
+                            <div>MySQL 5.7</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div class="tab-content">
+                <!-- General Settings Tab -->
+                <div class="tab-pane active" id="general-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">General Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="siteTitle" class="form-label">Site Title</label>
+                                    <input type="text" class="form-control" id="siteTitle" value="Islam Cluj">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="siteDescription" class="form-label">Site Description</label>
+                                    <textarea class="form-control" id="siteDescription" rows="2">Islamic Community of Cluj-Napoca</textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="siteLogo" class="form-label">Site Logo</label>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/100x40?text=Islam+Cluj" class="me-3" alt="Logo" style="max-height: 40px;">
+                                        <div>
+                                            <input type="file" class="form-control" id="siteLogo">
+                                            <small class="text-muted">Recommended size: 200x80 pixels</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="favicon" class="form-label">Favicon</label>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/32?text=IC" class="me-3" alt="Favicon">
+                                        <div>
+                                            <input type="file" class="form-control" id="favicon">
+                                            <small class="text-muted">Recommended size: 32x32 pixels</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="timezone" class="form-label">Timezone</label>
+                                        <select class="form-select" id="timezone">
+                                            <option value="Europe/Bucharest" selected>Europe/Bucharest (GMT+3)</option>
+                                            <option value="Europe/London">Europe/London (GMT+1)</option>
+                                            <!-- More timezones would be added -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="dateFormat" class="form-label">Date Format</label>
+                                        <select class="form-select" id="dateFormat">
+                                            <option value="d-m-Y" selected>DD-MM-YYYY</option>
+                                            <option value="m-d-Y">MM-DD-YYYY</option>
+                                            <option value="Y-m-d">YYYY-MM-DD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="maintenanceMode">
+                                        <label class="form-check-label" for="maintenanceMode">
+                                            Maintenance Mode
+                                        </label>
+                                    </div>
+                                    <small class="text-muted">When enabled, only administrators can access the site</small>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Reset</button>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prayer Times Settings Tab -->
+                <div class="tab-pane" id="prayer-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Prayer Times Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="prayerMethod" class="form-label">Calculation Method</label>
+                                        <select class="form-select" id="prayerMethod">
+                                            <option value="muslim_world_league" selected>Muslim World League</option>
+                                            <option value="egyptian">Egyptian General Authority of Survey</option>
+                                            <option value="karachi">University of Islamic Sciences, Karachi</option>
+                                            <option value="umm_al_qura">Umm al-Qura University, Makkah</option>
+                                            <option value="diyanet">Diyanet İşleri Başkanlığı, Turkey</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="juristicMethod" class="form-label">Juristic Method</label>
+                                        <select class="form-select" id="juristicMethod">
+                                            <option value="shafii" selected>Shafii (Standard)</option>
+                                            <option value="hanafi">Hanafi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="latitude" class="form-label">Latitude</label>
+                                        <input type="text" class="form-control" id="latitude" value="46.7700">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="longitude" class="form-label">Longitude</label>
+                                        <input type="text" class="form-control" id="longitude" value="23.5800">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="prayerAdjustments" class="form-label">Manual Adjustments (minutes)</label>
+                                    <div class="row g-2">
+                                        <div class="col-4">
+                                            <label class="form-label small">Fajr</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="form-label small">Dhuhr</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="form-label small">Asr</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="form-label small">Maghrib</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="form-label small">Isha</label>
+                                            <input type="number" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="dhuhrAfterJumua" checked>
+                                        <label class="form-check-label" for="dhuhrAfterJumua">
+                                            Enable Dhuhr prayer after Jumu'ah on Fridays
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Reset</button>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Settings Tab -->
+                <div class="tab-pane" id="email-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Email Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="mailDriver" class="form-label">Mail Driver</label>
+                                    <select class="form-select" id="mailDriver">
+                                        <option value="smtp" selected>SMTP</option>
+                                        <option value="mailgun">Mailgun</option>
+                                        <option value="sendmail">Sendmail</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="mailHost" class="form-label">SMTP Host</label>
+                                        <input type="text" class="form-control" id="mailHost" value="mail.islamcluj.ro">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mailPort" class="form-label">SMTP Port</label>
+                                        <input type="number" class="form-control" id="mailPort" value="587">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="mailUsername" class="form-label">SMTP Username</label>
+                                        <input type="text" class="form-control" id="mailUsername" value="noreply@islamcluj.ro">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mailPassword" class="form-label">SMTP Password</label>
+                                        <input type="password" class="form-control" id="mailPassword" placeholder="••••••••">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="mailEncryption" class="form-label">Encryption</label>
+                                        <select class="form-select" id="mailEncryption">
+                                            <option value="tls" selected>TLS</option>
+                                            <option value="ssl">SSL</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mailFromAddress" class="form-label">From Address</label>
+                                        <input type="email" class="form-control" id="mailFromAddress" value="noreply@islamcluj.ro">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="mailFromName" class="form-label">From Name</label>
+                                    <input type="text" class="form-control" id="mailFromName" value="Islam Cluj">
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Test Email</button>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media Settings Tab -->
+                <div class="tab-pane" id="social-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Social Media Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="facebookUrl" class="form-label">Facebook Page URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-facebook-f"></i></span>
+                                        <input type="url" class="form-control" id="facebookUrl" placeholder="https://facebook.com/yourpage">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="twitterUrl" class="form-label">Twitter Profile URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                                        <input type="url" class="form-control" id="twitterUrl" placeholder="https://twitter.com/yourprofile">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="instagramUrl" class="form-label">Instagram Profile URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                                        <input type="url" class="form-control" id="instagramUrl" placeholder="https://instagram.com/yourprofile">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="youtubeUrl" class="form-label">YouTube Channel URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-youtube"></i></span>
+                                        <input type="url" class="form-control" id="youtubeUrl" placeholder="https://youtube.com/yourchannel">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="whatsappNumber" class="form-label">WhatsApp Number</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                                        <input type="tel" class="form-control" id="whatsappNumber" placeholder="+40712345678">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="socialSharing" checked>
+                                        <label class="form-check-label" for="socialSharing">
+                                            Enable Social Sharing Buttons
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Reset</button>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backup Settings Tab -->
+                <div class="tab-pane" id="backup-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Backup Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i> 
+                                Regular backups are essential for protecting your data. Configure automatic backups below.
+                            </div>
+                            
+                            <form>
+                                <div class="mb-3">
+                                    <label for="backupFrequency" class="form-label">Backup Frequency</label>
+                                    <select class="form-select" id="backupFrequency">
+                                        <option value="daily" selected>Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="backupStorage" class="form-label">Storage Location</label>
+                                    <select class="form-select" id="backupStorage">
+                                        <option value="local" selected>Local Server</option>
+                                        <option value="dropbox">Dropbox</option>
+                                        <option value="google_drive">Google Drive</option>
+                                        <option value="aws">Amazon S3</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="backupDatabase" checked>
+                                        <label class="form-check-label" for="backupDatabase">
+                                            Include Database in Backups
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="backupFiles">
+                                        <label class="form-check-label" for="backupFiles">
+                                            Include Uploaded Files in Backups
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">Last Backups</label>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Size</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>2023-06-15 02:00</td>
+                                                    <td>Full</td>
+                                                    <td>45.2 MB</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">Download</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2023-06-14 02:00</td>
+                                                    <td>Full</td>
+                                                    <td>44.8 MB</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">Download</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Create Backup Now</button>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Maintenance Settings Tab -->
+                <div class="tab-pane" id="maintenance-settings">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Maintenance Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-circle me-2"></i> 
+                                Warning: These settings affect the functionality of your website. Use with caution.
+                            </div>
+                            
+                            <form>
+                                <div class="mb-3">
+                                    <label for="maintenanceMessage" class="form-label">Maintenance Mode Message</label>
+                                    <textarea class="form-control" id="maintenanceMessage" rows="3">We're currently performing maintenance. Please check back soon.</textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="enableMaintenance">
+                                        <label class="form-check-label" for="enableMaintenance">
+                                            Enable Maintenance Mode
+                                        </label>
+                                    </div>
+                                    <small class="text-muted">When enabled, only administrators can access the site</small>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="allowedIPs" class="form-label">Allowed IP Addresses</label>
+                                    <textarea class="form-control" id="allowedIPs" rows="2" placeholder="Enter one IP per line">192.168.1.1
+89.36.125.74</textarea>
+                                    <small class="text-muted">These IPs can access the site during maintenance</small>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">System Tasks</label>
+                                    <div class="list-group">
+                                        <button type="button" class="list-group-item list-group-item-action">
+                                            <i class="fas fa-broom me-2"></i> Clear Cache
+                                        </button>
+                                        <button type="button" class="list-group-item list-group-item-action">
+                                            <i class="fas fa-database me-2"></i> Optimize Database
+                                        </button>
+                                        <button type="button" class="list-group-item list-group-item-action text-danger">
+                                            <i class="fas fa-trash-alt me-2"></i> Clear Log Files
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

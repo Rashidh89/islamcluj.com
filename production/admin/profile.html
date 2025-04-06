@@ -1,0 +1,280 @@
+<!-- Profile Section -->
+<section id="profile" style="display: block;">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="position-relative mb-3">
+                        <img src="https://via.placeholder.com/150" class="rounded-circle" width="150" height="150" alt="Profile">
+                        <button class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle" style="width: 40px; height: 40px;">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <h4 class="mb-1">Admin User</h4>
+                    <p class="text-muted mb-3">Administrator</p>
+                    <div class="d-flex justify-content-center mb-3">
+                        <button class="btn btn-outline-primary me-2">
+                            <i class="fas fa-envelope me-1"></i> Message
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-user-edit me-1"></i> Edit
+                        </button>
+                    </div>
+                    
+                    <div class="card mt-3">
+                        <div class="card-body text-start">
+                            <h6 class="card-title">Profile Completion</h6>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">Complete your profile by adding more information</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">
+                            <i class="fas fa-envelope me-2 text-primary"></i>
+                            <span>admin@islamcluj.ro</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            <span>+40 712 345 678</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            <span>Cluj-Napoca, Romania</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-alt me-2 text-primary"></i>
+                            <span>Member since January 2022</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#profile-info">Personal Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#security">Security</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#notifications">Notifications</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile-info">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="profileFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="profileFirstName" value="Admin">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profileLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="profileLastName" value="User">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileUsername" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="profileUsername" value="admin_user" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="profileEmail" value="admin@islamcluj.ro">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="profilePhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="profilePhone" value="+40 712 345 678">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profileDob" class="form-label">Date of Birth</label>
+                                        <input type="date" class="form-control" id="profileDob" value="1985-05-15">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileAddress" class="form-label">Address</label>
+                                    <textarea class="form-control" id="profileAddress" rows="2">Str. Memorandumului 12, Cluj-Napoca</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileBio" class="form-label">Bio</label>
+                                    <textarea class="form-control" id="profileBio" rows="4">System administrator with full privileges. Responsible for managing the Islam Cluj website and community activities.</textarea>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="tab-pane" id="security">
+                            <form>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Last password change: 3 months ago
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="currentPassword">
+                                    <small class="text-muted">Enter your current password to make changes</small>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="newPassword" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                        <div class="password-strength mt-2">
+                                            <small class="text-muted">Password strength:</small>
+                                            <div class="progress" style="height: 5px;">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 30%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirmNewPassword">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
+                                        <label class="form-check-label" for="twoFactorAuth">
+                                            Enable Two-Factor Authentication
+                                        </label>
+                                    </div>
+                                    <small class="text-muted">Add an extra layer of security to your account</small>
+                                </div>
+                                
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-secondary me-2">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Update Security Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="tab-pane" id="notifications">
+                            <h5 class="mb-4">Notification Preferences</h5>
+                            
+                            <div class="mb-4">
+                                <h6 class="mb-3">Email Notifications</h6>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="emailAnnouncements" checked>
+                                    <label class="form-check-label" for="emailAnnouncements">
+                                        Community announcements and news
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="emailEvents" checked>
+                                    <label class="form-check-label" for="emailEvents">
+                                        Upcoming events and reminders
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="emailPrayerTimes">
+                                    <label class="form-check-label" for="emailPrayerTimes">
+                                        Daily prayer time notifications
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="emailSecurity" checked>
+                                    <label class="form-check-label" for="emailSecurity">
+                                        Security alerts and account activity
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="mb-3">Push Notifications</h6>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="pushAnnouncements">
+                                    <label class="form-check-label" for="pushAnnouncements">
+                                        Important announcements
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="pushEvents" checked>
+                                    <label class="form-check-label" for="pushEvents">
+                                        Event reminders
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="pushPrayer" checked>
+                                    <label class="form-check-label" for="pushPrayer">
+                                        Prayer time alerts
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary me-2">Reset to Default</button>
+                                <button type="button" class="btn btn-primary">Save Preferences</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Account Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Activity</th>
+                                    <th>IP Address</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-06-15 14:32</td>
+                                    <td>Logged in</td>
+                                    <td>192.168.1.1</td>
+                                    <td>Cluj-Napoca, RO</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-06-15 10:15</td>
+                                    <td>Password changed</td>
+                                    <td>192.168.1.1</td>
+                                    <td>Cluj-Napoca, RO</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-06-14 18:45</td>
+                                    <td>Logged in</td>
+                                    <td>89.36.125.74</td>
+                                    <td>Bucharest, RO</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-06-13 09:22</td>
+                                    <td>Updated profile</td>
+                                    <td>192.168.1.1</td>
+                                    <td>Cluj-Napoca, RO</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

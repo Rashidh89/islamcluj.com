@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Management - Islam Cluj Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f59e0b;
+            --light-color: #f8fafc;
+        }
+
+        .event-card {
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-type {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .event-type.lecture {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .event-type.prayer {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .event-type.community {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .event-date-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .editor-toolbar {
+            border-radius: 6px 6px 0 0 !important;
+        }
+
+        .editor-content {
+            border-radius: 0 0 6px 6px !important;
+            min-height: 150px;
+        }
+
+        .image-preview {
+            height: 120px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include your admin header/sidebar -->
+    
+    <div class="container-fluid py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="en">Events Management</h2>
+            <h2 class="ar" style="display: none">إدارة الفعاليات</h2>
+            <h2 class="ro" style="display: none">Gestionare Evenimente</h2>
+            
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class="fas fa-plus me-2"></i>
+                <span class="en">Add New Event</span>
+                <span class="ar" style="display: none">إضافة فعالية جديدة</span>
+                <span class="ro" style="display: none">Adăugare Eveniment</span>
+            </button>
+        </div>
+
+        <!-- Events Filter -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label en">Event Type</label>
+                        <label class="form-label ar" style="display: none">نوع الفعالية</label>
+                        <label class="form-label ro" style="display: none">Tip Eveniment</label>
+                        <select class="form-select" id="eventTypeFilter">
+                            <option value="all" class="en">All Types</option>
+                            <option value="all" class="ar" style="display: none">جميع الأنواع</option>
+                            <option value="all" class="ro" style="display: none">Toate Tipurile</option>
+                            
+                            <option value="prayer" class="en">Prayer</option>
+                            <option value="prayer" class="ar" style="display: none">صلاة</option>
+                            <option value="prayer" class="ro" style="display: none">Rugăciune</option>
+                            
+                            <option value="lecture" class="en">Lecture</option>
+                            <option value="lecture" class="ar" style="display: none">محاضرة</option>
+                            <option value="lecture" class="ro" style="display: none">Conferință</option>
+                            
+                            <option value="community" class="en">Community</option>
+                            <option value="community" class="ar" style="display: none">مجتمع</option>
+                            <option value="community" class="ro" style="display: none">Comunitate</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label en">Date Range</label>
+                        <label class="form-label ar" style="display: none">نطاق التاريخ</label>
+                        <label class="form-label ro" style="display: none">Interval Dată</label>
+                        <input class="form-control" id="dateRangeFilter" placeholder="Select date range">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label en">Status</label>
+                        <label class="form-label ar" style="display: none">الحالة</label>
+                        <label class="form-label ro" style="display: none">Stare</label>
+                        <select class="form-select" id="statusFilter">
+                            <option value="all" class="en">All Statuses</option>
+                            <option value="all" class="ar" style="display: none">جميع الحالات</option>
+                            <option value="all" class="ro" style="display: none">Toate Stările</option>
+                            
+                            <option value="upcoming" class="en">Upcoming</option>
+                            <option value="upcoming" class="ar" style="display: none">قادم</option>
+                            <option value="upcoming" class="ro" style="display: none">Viitoare</option>
+                            
+                            <option value="ongoing" class="en">Ongoing</option>
+                            <option value="ongoing" class="ar" style="display: none">جاري</option>
+                            <option value="ongoing" class="ro" style="display: none">În desfășurare</option>
+                            
+                            <option value="past" class="en">Past</option>
+                            <option value="past" class="ar" style="display: none">منتهي</option>
+                            <option value="past" class="ro" style="display: none">Trecute</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button class="btn btn-secondary w-100" id="resetFilters">
+                            <i class="fas fa-filter-circle-xmark me-2"></i>
+                            <span class="en">Reset Filters</span>
+                            <span class="ar" style="display: none">إعادة تعيين الفلاتر</span>
+                            <span class="ro" style="display: none">Resetează Filtrele</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events List -->
+        <div class="row" id="eventsContainer">
+            <!-- Event cards will be loaded here dynamically -->
+            <div class="col-md-4 mb-4">
+                <div class="card event-card h-100">
+                    <span class="event-type lecture en">Lecture</span>
+                    <span class="event-type lecture ar" style="display: none">محاضرة</span>
+                    <span class="event-type lecture ro" style="display: none">Conferință</span>
+                    
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Event Image">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="event-date-badge">
+                                <i class="fas fa-calendar-day me-2"></i>
+                                <span>15 Jun 2023</span>
+                            </span>
+                            <span class="badge bg-success en">Published</span>
+                            <span class="badge bg-success ar" style="display: none">منشور</span>
+                            <span class="badge bg-success ro" style="display: none">Publicat</span>
+                        </div>
+                        <h5 class="card-title en">Friday Khutbah: The Importance of Sadaqah</h5>
+                        <h5 class="card-title ar" style="display: none">خطبة الجمعة: أهمية الصدقة</h5>
+                        <h5 class="card-title ro" style="display: none">Khutba de Vineri: Importanța Sadakah</h5>
+                        <p class="card-text text-muted en">
+                            <i class="fas fa-clock me-2"></i> 1:30 PM - 2:30 PM
+                            <br>
+                            <i class="fas fa-map-marker-alt me-2"></i> Main Prayer Hall
+                        </p>
+                        <p class="card-text text-muted ar" style="display: none">
+                            <i class="fas fa-clock me-2"></i> 1:30 ظهراً - 2:30 ظهراً
+                            <br>
+                            <i class="fas fa-map-marker-alt me-2"></i> قاعة الصلاة الرئيسية
+                        </p>
+                        <p class="card-text text-muted ro" style="display: none">
+                            <i class="fas fa-clock me-2"></i> 13:30 - 14:30
+                            <br>
+                            <i class="fas fa-map-marker-alt me-2"></i> Sala Principală de Rugăciune
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-outline-primary me-2 edit-event" data-id="1">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-event" data-id="1">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More event cards would appear here -->
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Events pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div class="modal fade" id="addEventModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title en">Add New Event</h5>
+                    <h5 class="modal-title ar" style="display: none">إضافة فعالية جديدة</h5>
+                    <h5 class="modal-title ro" style="display: none">Adăugare Eveniment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="eventForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <!-- Event Title -->
+                            <div class="col-md-12">
+                                <label class="form-label en">Event Title *</label>
+                                <label class="form-label ar" style="display: none">عنوان الفعالية *</label>
+                                <label class="form-label ro" style="display: none">Titlu Eveniment *</label>
+                                <input type="text" class="form-control" name="title" required>
+                            </div>
+                            
+                            <!-- Multilingual Titles -->
+                            <div class="col-md-6">
+                                <label class="form-label en">Arabic Title *</label>
+                                <label class="form-label ar" style="display: none">العنوان بالعربية *</label>
+                                <label class="form-label ro" style="display: none">Titlu Arabă *</label>
+                                <input type="text" class="form-control" name="title_ar" dir="rtl" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label en">Romanian Title *</label>
+                                <label class="form-label ar" style="display: none">العنوان بالرومانية *</label>
+                                <label class="form-label ro" style="display: none">Titlu Română *</label>
+                                <input type="text" class="form-control" name="title_ro" required>
+                            </div>
+                            
+                            <!-- Event Type -->
+                            <div class="col-md-4">
+                                <label class="form-label en">Event Type *</label>
+                                <label class="form-label ar" style="display: none">نوع الفعالية *</label>
+                                <label class="form-label ro" style="display: none">Tip Eveniment *</label>
+                                <select class="form-select" name="event_type" required>
+                                    <option value="prayer" class="en">Prayer</option>
+                                    <option value="prayer" class="ar" style="display: none">صلاة</option>
+                                    <option value="prayer" class="ro" style="display: none">Rugăciune</option>
+                                    
+                                    <option value="lecture" class="en">Lecture</option>
+                                    <option value="lecture" class="ar" style="display: none">محاضرة</option>
+                                    <option value="lecture" class="ro" style="display: none">Conferință</option>
+                                    
+                                    <option value="community" class="en">Community</option>
+                                    <option value="community" class="ar" style="display: none">مجتمع</option>
+                                    <option value="community" class="ro" style="display: none">Comunitate</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Date and Time -->
+                            <div class="col-md-4">
+                                <label class="form-label en">Date *</label>
+                                <label class="form-label ar" style="display: none">التاريخ *</label>
+                                <label class="form-label ro" style="display: none">Dată *</label>
+                                <input class="form-control" name="event_date" id="eventDate" required>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label en">Time *</label>
+                                <label class="form-label ar" style="display: none">الوقت *</label>
+                                <label class="form-label ro" style="display: none">Ora *</label>
+                                <input class="form-control" name="event_time" id="eventTime" required>
+                            </div>
+                            
+                            <!-- Location -->
+                            <div class="col-md-12">
+                                <label class="form-label en">Location *</label>
+                                <label class="form-label ar" style="display: none">الموقع *</label>
+                                <label class="form-label ro" style="display: none">Locație *</label>
+                                <input type="text" class="form-control" name="location" required>
+                            </div>
+                            
+                            <!-- Multilingual Locations -->
+                            <div class="col-md-6">
+                                <label class="form-label en">Arabic Location</label>
+                                <label class="form-label ar" style="display: none">الموقع بالعربية</label>
+                                <label class="form-label ro" style="display: none">Locație Arabă</label>
+                                <input type="text" class="form-control" name="location_ar" dir="rtl">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label en">Romanian Location</label>
+                                <label class="form-label ar" style="display: none">الموقع بالرومانية</label>
+                                <label class="form-label ro" style="display: none">Locație Română</label>
+                                <input type="text" class="form-control" name="location_ro">
+                            </div>
+                            
+                            <!-- Featured Image -->
+                            <div class="col-md-12">
+                                <label class="form-label en">Featured Image</label>
+                                <label class="form-label ar" style="display: none">الصورة الرئيسية</label>
+                                <label class="form-label ro" style="display: none">Imagine Principală</label>
+                                <input type="file" class="form-control" name="featured_image" accept="image/*" id="featuredImage">
+                                <img src="img/Mosque2.jpg" class="img-thumbnail mt-2 image-preview" id="imagePreview">
+                            </div>
+                            
+                            <!-- Event Description -->
+                            <div class="col-md-12">
+                                <label class="form-label en">Description</label>
+                                <label class="form-label ar" style="display: none">الوصف</label>
+                                <label class="form-label ro" style="display: none">Descriere</label>
+                                <div id="descriptionEditor"></div>
+                                <input type="hidden" name="description" id="descriptionInput">
+                            </div>
+                            
+                            <!-- Multilingual Descriptions -->
+                            <div class="col-md-6">
+                                <label class="form-label en">Arabic Description</label>
+                                <label class="form-label ar" style="display: none">الوصف بالعربية</label>
+                                <label class="form-label ro" style="display: none">Descriere Arabă</label>
+                                <div id="descriptionEditorAr" dir="rtl"></div>
+                                <input type="hidden" name="description_ar" id="descriptionInputAr">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label en">Romanian Description</label>
+                                <label class="form-label ar" style="display: none">الوصف بالرومانية</label>
+                                <label class="form-label ro" style="display: none">Descriere Română</label>
+                                <div id="descriptionEditorRo"></div>
+                                <input type="hidden" name="description_ro" id="descriptionInputRo">
+                            </div>
+                            
+                            <!-- Status -->
+                            <div class="col-md-12">
+                                <label class="form-label en">Status *</label>
+                                <label class="form-label ar" style="display: none">الحالة *</label>
+                                <label class="form-label ro" style="display: none">Stare *</label>
+                                <select class="form-select" name="status" required>
+                                    <option value="draft" class="en">Draft</option>
+                                    <option value="draft" class="ar" style="display: none">مسودة</option>
+                                    <option value="draft" class="ro" style="display: none">Ciornă</option>
+                                    
+                                    <option value="published" class="en">Published</option>
+                                    <option value="published" class="ar" style="display: none">منشور</option>
+                                    <option value="published" class="ro" style="display: none">Publicat</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <span class="en">Cancel</span>
+                            <span class="ar" style="display: none">إلغاء</span>
+                            <span class="ro" style="display: none">Anulare</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="en">Save Event</span>
+                            <span class="ar" style="display: none">حفظ الفعالية</span>
+                            <span class="ro" style="display: none">Salvează Eveniment</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    
+    <script>
+        // Initialize date/time pickers
+        flatpickr("#eventDate", {
+            dateFormat: "Y-m-d",
+            minDate: "today"
+        });
+        
+        flatpickr("#eventTime", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true
+        });
+        
+        flatpickr("#dateRangeFilter", {
+            mode: "range",
+            dateFormat: "Y-m-d"
+        });
+
+        // Initialize CKEditor for descriptions
+        let editors = {};
+        
+        ClassicEditor
+            .create(document.querySelector('#descriptionEditor'))
+            .then(editor => {
+                editors['description'] = editor;
+                editor.model.document.on('change:data', () => {
+                    document.querySelector('#descriptionInput').value = editor.getData();
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        
+        // Similarly initialize for Arabic and Romanian editors
+        // editors['description_ar'] and editors['description_ro']
+
+        // Image preview
+        document.getElementById('featuredImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            
+            // Add editor content to form data
+            formData.set('description', editors['description'].getData());
+            // Similarly for other editors
+            
+            // Submit via AJAX
+            fetch('api/events.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Refresh events list
+                    loadEvents();
+                    // Close modal
+                    bootstrap.Modal.getInstance(document.getElementById('addEventModal')).hide();
+                    // Show success message
+                    alert('Event saved successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while saving the event.');
+            });
+        });
+
+        // Load events function
+        function loadEvents() {
+            fetch('api/events.php')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('eventsContainer');
+                    container.innerHTML = '';
+                    
+                    data.events.forEach(event => {
+                        const eventCard = createEventCard(event);
+                        container.appendChild(eventCard);
+                    });
+                });
+        }
+
+        // Create event card HTML
+        function createEventCard(event) {
+            // This would generate the HTML for each event card
+            // Similar to the static example in the eventsContainer
+        }
+
+        // Initialize with English
+        // function switchLanguage(lang) {
+        //     document.querySelectorAll('[class*="en"], [class*="ar"], [class*="ro"]').forEach(el => {
+        //         el.style.display = 'none';
+        //     });
+        //     document.querySelectorAll(`.${lang}`).forEach(el => {
+        //         el.style.display = '';
+        //     });
+        //     document.body.classList.toggle('rtl', lang === 'ar');
+        // }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEvents();
+            switchLanguage('en');
+        });
+    </script>
+</body>
+</html>

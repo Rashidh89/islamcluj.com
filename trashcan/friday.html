@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="En" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Friday Sermon - Islamic Center</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .rtl {
+                direction: rtl;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--white);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                color: var(--primary-color);
+                margin-left: 10px;
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Hero Section */
+            .page-hero {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url("https://images.unsplash.com/photo-1561606731-9b7b5978b84e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+                background-size: cover;
+                background-position: center;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--white);
+                margin-top: 80px;
+            }
+
+            .page-hero-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .page-hero-content p {
+                font-size: 1.2rem;
+                max-width: 700px;
+                margin: 0 auto 20px;
+            }
+
+            .breadcrumb {
+                display: flex;
+                justify-content: center;
+                list-style: none;
+            }
+
+            .breadcrumb li {
+                margin: 0 10px;
+                position: relative;
+            }
+
+            .breadcrumb li:not(:last-child)::after {
+                content: "/";
+                position: absolute;
+                right: -15px;
+                color: var(--white);
+            }
+
+            .breadcrumb a {
+                color: var(--white);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .breadcrumb a:hover {
+                color: var(--secondary-color);
+            }
+
+            /* Section Styles */
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* Live Sermon Section */
+            .live-sermon {
+                background-color: var(--light-color);
+                padding: 40px;
+                border-radius: 8px;
+                margin-bottom: 40px;
+            }
+
+            .live-indicator {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .live-badge {
+                background-color: #e53e3e;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                font-weight: bold;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .live-badge::before {
+                content: "";
+                display: block;
+                width: 8px;
+                height: 8px;
+                background-color: white;
+                border-radius: 50%;
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .sermon-time {
+                color: var(--secondary-color);
+                font-weight: 600;
+            }
+
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                height: 0;
+                overflow: hidden;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                background-color: var(--dark-color);
+            }
+
+            .video-container iframe,
+            .video-container object,
+            .video-container embed {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            .video-placeholder {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .video-placeholder i {
+                font-size: 3rem;
+                margin-bottom: 15px;
+                color: var(--secondary-color);
+            }
+
+            .current-sermon-info {
+                margin-bottom: 20px;
+            }
+
+            .current-sermon-info h3 {
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                margin-bottom: 10px;
+            }
+
+            .current-sermon-info p {
+                margin-bottom: 5px;
+            }
+
+            .sermon-actions {
+                display: flex;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: var(--secondary-color);
+                color: var(--white);
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 500;
+                transition: background-color 0.3s;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .btn:hover {
+                background-color: #e69009;
+            }
+
+            .btn-outline {
+                background-color: transparent;
+                border: 1px solid var(--secondary-color);
+                color: var(--secondary-color);
+            }
+
+            .btn-outline:hover {
+                background-color: var(--secondary-color);
+                color: white;
+            }
+
+            /* Prayer Times */
+            .prayer-times {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 30px;
+                border-radius: 8px;
+                margin-bottom: 40px;
+            }
+
+            .prayer-times h3 {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 1.5rem;
+            }
+
+            .prayer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+                text-align: center;
+            }
+
+            .prayer-time {
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .prayer-time.active {
+                background-color: var(--secondary-color);
+                color: var(--dark-color);
+                font-weight: bold;
+            }
+
+            .prayer-time .prayer-name {
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .prayer-time .prayer-hour {
+                font-size: 1.2rem;
+            }
+
+            /* Sermon Archive */
+            .sermon-archive {
+                margin-top: 40px;
+            }
+
+            .archive-filter {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-box {
+                position: relative;
+                flex-grow: 1;
+                max-width: 400px;
+            }
+
+            .search-box input {
+                width: 100%;
+                padding: 10px 15px 10px 40px;
+                border: 1px solid var(--gray);
+                border-radius: 30px;
+            }
+
+            .search-box i {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-color);
+                opacity: 0.7;
+            }
+
+            .filter-select {
+                padding: 10px 15px;
+                border: 1px solid var(--gray);
+                border-radius: 5px;
+                background-color: white;
+            }
+
+            .sermon-list {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .sermon-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                display: flex;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            .sermon-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .sermon-thumbnail {
+                width: 250px;
+                flex-shrink: 0;
+                position: relative;
+            }
+
+            .sermon-thumbnail img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .sermon-thumbnail .duration {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+            }
+
+            .sermon-content {
+                padding: 20px;
+                flex-grow: 1;
+            }
+
+            .sermon-date {
+                color: var(--secondary-color);
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .sermon-title {
+                font-size: 1.2rem;
+                color: var(--primary-color);
+                margin-bottom: 10px;
+            }
+
+            .sermon-description {
+                margin-bottom: 15px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .sermon-meta {
+                display: flex;
+                gap: 15px;
+                font-size: 0.9rem;
+                color: var(--text-color);
+                opacity: 0.8;
+            }
+
+            .pagination {
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                gap: 10px;
+            }
+
+            .pagination-btn {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                background-color: var(--light-color);
+                color: var(--text-color);
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+            .pagination-btn.active {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            .pagination-btn:hover:not(.active) {
+                background-color: var(--gray);
+            }
+
+            /* Upcoming Event */
+            .upcoming-event {
+                background-color: var(--light-color);
+                padding: 30px;
+                border-radius: 8px;
+                margin-bottom: 40px;
+            }
+
+            .upcoming-event h3 {
+                color: var(--primary-color);
+                margin-bottom: 15px;
+                font-size: 1.3rem;
+            }
+
+            .event-card {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .event-date {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                min-width: 80px;
+            }
+
+            .event-date .day {
+                font-size: 1.8rem;
+                font-weight: bold;
+                line-height: 1;
+            }
+
+            .event-date .month {
+                font-size: 0.9rem;
+                text-transform: uppercase;
+            }
+
+            .event-details h4 {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .event-details p {
+                opacity: 0.8;
+                margin-bottom: 10px;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 992px) {
+                .sermon-card {
+                    flex-direction: column;
+                }
+
+                .sermon-thumbnail {
+                    width: 100%;
+                    height: 200px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .page-hero {
+                    height: 250px;
+                    margin-top: 80px;
+                }
+
+                .page-hero-content h1 {
+                    font-size: 2rem;
+                }
+
+                .sermon-actions {
+                    flex-direction: column;
+                }
+
+                .btn {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .prayer-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .archive-filter {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .search-box {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                    <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                    <h1 class="En">Islam Cluj</h1>
+                    <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                </div>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav-menu">
+                    <ul>
+                        <div class="En menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about-islam.html">About Islam</a></li>
+                            <li><a href="daily-quran.html">Daily Quran</a></li>
+                            <li><a href="friday-sermon.html" class="active">Friday Sermon</a></li>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </div>
+
+                        <div class="Ar menu" style="display: none">
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="about-islam.html">عن الإسلام</a></li>
+                            <li><a href="daily-quran.html">القرآن اليومي</a></li>
+                            <li><a href="friday-sermon.html" class="active">خطبة الجمعة</a></li>
+                            <li><a href="events.html">أحداث</a></li>
+                            <li><a href="contact.html">اتصل بنا</a></li>
+                        </div>
+                        <div class="Ro menu" style="display: none">
+                            <li><a href="index.html">Acasă</a></li>
+                            <li><a href="about-islam.html">Despre Islam</a></li>
+                            <li><a href="daily-quran.html">Quran Zilnic</a></li>
+                            <li>
+                                <a href="friday-sermon.html" class="active">Predica de Vineri</a>
+                            </li>
+                            <li><a href="events.html">Evenimente</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <div class="language-selector">
+                        <div class="selected-language">
+                            <img
+                                src="https://flagcdn.com/w20/gb.png"
+                                alt="English"
+                                width="20"
+                                height="15"
+                            />
+                        </div>
+                        <ul class="language-dropdown">
+                            <li data-lang="Ar">
+                                <img
+                                    src="https://flagcdn.com/w20/sa.png"
+                                    alt="العربية"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>العربية</span>
+                            </li>
+                            <li data-lang="En">
+                                <img
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="English"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>English</span>
+                            </li>
+                            <li data-lang="Ro">
+                                <img
+                                    src="https://flagcdn.com/w20/ro.png"
+                                    alt="Română"
+                                    width="20"
+                                    height="15"
+                                />
+                                <span>Română</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1 class="En">Friday Sermon</h1>
+                    <h1 class="Ar" style="display: none">خطبة الجمعة</h1>
+                    <h1 class="Ro" style="display: none">Predica de Vineri</h1>
+                    <p class="En">Live Jumu'ah Khutbah every Friday from our mosque</p>
+                    <p class="Ar" style="display: none">خطبة الجمعة المباشرة كل أسبوع من مسجدنا</p>
+                    <p class="Ro" style="display: none">
+                        Predica live de Vineri în fiecare săptămână de la moscheea noastră
+                    </p>
+                    <ul class="breadcrumb">
+                        <li><a href="index.html" class="En">Home</a></li>
+                        <li><a href="friday-sermon.html" class="En">Friday Sermon</a></li>
+                    </ul>
+                    <ul class="breadcrumb" style="display: none">
+                        <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                        <li><a href="friday-sermon.html" class="Ar">خطبة الجمعة</a></li>
+                    </ul>
+                    <ul class="breadcrumb" style="display: none">
+                        <li><a href="index.html" class="Ro">Acasă</a></li>
+                        <li><a href="friday-sermon.html" class="Ro">Predica de Vineri</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friday Sermon Section -->
+        <section id="friday-sermon">
+            <div class="container">
+                <!-- Live Sermon Section -->
+                <div class="live-sermon">
+                    <div class="live-indicator">
+                        <div class="live-badge">
+                            <span class="En">LIVE NOW</span>
+                            <span class="Ar" style="display: none">بث مباشر</span>
+                            <span class="Ro" style="display: none">LIVE ACUM</span>
+                        </div>
+                        <div class="sermon-time">
+                            <span class="En">Every Friday at 1:30 PM</span>
+                            <span class="Ar" style="display: none">كل جمعة الساعة 1:30 مساءً</span>
+                            <span class="Ro" style="display: none">În fiecare vineri la 13:30</span>
+                        </div>
+                    </div>
+
+                    <div class="video-container">
+                        <!-- Embedded YouTube Live Stream or Video -->
+                        <iframe
+                            id="sermon-video"
+                            src="https://www.youtube.com/embed/live_stream?channel=UC_yxQTt-lBl8hqcJxQzgFqQ&autoplay=1"
+                            frameborder="0"
+                            allowfullscreen
+                        ></iframe>
+
+                        <!-- Fallback Placeholder (shown if not Friday or not live) -->
+                        <div
+                            class="video-placeholder"
+                            id="sermon-placeholder"
+                            style="display: none"
+                        >
+                            <i class="fas fa-video-slash"></i>
+                            <h3 class="En">Live stream will begin on Friday at 1:30 PM</h3>
+                            <h3 class="Ar" style="display: none">
+                                سيبدأ البث المباشر يوم الجمعة الساعة 1:30 مساءً
+                            </h3>
+                            <h3 class="Ro" style="display: none">
+                                Transmisia live va începe vineri la 13:30
+                            </h3>
+                            <p class="En">Check back here to watch the Jumu'ah Khutbah live</p>
+                            <p class="Ar" style="display: none">
+                                ارجع إلى هنا لمشاهدة خطبة الجمعة مباشرة
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Reveniți aici pentru a urmări predica live de vineri
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="current-sermon-info">
+                        <h3 class="En">Today's Sermon: "The Importance of Patience in Islam"</h3>
+                        <h3 class="Ar" style="display: none">
+                            خطبة اليوم: "أهمية الصبر في الإسلام"
+                        </h3>
+                        <h3 class="Ro" style="display: none">
+                            Predica de astăzi: "Importanța răbdării în Islam"
+                        </h3>
+                        <p class="En">Delivered by: Imam Omar Hassan</p>
+                        <p class="Ar" style="display: none">يلقيها: الإمام عمر حسن</p>
+                        <p class="Ro" style="display: none">Ținută de: Imam Omar Hassan</p>
+                        <p class="En">
+                            Date:
+                            <span id="current-date">June 16, 2023</span>
+                        </p>
+                        <p class="Ar" style="display: none">
+                            التاريخ:
+                            <span id="current-date-ar">١٦ يونيو ٢٠٢٣</span>
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Data:
+                            <span id="current-date-ro">16 Iunie 2023</span>
+                        </p>
+                    </div>
+
+                    <div class="sermon-actions">
+                        <button class="btn">
+                            <i class="fas fa-share-alt"></i>
+                            <span class="En">Share</span>
+                            <span class="Ar" style="display: none">مشاركة</span>
+                            <span class="Ro" style="display: none">Distribuie</span>
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-download"></i>
+                            <span class="En">Download</span>
+                            <span class="Ar" style="display: none">تحميل</span>
+                            <span class="Ro" style="display: none">Descarcă</span>
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-book-open"></i>
+                            <span class="En">Read Transcript</span>
+                            <span class="Ar" style="display: none">قراءة النص</span>
+                            <span class="Ro" style="display: none">Citește Transcrierea</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Prayer Times Section -->
+                <div class="prayer-times">
+                    <h3 class="En">Today's Prayer Times</h3>
+                    <h3 class="Ar" style="display: none">أوقات الصلاة اليوم</h3>
+                    <h3 class="Ro" style="display: none">Timpii de Rugăciune Astăzi</h3>
+
+                    <div class="prayer-grid">
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Fajr</div>
+                            <div class="prayer-name Ar" style="display: none">الفجر</div>
+                            <div class="prayer-name Ro" style="display: none">Fajr</div>
+                            <div class="prayer-hour">5:15 AM</div>
+                        </div>
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Sunrise</div>
+                            <div class="prayer-name Ar" style="display: none">الشروق</div>
+                            <div class="prayer-name Ro" style="display: none">Răsărit</div>
+                            <div class="prayer-hour">6:30 AM</div>
+                        </div>
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Dhuhr</div>
+                            <div class="prayer-name Ar" style="display: none">الظهر</div>
+                            <div class="prayer-name Ro" style="display: none">Dhuhr</div>
+                            <div class="prayer-hour">1:30 PM</div>
+                        </div>
+                        <div class="prayer-time active">
+                            <div class="prayer-name En">Jumu'ah</div>
+                            <div class="prayer-name Ar" style="display: none">الجمعة</div>
+                            <div class="prayer-name Ro" style="display: none">Vineri</div>
+                            <div class="prayer-hour">1:30 PM</div>
+                        </div>
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Asr</div>
+                            <div class="prayer-name Ar" style="display: none">العصر</div>
+                            <div class="prayer-name Ro" style="display: none">Asr</div>
+                            <div class="prayer-hour">5:45 PM</div>
+                        </div>
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Maghrib</div>
+                            <div class="prayer-name Ar" style="display: none">المغرب</div>
+                            <div class="prayer-name Ro" style="display: none">Maghrib</div>
+                            <div class="prayer-hour">9:15 PM</div>
+                        </div>
+                        <div class="prayer-time">
+                            <div class="prayer-name En">Isha</div>
+                            <div class="prayer-name Ar" style="display: none">العشاء</div>
+                            <div class="prayer-name Ro" style="display: none">Isha</div>
+                            <div class="prayer-hour">10:30 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Event -->
+                <div class="upcoming-event">
+                    <h3 class="En">Upcoming Islamic Event</h3>
+                    <h3 class="Ar" style="display: none">الحدث الإسلامي القادم</h3>
+                    <h3 class="Ro" style="display: none">Următorul Eveniment Islamic</h3>
+
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="day">23</div>
+                            <div class="month En">Jun</div>
+                            <div class="month Ar" style="display: none">يونيو</div>
+                            <div class="month Ro" style="display: none">Iun</div>
+                        </div>
+                        <div class="event-details">
+                            <h4 class="En">Islamic Family Day</h4>
+                            <h4 class="Ar" style="display: none">يوم الأسرة الإسلامية</h4>
+                            <h4 class="Ro" style="display: none">Ziua Islamică a Familiei</h4>
+                            <p class="En">
+                                Join us for a day of fun activities, lectures, and food for the
+                                whole family
+                            </p>
+                            <p class="Ar" style="display: none">
+                                انضم إلينا ليوم من الأنشطة الممتعة والمحاضرات والطعام للعائلة
+                                بأكملها
+                            </p>
+                            <p class="Ro" style="display: none">
+                                Alăturați-vă nouă pentru o zi cu activități distractive, prelegeri
+                                și mâncare pentru întreaga familie
+                            </p>
+                            <a href="#" class="btn btn-outline En">More Info</a>
+                            <a href="#" class="btn btn-outline Ar" style="display: none">
+                                مزيد من المعلومات
+                            </a>
+                            <a href="#" class="btn btn-outline Ro" style="display: none">
+                                Mai Multe Informații
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sermon Archive -->
+                <div class="sermon-archive">
+                    <div class="section-title">
+                        <h2 class="En">Sermon Archive</h2>
+                        <h2 class="Ar" style="display: none">أرشيف الخطب</h2>
+                        <h2 class="Ro" style="display: none">Arhiva Predicilor</h2>
+                    </div>
+
+                    <div class="archive-filter">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="En" placeholder="Search sermons..." />
+                            <input
+                                type="text"
+                                class="Ar"
+                                style="display: none"
+                                placeholder="ابحث في الخطب..."
+                            />
+                            <input
+                                type="text"
+                                class="Ro"
+                                style="display: none"
+                                placeholder="Caută în predici..."
+                            />
+                        </div>
+
+                        <div>
+                            <select class="filter-select En">
+                                <option>Filter by Imam</option>
+                                <option>Imam Omar</option>
+                                <option>Imam Ahmed</option>
+                                <option>Guest Speakers</option>
+                            </select>
+                            <select class="filter-select Ar" style="display: none">
+                                <option>تصفية حسب الإمام</option>
+                                <option>الإمام عمر</option>
+                                <option>الإمام أحمد</option>
+                                <option>المتحدثون الضيوف</option>
+                            </select>
+                            <select class="filter-select Ro" style="display: none">
+                                <option>Filtrează după Imam</option>
+                                <option>Imam Omar</option>
+                                <option>Imam Ahmed</option>
+                                <option>Vorbitori invitați</option>
+                            </select>
+
+                            <select class="filter-select En">
+                                <option>Sort by Date</option>
+                                <option>Newest First</option>
+                                <option>Oldest First</option>
+                            </select>
+                            <select class="filter-select Ar" style="display: none">
+                                <option>ترتيب حسب التاريخ</option>
+                                <option>الأحدث أولاً</option>
+                                <option>الأقدم أولاً</option>
+                            </select>
+                            <select class="filter-select Ro" style="display: none">
+                                <option>Sortează după Dată</option>
+                                <option>Cele mai noi</option>
+                                <option>Cele mai vechi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sermon-list">
+                        <!-- Sermon 1 -->
+                        <div class="sermon-card">
+                            <div class="sermon-thumbnail">
+                                <img
+                                    src="https://i.ytimg.com/vi/9xwazD5SyVg/maxresdefault.jpg"
+                                    alt="Sermon Thumbnail"
+                                />
+                                <div class="duration">45:22</div>
+                            </div>
+                            <div class="sermon-content">
+                                <div class="sermon-date En">June 9, 2023</div>
+                                <div class="sermon-date Ar" style="display: none">٩ يونيو ٢٠٢٣</div>
+                                <div class="sermon-date Ro" style="display: none">9 Iunie 2023</div>
+                                <h3 class="sermon-title En">The Power of Dua in Difficult Times</h3>
+                                <h3 class="sermon-title Ar" style="display: none">
+                                    قوة الدعاء في الأوقات الصعبة
+                                </h3>
+                                <h3 class="sermon-title Ro" style="display: none">
+                                    Puterea Dua în Vremuri Grele
+                                </h3>
+                                <p class="sermon-description En">
+                                    In this khutbah, Imam Omar discusses how to strengthen our
+                                    connection with Allah through sincere dua during challenging
+                                    periods of our lives.
+                                </p>
+                                <p class="sermon-description Ar" style="display: none">
+                                    في هذه الخطبة ، يناقش الإمام عمر كيفية تقوية ارتباطنا بالله من
+                                    خلال الدعاء الصادق خلال الفترات الصعبة من حياتنا.
+                                </p>
+                                <p class="sermon-description Ro" style="display: none">
+                                    În această predica, Imam Omar discută despre cum să ne întărim
+                                    legătura cu Allah prin dua sinceră în perioadele dificile ale
+                                    vieții noastre.
+                                </p>
+                                <div class="sermon-meta">
+                                    <span>
+                                        <i class="fas fa-user"></i>
+                                        Imam Omar
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-eye"></i>
+                                        1,245
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-comment"></i>
+                                        23
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sermon 2 -->
+                        <div class="sermon-card">
+                            <div class="sermon-thumbnail">
+                                <img
+                                    src="https://i.ytimg.com/vi/2Hj3zW5WX0M/maxresdefault.jpg"
+                                    alt="Sermon Thumbnail"
+                                />
+                                <div class="duration">38:15</div>
+                            </div>
+                            <div class="sermon-content">
+                                <div class="sermon-date En">June 2, 2023</div>
+                                <div class="sermon-date Ar" style="display: none">٢ يونيو ٢٠٢٣</div>
+                                <div class="sermon-date Ro" style="display: none">2 Iunie 2023</div>
+                                <h3 class="sermon-title En">Building Strong Muslim Families</h3>
+                                <h3 class="sermon-title Ar" style="display: none">
+                                    بناء أسر مسلمة قوية
+                                </h3>
+                                <h3 class="sermon-title Ro" style="display: none">
+                                    Construirea unor Familii Musulmane Puternice
+                                </h3>
+                                <p class="sermon-description En">
+                                    Imam Ahmed shares practical advice from the Quran and Sunnah on
+                                    how to establish and maintain strong, loving Muslim families in
+                                    modern society.
+                                </p>
+                                <p class="sermon-description Ar" style="display: none">
+                                    يشارك الإمام أحمد نصائح عملية من القرآن والسنة حول كيفية إنشاء
+                                    أسر مسلمة قوية ومحبة والحفاظ عليها في المجتمع الحديث.
+                                </p>
+                                <p class="sermon-description Ro" style="display: none">
+                                    Imam Ahmed împărtășește sfaturi practice din Coran și Sunnah
+                                    despre cum să stabilim și să menținem familii musulmane
+                                    puternice și iubitoare în societatea modernă.
+                                </p>
+                                <div class="sermon-meta">
+                                    <span>
+                                        <i class="fas fa-user"></i>
+                                        Imam Ahmed
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-eye"></i>
+                                        987
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-comment"></i>
+                                        18
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sermon 3 -->
+                        <div class="sermon-card">
+                            <div class="sermon-thumbnail">
+                                <img
+                                    src="https://i.ytimg.com/vi/7hCPODjJO7s/maxresdefault.jpg"
+                                    alt="Sermon Thumbnail"
+                                />
+                                <div class="duration">42:30</div>
+                            </div>
+                            <div class="sermon-content">
+                                <div class="sermon-date En">May 26, 2023</div>
+                                <div class="sermon-date Ar" style="display: none">٢٦ مايو ٢٠٢٣</div>
+                                <div class="sermon-date Ro" style="display: none">26 Mai 2023</div>
+                                <h3 class="sermon-title En">The Blessings of Ramadan Continues</h3>
+                                <h3 class="sermon-title Ar" style="display: none">
+                                    بركات رمضان مستمرة
+                                </h3>
+                                <h3 class="sermon-title Ro" style="display: none">
+                                    Binecuvântările Ramadanului Continuă
+                                </h3>
+                                <p class="sermon-description En">
+                                    Guest speaker Sheikh Yusuf explains how to maintain the
+                                    spiritual gains we made during Ramadan throughout the entire
+                                    year.
+                                </p>
+                                <p class="sermon-description Ar" style="display: none">
+                                    يشرح الشيخ يوسف المتحدث الضيف كيفية الحفاظ على المكاسب الروحية
+                                    التي حققناها خلال رمضان طوال العام.
+                                </p>
+                                <p class="sermon-description Ro" style="display: none">
+                                    Vorbitorul invitat Sheikh Yusuf explică cum să menținem
+                                    câștigurile spirituale pe care le-am realizat în Ramadan pe tot
+                                    parcursul anului.
+                                </p>
+                                <div class="sermon-meta">
+                                    <span>
+                                        <i class="fas fa-user"></i>
+                                        Sheikh Yusuf
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-eye"></i>
+                                        1,532
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-comment"></i>
+                                        34
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="pagination-btn"><i class="fas fa-chevron-left"></i></a>
+                        <a href="#" class="pagination-btn active">1</a>
+                        <a href="#" class="pagination-btn">2</a>
+                        <a href="#" class="pagination-btn">3</a>
+                        <a href="#" class="pagination-btn"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h2 class="En">Islam Cluj</h2>
+                            <h2 class="Ar" style="display: none">الإسلام كلوج</h2>
+                            <h2 class="Ro" style="display: none">Islam Cluj</h2>
+                        </div>
+                        <p class="En">
+                            Serving the Muslim community in Cluj-Napoca with authentic Islamic
+                            education, prayer services, and community programs.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            نخدم المجتمع الإسلامي في كلوج نابوكا بتعليم إسلامي أصيل، خدمات الصلاة،
+                            وبرامج مجتمعية.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Servim comunitatea musulmană din Cluj-Napoca cu educație islamică
+                            autentică, servicii de rugăciune și programe comunitare.
+                        </p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-services">
+                        <h3 class="En">Services</h3>
+                        <h3 class="Ar" style="display: none">خدمات</h3>
+                        <h3 class="Ro" style="display: none">Servicii</h3>
+                        <ul>
+                            <li><a href="#" class="En">Daily Prayers</a></li>
+                            <li>
+                                <a href="#" class="Ar" style="display: none">الصلوات اليومية</a>
+                            </li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Rugăciuni Zilnice</a>
+                            </li>
+
+                            <li><a href="friday-sermon.html" class="En">Friday Sermon</a></li>
+                            <li>
+                                <a href="friday-sermon.html" class="Ar" style="display: none">
+                                    خطبة الجمعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="friday-sermon.html" class="Ro" style="display: none">
+                                    Predica de Vineri
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="En">Quran Classes</a></li>
+                            <li><a href="#" class="Ar" style="display: none">دروس القرآن</a></li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Cursuri de Coran</a>
+                            </li>
+
+                            <li><a href="#" class="En">Islamic School</a></li>
+                            <li>
+                                <a href="#" class="Ar" style="display: none">المدرسة الإسلامية</a>
+                            </li>
+                            <li>
+                                <a href="#" class="Ro" style="display: none">Școală Islamică</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="En">Quick Links</h3>
+                        <h3 class="Ar" style="display: none">روابط سريعة</h3>
+                        <h3 class="Ro" style="display: none">Link-uri Rapide</h3>
+                        <ul>
+                            <li><a href="index.html" class="En">Home</a></li>
+                            <li>
+                                <a href="index.html" class="Ar" style="display: none">الرئيسية</a>
+                            </li>
+                            <li><a href="index.html" class="Ro" style="display: none">Acasă</a></li>
+
+                            <li><a href="about-islam.html" class="En">About Islam</a></li>
+                            <li>
+                                <a href="about-islam.html" class="Ar" style="display: none">
+                                    عن الإسلام
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about-islam.html" class="Ro" style="display: none">
+                                    Despre Islam
+                                </a>
+                            </li>
+
+                            <li><a href="friday-sermon.html" class="En">Friday Sermon</a></li>
+                            <li>
+                                <a href="friday-sermon.html" class="Ar" style="display: none">
+                                    خطبة الجمعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="friday-sermon.html" class="Ro" style="display: none">
+                                    Predica de Vineri
+                                </a>
+                            </li>
+
+                            <li><a href="contact.html" class="En">Contact</a></li>
+                            <li>
+                                <a href="contact.html" class="Ar" style="display: none">اتصل بنا</a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="Ro" style="display: none">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3 class="En">Get Reminders</h3>
+                        <h3 class="Ar" style="display: none">احصل على تذكيرات</h3>
+                        <h3 class="Ro" style="display: none">Primește Mementouri</h3>
+                        <p class="En">Receive Friday prayer time notifications</p>
+                        <p class="Ar" style="display: none">تلقي إشعارات وقت صلاة الجمعة</p>
+                        <p class="Ro" style="display: none">
+                            Primește notificări pentru timpul rugăciunii de vineri
+                        </p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" class="En" />
+                            <input
+                                type="email"
+                                placeholder="بريدك الإلكتروني"
+                                class="Ar"
+                                style="display: none"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email-ul Dvs."
+                                class="Ro"
+                                style="display: none"
+                            />
+                            <button type="submit" class="btn En">Subscribe</button>
+                            <button type="submit" class="btn Ar" style="display: none">
+                                اشتراك
+                            </button>
+                            <button type="submit" class="btn Ro" style="display: none">
+                                Abonează-te
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="En">&copy; 2023 Islam Cluj. All Rights Reserved.</p>
+                    <p class="Ar" style="display: none">
+                        &copy; 2023 الإسلام كلوج. جميع الحقوق محفوظة.
+                    </p>
+                    <p class="Ro" style="display: none">
+                        &copy; 2023 Islam Cluj. Toate Drepturile Rezervate.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // ==================== Hamburger Menu ====================
+                const initHamburgerMenu = () => {
+                    const hamburger = document.querySelector(".hamburger");
+                    const navMenu = document.querySelector(".nav-menu");
+
+                    if (hamburger && navMenu) {
+                        hamburger.addEventListener("click", () => {
+                            hamburger.classList.toggle("active");
+                            navMenu.classList.toggle("active");
+                        });
+                    }
+                };
+
+                // ==================== Language Switcher ====================
+                const initLanguageSwitcher = () => {
+                    const languageSelector = document.querySelector(".language-selector");
+                    const selectedLanguage = document.querySelector(".selected-language");
+                    const languageDropdown = document.querySelector(".language-dropdown");
+                    const languageOptions = document.querySelectorAll(".language-dropdown li");
+
+                    if (
+                        !languageSelector ||
+                        !selectedLanguage ||
+                        !languageDropdown ||
+                        !languageOptions.length
+                    ) {
+                        return;
+                    }
+
+                    // Toggle dropdown
+                    languageSelector.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        languageSelector.classList.toggle("active");
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", () => {
+                        languageSelector.classList.remove("active");
+                    });
+
+                    // Language switching function
+                    const switchLanguage = (lang) => {
+                        // Hide all language-specific content
+                        document
+                            .querySelectorAll('[class*="En"], [class*="Ar"], [class*="Ro"]')
+                            .forEach((el) => {
+                                // Skip elements that are part of the language switcher itself
+                                if (
+                                    !el.closest(".language-switcher") &&
+                                    !el.closest(".language-selector")
+                                ) {
+                                    el.style.display = "none";
+                                }
+                            });
+
+                        // Show elements for selected language
+                        document.querySelectorAll(`.${lang}`).forEach((el) => {
+                            // Skip elements that are part of the language switcher itself
+                            if (
+                                !el.closest(".language-switcher") &&
+                                !el.closest(".language-selector")
+                            ) {
+                                el.style.display = "";
+                            }
+                        });
+
+                        // Update selected language display
+                        const selectedOption = document.querySelector(
+                            `.language-dropdown li[data-lang="${lang}"]`
+                        );
+                        if (selectedOption) {
+                            const selectedImg = selectedOption.querySelector("img").cloneNode(true);
+                            const selectedText = selectedOption.querySelector("span").textContent;
+
+                            // Clear and update selected language display
+                            selectedLanguage.innerHTML = "";
+                            selectedLanguage.appendChild(selectedImg);
+
+                            const textSpan = document.createElement("span");
+                            textSpan.textContent = selectedText;
+                            textSpan.className = lang;
+                            selectedLanguage.appendChild(textSpan);
+
+                            const chevron = document.createElement("i");
+                            chevron.className = "fas fa-chevron-down";
+                            selectedLanguage.appendChild(chevron);
+                        }
+
+                        // Set direction for RTL languages
+                        document.body.classList.toggle("rtl", lang === "Ar");
+                        document.documentElement.lang = lang;
+                        document.documentElement.dir = lang === "Ar" ? "rtl" : "ltr";
+
+                        // Update logo text visibility
+                        document.querySelector(".logo h1.En").style.display =
+                            lang === "En" ? "" : "none";
+                        document.querySelector(".logo h1.Ar").style.display =
+                            lang === "Ar" ? "" : "none";
+                        document.querySelector(".logo h1.Ro").style.display =
+                            lang === "Ro" ? "" : "none";
+
+                        // Dispatch language change event
+                        document.dispatchEvent(new Event("languageChange"));
+                    };
+
+                    // Handle language option clicks
+                    languageOptions.forEach((option) => {
+                        option.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            const lang = option.getAttribute("data-lang");
+                            switchLanguage(lang);
+                            languageSelector.classList.remove("active");
+                        });
+                    });
+
+                    // Initialize with English
+                    switchLanguage("En");
+                };
+
+                // ==================== Back to Top Button ====================
+                const initBackToTop = () => {
+                    const backToTopButton = document.querySelector(".back-to-top");
+
+                    if (!backToTopButton) return;
+
+                    window.addEventListener("scroll", () => {
+                        if (window.scrollY > 300) {
+                            backToTopButton.classList.add("visible");
+                        } else {
+                            backToTopButton.classList.remove("visible");
+                        }
+                    });
+
+                    backToTopButton.addEventListener("click", () => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth",
+                        });
+                    });
+                };
+
+                // ==================== Live Stream Check ====================
+                const checkLiveStream = () => {
+                    const today = new Date();
+                    const dayOfWeek = today.getDay(); // 0 is Sunday, 5 is Friday
+                    const hours = today.getHours();
+                    const isFriday = dayOfWeek === 5;
+                    const isPrayerTime = hours >= 12 && hours < 15; // Between 12 PM and 3 PM
+
+                    const videoPlayer = document.getElementById("sermon-video");
+                    const placeholder = document.getElementById("sermon-placeholder");
+
+                    if (isFriday && isPrayerTime) {
+                        // It's Friday during prayer time - show live stream
+                        if (videoPlayer) videoPlayer.style.display = "block";
+                        if (placeholder) placeholder.style.display = "none";
+                    } else {
+                        // Not Friday or not during prayer time - show placeholder
+                        if (videoPlayer) videoPlayer.style.display = "none";
+                        if (placeholder) placeholder.style.display = "flex";
+                    }
+                };
+
+                // ==================== Current Date Display ====================
+                const updateCurrentDate = () => {
+                    const today = new Date();
+                    const options = { year: "numeric", month: "long", day: "numeric" };
+
+                    // English date
+                    document.getElementById("current-date").textContent = today.toLocaleDateString(
+                        "en-US",
+                        options
+                    );
+
+                    // Arabic date (Western Arabic numerals)
+                    document.getElementById("current-date-ar").textContent =
+                        today.toLocaleDateString("ar-EG", options);
+
+                    // Romanian date
+                    document.getElementById("current-date-ro").textContent =
+                        today.toLocaleDateString("ro-RO", options);
+                };
+
+                // Initialize all components
+                initHamburgerMenu();
+                initLanguageSwitcher();
+                initBackToTop();
+                checkLiveStream();
+                updateCurrentDate();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Book</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            height: 500vh;
+            overflow-x: hidden;
+        }
+
+        .book-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 500px;
+            perspective: 2000px;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            backface-visibility: hidden;
+            transition: transform 1s ease-in-out;
+            transform-origin: left center;
+        }
+
+        .cover {
+            background: #2c3e50;
+            color: white;
+            z-index: 100;
+        }
+
+        .page-content {
+            max-width: 80%;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .active .page-content {
+            opacity: 1;
+        }
+
+        .page-number {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book" id="book">
+            <div class="page cover" id="cover">
+                <div class="page-content">
+                    <h1>The Great Journey</h1>
+                    <p>Scroll to begin reading</p>
+                </div>
+            </div>
+            <!-- Pages will be added dynamically -->
+        </div>
+    </div>
+    <div class="page-number" id="pageCounter">Page 0/0</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const book = document.getElementById('book');
+            const pageCounter = document.getElementById('pageCounter');
+            
+            // Book content
+            const chapters = [
+                {
+                    title: "Chapter 1: The Beginning",
+                    content: "In a quiet village surrounded by ancient forests, three friends discovered a mysterious map that would change their lives forever..."
+                },
+                {
+                    title: "Chapter 2: The First Clue",
+                    content: "The map led them to an old oak tree where they found a weathered journal containing strange symbols and warnings..."
+                },
+                {
+                    title: "Chapter 3: Through the Cave",
+                    content: "Beneath the waterfall lay a hidden cave system. With torches in hand, they ventured into the darkness..."
+                },
+                {
+                    title: "Chapter 4: The Ancient Temple",
+                    content: "Emerging from the caves, they found themselves standing before a massive stone temple covered in vines..."
+                },
+                {
+                    title: "Chapter 5: The Final Challenge",
+                    content: "Inside the temple's inner chamber, they faced their greatest test - a puzzle that threatened to trap them forever..."
+                }
+            ];
+
+            // Create pages
+            chapters.forEach((chapter, index) => {
+                const page = document.createElement('div');
+                page.className = 'page';
+                page.innerHTML = `
+                    <div class="page-content">
+                        <h2>${chapter.title}</h2>
+                        <p>${chapter.content}</p>
+                    </div>
+                `;
+                book.appendChild(page);
+            });
+
+            const pages = document.querySelectorAll('.page');
+            let currentPage = 0;
+            pageCounter.textContent = `Page 0/${pages.length}`;
+
+            // Set initial positions
+            pages.forEach((page, index) => {
+                if(index === 0) {
+                    page.style.transform = 'rotateY(0deg) translateX(0)';
+                    page.classList.add('active');
+                } else {
+                    page.style.transform = 'rotateY(180deg) translateX(100%)';
+                }
+                page.style.zIndex = pages.length - index;
+            });
+
+            // Scroll handling
+            let isScrolling = false;
+            window.addEventListener('wheel', (e) => {
+                if(isScrolling) return;
+                
+                isScrolling = true;
+                const direction = Math.sign(e.deltaY);
+                
+                if(direction === 1 && currentPage < pages.length - 1) {
+                    currentPage++;
+                } else if(direction === -1 && currentPage > 0) {
+                    currentPage--;
+                }
+
+                updateBook();
+                pageCounter.textContent = `Page ${currentPage}/${pages.length - 1}`;
+                
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
+            });
+
+            function updateBook() {
+                pages.forEach((page, index) => {
+                    if(index === currentPage) {
+                        page.style.transform = 'rotateY(0deg) translateX(0)';
+                        page.classList.add('active');
+                        page.style.zIndex = pages.length;
+                    } else if(index < currentPage) {
+                        page.style.transform = 'rotateY(-180deg) translateX(-100%)';
+                        page.style.zIndex = pages.length - index;
+                        page.classList.remove('active');
+                    } else {
+                        page.style.transform = 'rotateY(180deg) translateX(100%)';
+                        page.style.zIndex = pages.length - index;
+                        page.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

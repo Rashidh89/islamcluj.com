@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gallery - Islam Cluj</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lg-thumbnail.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lg-zoom.min.css"
+        />
+        <style>
+            /* Reuse your existing styles */
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --text-color: #334155;
+                --white: #ffffff;
+                --gray: #e2e8f0;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                color: var(--text-color);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+                color: var(--primary-color);
+                position: relative;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .section-title h2::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--secondary-color);
+            }
+
+            /* Gallery Specific Styles */
+            .gallery-filter {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .filter-btn {
+                padding: 8px 20px;
+                background-color: var(--white);
+                color: var(--primary-color);
+                border: 1px solid var(--primary-color);
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .filter-btn.active,
+            .filter-btn:hover {
+                background-color: var(--primary-color);
+                color: var(--white);
+            }
+
+            .gallery-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item {
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+                height: 250px;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .gallery-item img,
+            .gallery-item video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .gallery-item .item-type {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+            }
+
+            .gallery-item .item-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                color: white;
+                padding: 15px;
+                transform: translateY(100%);
+                transition: transform 0.3s;
+            }
+
+            .gallery-item:hover .item-caption {
+                transform: translateY(0);
+            }
+
+            .video-icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--white);
+                font-size: 40px;
+                opacity: 0.8;
+                transition: all 0.3s;
+            }
+
+            .gallery-item:hover .video-icon {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            /* Lightbox Overrides */
+            .lg-backdrop {
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+
+            .lg-toolbar {
+                background-color: transparent;
+            }
+
+            .lg-actions .lg-next,
+            .lg-actions .lg-prev {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            /* Lightbox Custom Styles */
+            .lg-outer .lg-thumb-item.active,
+            .lg-outer .lg-thumb-item:hover {
+                border-color: var(--secondary-color);
+            }
+
+            .lg-actions .lg-next,
+            .lg-actions .lg-prev {
+                background-color: rgba(0, 0, 0, 0.45);
+                color: var(--white);
+            }
+
+            .lg-actions .lg-next:hover,
+            .lg-actions .lg-prev:hover {
+                background-color: var(--primary-color);
+            }
+
+            .lg-toolbar {
+                background-color: rgba(0, 0, 0, 0.45);
+            }
+
+            .lg-toolbar .lg-icon {
+                color: var(--white);
+            }
+
+            .lg-toolbar .lg-icon:hover {
+                color: var(--secondary-color);
+            }
+
+            .lg-sub-html {
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 15px;
+            }
+
+            .lg-sub-html h4 {
+                color: var(--secondary-color);
+                margin-bottom: 5px;
+            }
+
+            .lg-sub-html p {
+                color: var(--white);
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                .gallery-container {
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                }
+
+                .gallery-item {
+                    height: 200px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .gallery-container {
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    gap: 10px;
+                }
+
+                .gallery-item {
+                    height: 150px;
+                }
+
+                .filter-btn {
+                    padding: 6px 12px;
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Include your header here -->
+        <header>
+            <!-- Your existing header content -->
+        </header>
+
+        <section id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="en">Mosque Gallery</h2>
+                    <h2 class="ar" style="display: none">معرض المسجد</h2>
+                    <h2 class="ro" style="display: none">Galerie Moschee</h2>
+                    <p class="en">
+                        Explore moments from our mosque activities, events, and daily life
+                    </p>
+                    <p class="ar" style="display: none">
+                        استكشف لحظات من أنشطة المسجد والفعاليات والحياة اليومية
+                    </p>
+                    <p class="ro" style="display: none">
+                        Explorați momente din activitățile moscheii, evenimente și viața de zi cu zi
+                    </p>
+                </div>
+
+                <div class="gallery-filter">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="en">All</span>
+                        <span class="ar" style="display: none">الكل</span>
+                        <span class="ro" style="display: none">Toate</span>
+                    </button>
+                    <button class="filter-btn" data-filter="prayer">
+                        <span class="en">Prayers</span>
+                        <span class="ar" style="display: none">الصلوات</span>
+                        <span class="ro" style="display: none">Rugăciuni</span>
+                    </button>
+                    <button class="filter-btn" data-filter="events">
+                        <span class="en">Events</span>
+                        <span class="ar" style="display: none">الفعاليات</span>
+                        <span class="ro" style="display: none">Evenimente</span>
+                    </button>
+                    <button class="filter-btn" data-filter="education">
+                        <span class="en">Education</span>
+                        <span class="ar" style="display: none">التعليم</span>
+                        <span class="ro" style="display: none">Educație</span>
+                    </button>
+                    <button class="filter-btn" data-filter="building">
+                        <span class="en">Mosque</span>
+                        <span class="ar" style="display: none">المسجد</span>
+                        <span class="ro" style="display: none">Moschee</span>
+                    </button>
+                    <button class="filter-btn" data-filter="video">
+                        <span class="en">Videos</span>
+                        <span class="ar" style="display: none">فيديوهات</span>
+                        <span class="ro" style="display: none">Videoclipuri</span>
+                    </button>
+                </div>
+
+                <div class="gallery-container" id="lightgallery">
+                    <!-- Prayer Images -->
+                    <a
+                        href="img/gallery/prayer1.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/prayer1.jpg"
+                        data-sub-html="<h4>Friday Prayer</h4><p>Jumu'ah prayer at our mosque</p>"
+                        data-category="prayer"
+                    >
+                        <img src="img/Mosque2.jpg" alt="Friday Prayer" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Friday Prayer</h4>
+                            <h4 class="ar" style="display: none">صلاة الجمعة</h4>
+                            <h4 class="ro" style="display: none">Rugăciunea de Vineri</h4>
+                            <p class="en">Jumu'ah prayer at our mosque</p>
+                            <p class="ar" style="display: none">صلاة الجمعة في مسجدنا</p>
+                            <p class="ro" style="display: none">
+                                Rugăciunea de Vineri la moscheea noastră
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/prayer2.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/prayer2.jpg"
+                        data-sub-html="<h4>Taraweeh Prayer</h4><p>Night prayers during Ramadan</p>"
+                        data-category="prayer"
+                    >
+                        <img src="img/gallery/prayer2-thumb.jpg" alt="Taraweeh Prayer" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Taraweeh Prayer</h4>
+                            <h4 class="ar" style="display: none">صلاة التراويح</h4>
+                            <h4 class="ro" style="display: none">Rugăciunea Taraweeh</h4>
+                            <p class="en">Night prayers during Ramadan</p>
+                            <p class="ar" style="display: none">صلاة الليل خلال رمضان</p>
+                            <p class="ro" style="display: none">
+                                Rugăciuni de noapte în timpul Ramadanului
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/prayer3.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/prayer3.jpg"
+                        data-sub-html="<h4>Fajr Prayer</h4><p>Early morning prayer at dawn</p>"
+                        data-category="prayer"
+                    >
+                        <img src="img/gallery/prayer3-thumb.jpg" alt="Fajr Prayer" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Fajr Prayer</h4>
+                            <h4 class="ar" style="display: none">صلاة الفجر</h4>
+                            <h4 class="ro" style="display: none">Rugăciunea Fajr</h4>
+                            <p class="en">Early morning prayer at dawn</p>
+                            <p class="ar" style="display: none">صلاة الصباح الباكر عند الفجر</p>
+                            <p class="ro" style="display: none">Rugăciunea de dimineață în zori</p>
+                        </div>
+                    </a>
+
+                    <!-- Event Images -->
+                    <a
+                        href="img/gallery/event1.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/event1.jpg"
+                        data-sub-html="<h4>Eid Celebration</h4><p>Community gathering for Eid al-Fitr</p>"
+                        data-category="events"
+                    >
+                        <img src="img/gallery/event1-thumb.jpg" alt="Eid Celebration" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Eid Celebration</h4>
+                            <h4 class="ar" style="display: none">احتفال العيد</h4>
+                            <h4 class="ro" style="display: none">Sărbătoarea Eid</h4>
+                            <p class="en">Community gathering for Eid al-Fitr</p>
+                            <p class="ar" style="display: none">تجمع المجتمع لعيد الفطر</p>
+                            <p class="ro" style="display: none">
+                                Adunare comunitara pentru Eid al-Fitr
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/event2.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/event2.jpg"
+                        data-sub-html="<h4>Eid al-Adha</h4><p>Community celebration with traditional foods</p>"
+                        data-category="events"
+                    >
+                        <img src="img/gallery/event2-thumb.jpg" alt="Eid al-Adha Celebration" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Eid al-Adha</h4>
+                            <h4 class="ar" style="display: none">عيد الأضحى</h4>
+                            <h4 class="ro" style="display: none">Eid al-Adha</h4>
+                            <p class="en">Community celebration with traditional foods</p>
+                            <p class="ar" style="display: none">
+                                احتفال المجتمع مع الأطعمة التقليدية
+                            </p>
+                            <p class="ro" style="display: none">
+                                Sărbătoare comunitara cu mâncăruri tradiționale
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/event3.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/event3.jpg"
+                        data-sub-html="<h4>Islamic Wedding</h4><p>Nikah ceremony at the mosque</p>"
+                        data-category="events"
+                    >
+                        <img src="img/gallery/event3-thumb.jpg" alt="Islamic Wedding" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Islamic Wedding</h4>
+                            <h4 class="ar" style="display: none">حفل زفاف إسلامي</h4>
+                            <h4 class="ro" style="display: none">Nuntă Islamică</h4>
+                            <p class="en">Nikah ceremony at the mosque</p>
+                            <p class="ar" style="display: none">حفل النكاح في المسجد</p>
+                            <p class="ro" style="display: none">Ceremonia Nikah la moschee</p>
+                        </div>
+                    </a>
+
+                    <!-- Education Images -->
+                    <a
+                        href="img/gallery/class1.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/class1.jpg"
+                        data-sub-html="<h4>Quran Class</h4><p>Children learning Quran with teacher</p>"
+                        data-category="education"
+                    >
+                        <img src="img/gallery/class1-thumb.jpg" alt="Quran Class" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Quran Class</h4>
+                            <h4 class="ar" style="display: none">درس القرآن</h4>
+                            <h4 class="ro" style="display: none">Lecție de Coran</h4>
+                            <p class="en">Children learning Quran with teacher</p>
+                            <p class="ar" style="display: none">الأطفال يتعلمون القرآن مع المعلم</p>
+                            <p class="ro" style="display: none">
+                                Copiii învață Coranul cu profesorul
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/class2.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/class2.jpg"
+                        data-sub-html="<h4>Arabic Class</h4><p>Adults learning Arabic language</p>"
+                        data-category="education"
+                    >
+                        <img src="img/gallery/class2-thumb.jpg" alt="Arabic Class" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Arabic Class</h4>
+                            <h4 class="ar" style="display: none">درس اللغة العربية</h4>
+                            <h4 class="ro" style="display: none">Lecție de Arabă</h4>
+                            <p class="en">Adults learning Arabic language</p>
+                            <p class="ar" style="display: none">الكبار يتعلمون اللغة العربية</p>
+                            <p class="ro" style="display: none">Adulți învață limba arabă</p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/class3.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/class3.jpg"
+                        data-sub-html="<h4>Islamic Studies</h4><p>Weekend school for children</p>"
+                        data-category="education"
+                    >
+                        <img src="img/gallery/class3-thumb.jpg" alt="Islamic Studies" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Islamic Studies</h4>
+                            <h4 class="ar" style="display: none">الدراسات الإسلامية</h4>
+                            <h4 class="ro" style="display: none">Studii Islamice</h4>
+                            <p class="en">Weekend school for children</p>
+                            <p class="ar" style="display: none">مدرسة نهاية الأسبوع للأطفال</p>
+                            <p class="ro" style="display: none">Școală de weekend pentru copii</p>
+                        </div>
+                    </a>
+
+                    <!-- Mosque Building Images -->
+                    <a
+                        href="img/gallery/mosque1.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/mosque1.jpg"
+                        data-sub-html="<h4>Our Mosque</h4><p>Exterior view of the Islamic Center</p>"
+                        data-category="building"
+                    >
+                        <img src="img/gallery/mosque1-thumb.jpg" alt="Mosque Building" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Our Mosque</h4>
+                            <h4 class="ar" style="display: none">مسجدنا</h4>
+                            <h4 class="ro" style="display: none">Moscheea noastră</h4>
+                            <p class="en">Exterior view of the Islamic Center</p>
+                            <p class="ar" style="display: none">منظر خارجي للمركز الإسلامي</p>
+                            <p class="ro" style="display: none">
+                                Vedere exterioară a Centrului Islamic
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/mosque2.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/mosque2.jpg"
+                        data-sub-html="<h4>Prayer Hall</h4><p>Interior view of the main prayer area</p>"
+                        data-category="building"
+                    >
+                        <img src="img/gallery/mosque2-thumb.jpg" alt="Prayer Hall" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Prayer Hall</h4>
+                            <h4 class="ar" style="display: none">قاعة الصلاة</h4>
+                            <h4 class="ro" style="display: none">Sala de Rugăciune</h4>
+                            <p class="en">Interior view of the main prayer area</p>
+                            <p class="ar" style="display: none">
+                                منظر داخلي لمنطقة الصلاة الرئيسية
+                            </p>
+                            <p class="ro" style="display: none">
+                                Vedere interioară a zonei principale de rugăciune
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="img/gallery/mosque3.jpg"
+                        class="gallery-item"
+                        data-src="img/gallery/mosque3.jpg"
+                        data-sub-html="<h4>Minaret</h4><p>View of the mosque minaret at sunset</p>"
+                        data-category="building"
+                    >
+                        <img src="img/gallery/mosque3-thumb.jpg" alt="Minaret" />
+                        <span class="item-type en">Image</span>
+                        <span class="item-type ar" style="display: none">صورة</span>
+                        <span class="item-type ro" style="display: none">Imagine</span>
+                        <div class="item-caption">
+                            <h4 class="en">Minaret</h4>
+                            <h4 class="ar" style="display: none">المئذنة</h4>
+                            <h4 class="ro" style="display: none">Minaret</h4>
+                            <p class="en">View of the mosque minaret at sunset</p>
+                            <p class="ar" style="display: none">منظر مئذنة المسجد عند غروب الشمس</p>
+                            <p class="ro" style="display: none">
+                                Vedere a minaretului moscheii la apus
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Videos -->
+                    <a
+                        href="https://www.youtube.com/watch?v=Rl8a0wQePCo"
+                        class="gallery-item"
+                        data-src="https://www.youtube.com/watch?v=Rl8a0wQePCo"
+                        data-sub-html="<h4>Ramadan at Our Mosque</h4><p>Special moments during Ramadan 2023</p>"
+                        data-category="video"
+                    >
+                        <img src="img/gallery/ramadan-video-thumb.jpg" alt="Ramadan Video" />
+                        <span class="item-type en">Video</span>
+                        <span class="item-type ar" style="display: none">فيديو</span>
+                        <span class="item-type ro" style="display: none">Video</span>
+                        <i class="fas fa-play video-icon"></i>
+                        <div class="item-caption">
+                            <h4 class="en">Ramadan at Our Mosque</h4>
+                            <h4 class="ar" style="display: none">رمضان في مسجدنا</h4>
+                            <h4 class="ro" style="display: none">Ramadan la Moscheea noastră</h4>
+                            <p class="en">Special moments during Ramadan 2023</p>
+                            <p class="ar" style="display: none">لحظات خاصة خلال رمضان 2023</p>
+                            <p class="ro" style="display: none">
+                                Momente speciale în timpul Ramadanului 2023
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="https://www.youtube.com/watch?v=EXAMPLE3"
+                        class="gallery-item"
+                        data-src="https://www.youtube.com/watch?v=EXAMPLE3"
+                        data-sub-html="<h4>Quran Recitation</h4><p>Beautiful recitation by our Imam</p>"
+                        data-category="video"
+                    >
+                        <img src="img/gallery/recitation-thumb.jpg" alt="Quran Recitation" />
+                        <span class="item-type en">Video</span>
+                        <span class="item-type ar" style="display: none">فيديو</span>
+                        <span class="item-type ro" style="display: none">Video</span>
+                        <i class="fas fa-play video-icon"></i>
+                        <div class="item-caption">
+                            <h4 class="en">Quran Recitation</h4>
+                            <h4 class="ar" style="display: none">تلاوة القرآن</h4>
+                            <h4 class="ro" style="display: none">Recitare Coranică</h4>
+                            <p class="en">Beautiful recitation by our Imam</p>
+                            <p class="ar" style="display: none">تلاوة جميلة من إمامنا</p>
+                            <p class="ro" style="display: none">
+                                Recitare frumoasă de către Imamul nostru
+                            </p>
+                        </div>
+                    </a>
+
+                    <a
+                        href="https://vimeo.com/EXAMPLE4"
+                        class="gallery-item"
+                        data-src="https://vimeo.com/EXAMPLE4"
+                        data-sub-html="<h4>Charity Event</h4><p>Annual food distribution to the needy</p>"
+                        data-category="video"
+                    >
+                        <img src="img/gallery/charity-thumb.jpg" alt="Charity Event" />
+                        <span class="item-type en">Video</span>
+                        <span class="item-type ar" style="display: none">فيديو</span>
+                        <span class="item-type ro" style="display: none">Video</span>
+                        <i class="fas fa-play video-icon"></i>
+                        <div class="item-caption">
+                            <h4 class="en">Charity Event</h4>
+                            <h4 class="ar" style="display: none">فعالية خيرية</h4>
+                            <h4 class="ro" style="display: none">Eveniment Caritabil</h4>
+                            <p class="en">Annual food distribution to the needy</p>
+                            <p class="ar" style="display: none">
+                                توزيع الطعام السنوي على المحتاجين
+                            </p>
+                            <p class="ro" style="display: none">
+                                Distribuție anuală de alimente pentru cei nevoiași
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Add more gallery items following the same pattern -->
+                    <!-- Example of another video -->
+                    <a
+                        href="https://vimeo.com/EXAMPLE2"
+                        class="gallery-item"
+                        data-src="https://vimeo.com/EXAMPLE2"
+                        data-sub-html="<h4>Islamic Lecture</h4><p>Friday khutba by Imam Muhammad</p>"
+                        data-category="video"
+                    >
+                        <img src="img/gallery/lecture-thumb.jpg" alt="Islamic Lecture" />
+                        <span class="item-type en">Video</span>
+                        <span class="item-type ar" style="display: none">فيديو</span>
+                        <span class="item-type ro" style="display: none">Video</span>
+                        <i class="fas fa-play video-icon"></i>
+                        <div class="item-caption">
+                            <h4 class="en">Islamic Lecture</h4>
+                            <h4 class="ar" style="display: none">محاضرة إسلامية</h4>
+                            <h4 class="ro" style="display: none">Conferință Islamică</h4>
+                            <p class="en">Friday khutba by Imam Muhammad</p>
+                            <p class="ar" style="display: none">خطبة الجمعة للإمام محمد</p>
+                            <p class="ro" style="display: none">
+                                Khutba de vineri de Imam Muhammad
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Include your footer here -->
+        <footer>
+            <!-- Your existing footer content -->
+        </footer>
+
+        <!-- Lightgallery JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+        <!-- For video support -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-video/1.2.2/lg-video.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lg-thumbnail.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lg-zoom.min.js"></script>
+        <script>
+            // Initialize lightGallery with popup functionality
+            document.addEventListener("DOMContentLoaded", () => {
+                const gallery = lightGallery(document.getElementById("lightgallery"), {
+                    plugins: [lgVideo, lgZoom, lgThumbnail],
+                    selector: ".gallery-item",
+                    download: false,
+                    counter: false,
+                    youtubePlayerParams: {
+                        modestbranding: 1,
+                        showinfo: 0,
+                        rel: 0,
+                    },
+                    vimeoPlayerParams: {
+                        byline: 0,
+                        portrait: 0,
+                        title: 0,
+                    },
+                    // Add these for better mobile experience
+                    mobileSettings: {
+                        controls: true,
+                        showCloseIcon: true,
+                        download: false,
+                        rotate: true,
+                    },
+                });
+
+                // Filter functionality
+                const filterButtons = document.querySelectorAll(".filter-btn");
+                const galleryItems = document.querySelectorAll(".gallery-item");
+
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", () => {
+                        // Set active button
+                        filterButtons.forEach((btn) => btn.classList.remove("active"));
+                        button.classList.add("active");
+
+                        const filterValue = button.getAttribute("data-filter");
+
+                        galleryItems.forEach((item) => {
+                            if (
+                                filterValue === "all" ||
+                                item.getAttribute("data-category") === filterValue
+                            ) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+
+                        // Refresh lightGallery after filtering
+                        setTimeout(() => {
+                            gallery.refresh();
+                        }, 100);
+                    });
+                });
+
+                // Make sure video items open in lightGallery properly
+                document
+                    .querySelectorAll('.gallery-item[data-category="video"]')
+                    .forEach((item) => {
+                        item.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            gallery.openGallery(
+                                Array.from(document.querySelectorAll(".gallery-item")).indexOf(this)
+                            );
+                        });
+                    });
+            });
+
+            //     // Language switching functionality
+            //     function switchLanguage(lang) {
+            //         // Hide all language elements
+            //         document.querySelectorAll('[class*="en"], [class*="ar"], [class*="ro"]').forEach(el => {
+            //             el.style.display = 'none';
+            //         });
+
+            //         // Show elements for selected language
+            //         document.querySelectorAll(`.${lang}`).forEach(el => {
+            //             el.style.display = '';
+            //         });
+
+            //         // Set direction for RTL languages
+            //         document.body.classList.toggle('rtl', lang === 'ar');
+            //     }
+
+            //     // Initialize with English
+            //     switchLanguage('en');
+            // });
+        </script>
+    </body>
+</html>

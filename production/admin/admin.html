@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel - Islam Cluj</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --primary-color: #1e3a8a;
+                --secondary-color: #f59e0b;
+                --light-color: #f8fafc;
+                --dark-color: #1e293b;
+                --sidebar-width: 250px;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f5f7fa;
+                overflow-x: hidden;
+            }
+
+            /* Sidebar Styles */
+            #sidebar {
+                width: var(--sidebar-width);
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                background: var(--primary-color);
+                color: white;
+                transition: all 0.3s;
+                z-index: 1000;
+            }
+
+            #sidebar .sidebar-header {
+                padding: 20px;
+                background: rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            #sidebar ul.components {
+                padding: 20px 0;
+            }
+
+            #sidebar ul li a {
+                padding: 12px 20px;
+                display: block;
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                transition: all 0.3s;
+            }
+
+            #sidebar ul li a:hover {
+                color: white;
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            #sidebar ul li.active > a {
+                color: white;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            #sidebar ul li a i {
+                margin-right: 10px;
+                width: 20px;
+                text-align: center;
+            }
+
+            /* Content Styles */
+            #content {
+                width: calc(100% - var(--sidebar-width));
+                margin-left: var(--sidebar-width);
+                min-height: 100vh;
+                transition: all 0.3s;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+                background: white;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .card {
+                border: none;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                margin-bottom: 20px;
+            }
+
+            .card-header {
+                background: white;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                font-weight: 600;
+            }
+
+            /* Dashboard Widgets */
+            .stat-card {
+                border-left: 4px solid var(--secondary-color);
+                transition: transform 0.3s;
+            }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .stat-card .stat-value {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            .stat-card .stat-label {
+                color: #64748b;
+                font-size: 14px;
+            }
+
+            /* Form Styles */
+            .form-control,
+            .form-select {
+                border-radius: 6px;
+                padding: 10px 15px;
+                border: 1px solid #e2e8f0;
+            }
+
+            .btn-primary {
+                background-color: var(--primary-color);
+                border: none;
+                padding: 10px 20px;
+                border-radius: 6px;
+            }
+
+            .btn-primary:hover {
+                background-color: #1a2f6d;
+            }
+
+            .btn-warning {
+                background-color: var(--secondary-color);
+                border: none;
+                color: white;
+            }
+
+            /* Table Styles */
+            .table {
+                background-color: white;
+            }
+
+            .table th {
+                font-weight: 600;
+                color: var(--dark-color);
+                border-top: none;
+            }
+
+            .logo {
+                height: 60px;
+                margin-bottom: 15px;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 768px) {
+                #sidebar {
+                    margin-left: -250px;
+                }
+
+                #sidebar.active {
+                    margin-left: 0;
+                }
+
+                #content {
+                    width: 100%;
+                    margin-left: 0;
+                }
+
+                #content.active {
+                    margin-left: 250px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img class="logo" src="img/pattern (1).png" alt="Islam Cluj Logo" />
+                <h3>Islam Cluj</h3>
+                <p>Admin Panel</p>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#content-management">
+                        <i class="fas fa-edit"></i>
+                        Content Management
+                    </a>
+                </li>
+                <li>
+                    <a href="#prayer-times">
+                        <i class="fas fa-clock"></i>
+                        Prayer Times
+                    </a>
+                </li>
+                <li>
+                    <a href="#events">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="#gallery">
+                        <i class="fas fa-images"></i>
+                        Gallery
+                    </a>
+                </li>
+                <li>
+                    <a href="#users">
+                        <i class="fas fa-users"></i>
+                        User Management
+                    </a>
+                </li>
+                <li>
+                    <a href="#donations">
+                        <i class="fas fa-donate"></i>
+                        Donations
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown">
+                            <button
+                                class="btn dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown"
+                            >
+                                <i class="fas fa-user-circle me-2"></i>
+                                Admin User
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="#profile">
+                                        <i class="fas fa-user me-2"></i>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#settings">
+                                        <i class="fas fa-cog me-2"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" href="#logout">
+                                        <i class="fas fa-sign-out-alt me-2"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard">
+                    <h4 class="mb-4">Dashboard Overview</h4>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="stat-value">1,254</div>
+                                    <div class="stat-label">Monthly Visitors</div>
+                                    <i class="fas fa-chart-line float-end mt-3 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="stat-value">87</div>
+                                    <div class="stat-label">Upcoming Events</div>
+                                    <i
+                                        class="fas fa-calendar-check float-end mt-3 text-success"
+                                    ></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="stat-value">€5,320</div>
+                                    <div class="stat-label">Monthly Donations</div>
+                                    <i class="fas fa-donate float-end mt-3 text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="stat-value">42</div>
+                                    <div class="stat-label">New Members</div>
+                                    <i class="fas fa-users float-end mt-3 text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Recent Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>User</th>
+                                                    <th>Action</th>
+                                                    <th>Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>2023-06-15</td>
+                                                    <td>Admin</td>
+                                                    <td>Updated</td>
+                                                    <td>Prayer Times</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2023-06-14</td>
+                                                    <td>Editor</td>
+                                                    <td>Created</td>
+                                                    <td>New Event</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2023-06-13</td>
+                                                    <td>Admin</td>
+                                                    <td>Uploaded</td>
+                                                    <td>Gallery Images</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Quick Actions</h5>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn btn-primary w-100 mb-2">
+                                        <i class="fas fa-plus me-2"></i>
+                                        Add New Event
+                                    </button>
+                                    <button class="btn btn-warning w-100 mb-2">
+                                        <i class="fas fa-upload me-2"></i>
+                                        Upload Media
+                                    </button>
+                                    <button class="btn btn-success w-100 mb-2">
+                                        <i class="fas fa-bullhorn me-2"></i>
+                                        Send Announcement
+                                    </button>
+                                    <button class="btn btn-info w-100">
+                                        <i class="fas fa-users me-2"></i>
+                                        Manage Users
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Management Section (hidden by default) -->
+                <section id="content-management" style="display: none">
+                    <h4 class="mb-4">Content Management</h4>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#pages">Pages</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#news">News</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sermons">Sermons</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="pages">
+                                    <button class="btn btn-primary mb-3">
+                                        <i class="fas fa-plus me-2"></i>
+                                        Add New Page
+                                    </button>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Last Modified</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Home Page</td>
+                                                    <td>2023-06-10</td>
+                                                    <td>
+                                                        <span class="badge bg-success">
+                                                            Published
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-sm btn-outline-primary"
+                                                        >
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button
+                                                            class="btn btn-sm btn-outline-danger"
+                                                        >
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>About Us</td>
+                                                    <td>2023-06-05</td>
+                                                    <td>
+                                                        <span class="badge bg-success">
+                                                            Published
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            class="btn btn-sm btn-outline-primary"
+                                                        >
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button
+                                                            class="btn btn-sm btn-outline-danger"
+                                                        >
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other sections would follow the same pattern -->
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            // Sidebar Toggle
+            document.addEventListener("DOMContentLoaded", () => {
+                const sidebar = document.getElementById("sidebar");
+                const content = document.getElementById("content");
+                const sidebarCollapse = document.getElementById("sidebarCollapse");
+
+                sidebarCollapse.addEventListener("click", () => {
+                    sidebar.classList.toggle("active");
+                    content.classList.toggle("active");
+                });
+
+                // Simulate loading data
+                setTimeout(() => {
+                    // This would be replaced with actual API calls
+                    console.log("Admin panel loaded");
+                }, 500);
+
+                // Tab functionality
+                const tabLinks = document.querySelectorAll(".nav-tabs .nav-link");
+                tabLinks.forEach((link) => {
+                    link.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        const tabPane = document.querySelector(link.getAttribute("href"));
+
+                        // Hide all tab panes
+                        document.querySelectorAll(".tab-pane").forEach((pane) => {
+                            pane.classList.remove("active");
+                        });
+
+                        // Show selected pane
+                        tabPane.classList.add("active");
+
+                        // Update active tab link
+                        tabLinks.forEach((tab) => tab.classList.remove("active"));
+                        link.classList.add("active");
+                    });
+                });
+
+                // Section switching (simplified)
+                const menuLinks = document.querySelectorAll("#sidebar a");
+                menuLinks.forEach((link) => {
+                    link.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        const sectionId = link.getAttribute("href");
+
+                        // Hide all sections
+                        document.querySelectorAll("section").forEach((section) => {
+                            section.style.display = "none";
+                        });
+
+                        // Show selected section
+                        document.querySelector(sectionId).style.display = "block";
+
+                        // Update active menu item
+                        menuLinks.forEach((item) => item.parentElement.classList.remove("active"));
+                        link.parentElement.classList.add("active");
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="En">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="site/public/assets/css/navbar.css" />
+        <link rel="stylesheet" href="site/public/assets/css/index.css" />
+        <link rel="stylesheet" href="site/public/assets/css/main.css" />
+        <style>
+            /* Islamic Foundations Styles */
+            .pillars-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .pillar-card {
+                background: white;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                position: relative;
+            }
+
+            .pillar-number {
+                position: absolute;
+                top: -15px;
+                left: -15px;
+                background: #1e3a8a;
+                color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            }
+
+            /* Steps/Pillars of Prayer */
+            .steps-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .step-card {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .step-icon {
+                background: #f0f7ff;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 15px;
+                color: #1e3a8a;
+                font-size: 20px;
+            }
+
+            /* Comparison Table */
+            .comparison-table {
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .comparison-header {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                background: #1e3a8a;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .comparison-header > div {
+                padding: 15px;
+            }
+
+            .comparison-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                border-bottom: 1px solid #eee;
+            }
+
+            .comparison-row > div {
+                padding: 15px;
+            }
+
+            .comparison-row > div:first-child {
+                font-weight: 500;
+                background: #f8fafc;
+            }
+
+            /* Prophet Section */
+            .prophet-content {
+                display: flex;
+                gap: 40px;
+                align-items: center;
+            }
+
+            .prophet-image {
+                flex: 1;
+            }
+
+            .prophet-image img {
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .prophet-details {
+                flex: 1;
+            }
+
+            .prophet-quote {
+                background: #f0f7ff;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px 0;
+                font-style: italic;
+                border-left: 4px solid #1e3a8a;
+            }
+
+            @media (max-width: 768px) {
+                .prophet-content {
+                    flex-direction: column;
+                }
+
+                .comparison-header,
+                .comparison-row {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .comparison-header > div:first-child,
+                .comparison-row > div:first-child {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+                <!-- Header -->
+                <header>
+                    <div class="container header-container">
+                        <div class="logo">
+                            <img src="img/pattern (1).png" alt="Islamic Center Logo" />
+                            <h1 class="Ar" style="display: none">الإسلام كلوج</h1>
+                            <h1 class="En">Islam Cluj</h1>
+                            <h1 class="Ro" style="display: none">Islam Cluj</h1>
+                        </div>
+        
+                        <!-- Mobile Hamburger Menu -->
+                        <button class="hamburger" aria-label="Menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <nav class="nav-menu">
+                            <ul>
+                                <div class="En menu">
+                                    <li><a href="index.html" class="En">Home</a></li>
+                                    <li><a href="about.html" class="En">About</a></li>
+                                    <li><a href="gallery.html" class="En">Gallery</a></li>
+                                    <li><a href="events.html" class="En">Events</a></li>
+                                    <li><a href="contact.html" class="En">Contact</a></li>
+                                </div>
+        
+                                <div class="Ar menu" style="display: none">
+                                    <li><a href="index.html" class="Ar">الرئيسية</a></li>
+                                    <li><a href="about.html" class="Ar">من نحن</a></li>
+                                    <li><a href="gallery.html" class="Ar">المعرض</a></li>
+                                    <li><a href="events.html" class="Ar">أحداث</a></li>
+                                    <li><a href="contact.html" class="Ar">اتصل بنا</a></li>
+                                </div>
+                                <div class="Ro menu" style="display: none">
+                                    <li><a href="index.html" class="Ro">Acasă</a></li>
+                                    <li><a href="about.html" class="Ro">Despre</a></li>
+                                    <li><a href="gallery.html" class="Ro">Galerie</a></li>
+                                    <li><a href="events.html" class="Ro">Evenimente</a></li>
+                                    <li><a href="contact.html" class="Ro">Contact</a></li>
+                                </div>
+                            </ul>
+                        </nav>
+                        <div class="language-switcher">
+                            <div class="language-selector">
+                                <div class="selected-language">
+                                    <img
+                                        src="https://flagcdn.com/w20/gb.png"
+                                        alt="English"
+                                        width="20"
+                                        height="15"
+                                    />
+                                    <!-- <span class="En">English</span>
+                                    <span class="Ar" style="display: none">English</span>
+                                    <span class="Ro" style="display: none">Engleză</span>
+                                    <i class="fas fa-chevron-down"></i> -->
+                                </div>
+                                <ul class="language-dropdown">
+                                    <li data-lang="Ar">
+                                        <img
+                                            src="https://flagcdn.com/w20/sa.png"
+                                            alt="العربية"
+                                            width="20"
+                                            height="15"
+                                        />
+                                        <span>العربية</span>
+                                    </li>
+                                    <li data-lang="En">
+                                        <img
+                                            src="https://flagcdn.com/w20/gb.png"
+                                            alt="English"
+                                            width="20"
+                                            height="15"
+                                        />
+                                        <span>English</span>
+                                    </li>
+                                    <li data-lang="Ro">
+                                        <img
+                                            src="https://flagcdn.com/w20/ro.png"
+                                            alt="Română"
+                                            width="20"
+                                            height="15"
+                                        />
+                                        <span>Română</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+        <!-- Add these sections to your HTML -->
+        <section id="islamic-foundations">
+            <!-- Pillars of Islam -->
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Pillars of Islam</h2>
+                    <h2 class="Ar" style="display: none">أركان الإسلام</h2>
+                    <h2 class="Ro" style="display: none">Pilarii Islamului</h2>
+                </div>
+
+                <div class="pillars-container">
+                    <div class="pillar-card">
+                        <div class="pillar-number">1</div>
+                        <h3 class="En">Shahada (Declaration of Faith)</h3>
+                        <h3 class="Ar" style="display: none">الشهادة</h3>
+                        <h3 class="Ro" style="display: none">Shahada (Mărturia de Credință)</h3>
+                        <p class="En">"There is no god but Allah, and Muhammad is His Messenger"</p>
+                        <p class="Ar" style="display: none">"لا إله إلا الله محمد رسول الله"</p>
+                        <p class="Ro" style="display: none">
+                            "Nu există alt dumnezeu afară de Allah, iar Muhammad este Profetul Său"
+                        </p>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-number">2</div>
+                        <h3 class="En">Salah (Prayer)</h3>
+                        <h3 class="Ar" style="display: none">الصلاة</h3>
+                        <h3 class="Ro" style="display: none">Salah (Rugăciunea)</h3>
+                        <p class="En">Five daily prayers facing the Kaaba in Mecca</p>
+                        <p class="Ar" style="display: none">
+                            خمس صلوات في اليوم تجاه الكعبة في مكة
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Cinci rugăciuni zilnice îndreptate spre Kaaba din Mecca
+                        </p>
+                    </div>
+
+                    <!-- Add remaining pillars (Zakat, Sawm, Hajj) -->
+                </div>
+            </div>
+
+            <!-- Pillars of Prayer -->
+            <div class="container" style="margin-top: 50px">
+                <div class="section-title">
+                    <h2 class="En">Pillars of Prayer</h2>
+                    <h2 class="Ar" style="display: none">أركان الصلاة</h2>
+                    <h2 class="Ro" style="display: none">Pilarii Rugăciunii</h2>
+                </div>
+
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fas fa-flag"></i></div>
+                        <h3 class="En">1. Intention (Niyyah)</h3>
+                        <h3 class="Ar" style="display: none">1. النية</h3>
+                        <h3 class="Ro" style="display: none">1. Intenția (Niyyah)</h3>
+                        <p class="En">
+                            Forming the intention in the heart for which prayer is being offered
+                        </p>
+                        <p class="Ar" style="display: none">
+                            تكوين النية في القلب للصلاة التي يتم تقديمها
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Formarea intenției în inimă pentru rugăciunea care se oferă
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-icon"><i class="fas fa-hands-praying"></i></div>
+                        <h3 class="En">2. Takbiratul Ihram</h3>
+                        <h3 class="Ar" style="display: none">2. تكبيرة الإحرام</h3>
+                        <h3 class="Ro" style="display: none">2. Takbiratul Ihram</h3>
+                        <p class="En">Opening the prayer with "Allahu Akbar" while raising hands</p>
+                        <p class="Ar" style="display: none">
+                            بدء الصلاة بـ "الله أكبر" مع رفع اليدين
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Începerea rugăciunii cu "Allahu Akbar" ridicând mâinile
+                        </p>
+                    </div>
+
+                    <!-- Add remaining prayer pillars -->
+                </div>
+            </div>
+        </section>
+
+        <section id="belief-comparison" style="background-color: #f8f9fa">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Believer vs Muslim</h2>
+                    <h2 class="Ar" style="display: none">المؤمن مقابل المسلم</h2>
+                    <h2 class="Ro" style="display: none">Credincios vs Muslim</h2>
+                </div>
+
+                <div class="comparison-table">
+                    <div class="comparison-header">
+                        <div></div>
+                        <div class="En">Muslim</div>
+                        <div class="Ar" style="display: none">مسلم</div>
+                        <div class="Ro" style="display: none">Musulman</div>
+
+                        <div class="En">Believer (Mumin)</div>
+                        <div class="Ar" style="display: none">مؤمن</div>
+                        <div class="Ro" style="display: none">Credincios (Mumin)</div>
+                    </div>
+
+                    <div class="comparison-row">
+                        <div class="En">Definition</div>
+                        <div class="Ar" style="display: none">تعريف</div>
+                        <div class="Ro" style="display: none">Definiție</div>
+
+                        <div class="En">One who submits to Allah</div>
+                        <div class="Ar" style="display: none">من يسلم لله</div>
+                        <div class="Ro" style="display: none">Cine se supune lui Allah</div>
+
+                        <div class="En">One with complete faith in heart</div>
+                        <div class="Ar" style="display: none">من لديه إيمان كامل في القلب</div>
+                        <div class="Ro" style="display: none">
+                            Cine are credință deplină în inimă
+                        </div>
+                    </div>
+
+                    <!-- Add more comparison rows -->
+                </div>
+            </div>
+        </section>
+
+        <section id="prophet-muhammad">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="En">Prophet Muhammad (PBUH)</h2>
+                    <h2 class="Ar" style="display: none">النبي محمد (صلى الله عليه وسلم)</h2>
+                    <h2 class="Ro" style="display: none">
+                        Profetul Muhammad (Pacea lui Allah fie asupra lui)
+                    </h2>
+                </div>
+
+                <div class="prophet-content">
+                    <div class="prophet-image">
+                        <img
+                            src="https://via.placeholder.com/400x500"
+                            alt="Calligraphy of Muhammad (PBUH)"
+                            class="En"
+                        />
+                        <img
+                            src="https://via.placeholder.com/400x500"
+                            alt="خط محمد صلى الله عليه وسلم"
+                            class="Ar"
+                            style="display: none"
+                        />
+                        <img
+                            src="https://via.placeholder.com/400x500"
+                            alt="Caligrafie Muhammad (Pacea fie asupra lui)"
+                            class="Ro"
+                            style="display: none"
+                        />
+                    </div>
+
+                    <div class="prophet-details">
+                        <h3 class="En">The Seal of Prophets</h3>
+                        <h3 class="Ar" style="display: none">خاتم الأنبياء</h3>
+                        <h3 class="Ro" style="display: none">Sigiliul Profeților</h3>
+
+                        <p class="En">
+                            Muhammad (peace be upon him) was born in Mecca in 570 CE and received
+                            revelation at age 40. He spent 23 years spreading Islam's message of
+                            monotheism.
+                        </p>
+                        <p class="Ar" style="display: none">
+                            ولد محمد (صلى الله عليه وسلم) في مكة عام 570 م وتلقى الوحي في سن
+                            الأربعين. قضى 23 عامًا في نشر رسالة الإسلام التوحيدية.
+                        </p>
+                        <p class="Ro" style="display: none">
+                            Muhammad (Pacea lui Allah fie asupra lui) s-a născut în Mecca în anul
+                            570 d.Hr. și a primit revelația la vârsta de 40 de ani. A petrecut 23 de
+                            ani răspândind mesajul islamic al monoteismului.
+                        </p>
+
+                        <div class="prophet-quote">
+                            <p class="En">"I have been sent to perfect good character." (Hadith)</p>
+                            <p class="Ar" style="display: none">
+                                "إنما بعثت لأتمم مكارم الأخلاق" (حديث)
+                            </p>
+                            <p class="Ro" style="display: none">
+                                "Am fost trimis pentru a desăvârși caracterul bun." (Hadith)
+                            </p>
+                        </div>
+
+                        <a href="#" class="btn en">Learn More About the Prophet</a>
+                        <a href="#" class="btn ar" style="display: none">تعلم المزيد عن النبي</a>
+                        <a href="#" class="btn ro" style="display: none">
+                            Află Mai Multe Despre Profet
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="module" src="site/public/assets/js/navbar.js"></script>
+    </body>
+</html>
